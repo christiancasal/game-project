@@ -3,13 +3,13 @@ var Marvel = require('marvel');
 var mysql = require('mysql');
 
 var marvel = new Marvel({
-  publicKey: "",
-  privateKey: ""
+ publicKey: "b1b727a58d3508f5c1a681cbd0adce76",
+ privateKey: "fc8a8f03c5831137b724047630905a26674adf7c"
 });
 
 //defines sequelize
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('game_project', 'root', '');
+var sequelize = new Sequelize('game_project', 'root');
 
 var Characters = sequelize.define('characters', {
   character_id: {
@@ -59,16 +59,16 @@ var heroes = [
   'apocalypse',
   'thanos'
 ];
-
+//
 for (var i = 0; i < heroes.length; i++) {
   marvel.characters
     .name(heroes[i])
     .get(function(err, resp) {
       if (err) { console.log("Error: ", err) }
       else {
-        //console.log(resp[0].name);
-        //console.log(resp[0].thumbnail.path);
-        //console.log(resp[0].thumbnail.extension);
+        // console.log(resp[0].name);
+        // console.log(resp[0].thumbnail.path);
+        // console.log(resp[0].thumbnail.extension);
         sequelize.sync({force: true}).then(function () {
           Characters.create({
             char_name: resp[0].name,
@@ -76,7 +76,7 @@ for (var i = 0; i < heroes.length; i++) {
             health_level: 1000,
             attack_power: 100
           }).then(function (data) {
-            console.log(data);
+            // console.log(data);
           });
         });
     }
