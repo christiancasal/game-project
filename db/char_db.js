@@ -11,6 +11,7 @@ var marvel = new Marvel({
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('game_project', 'root', '');
 
+//creates a characters table
 var Characters = sequelize.define('characters', {
   character_id: {
     type: Sequelize.INTEGER,
@@ -36,6 +37,7 @@ var Characters = sequelize.define('characters', {
   },
 });
 
+//array to feed the marvel api
 var heroes = [
   'iron man',
   'hulk',
@@ -60,6 +62,7 @@ var heroes = [
   'thanos'
 ];
 
+//calls the marvel api using the heroes (and villains) array
 for (var i = 0; i < heroes.length; i++) {
   marvel.characters
     .name(heroes[i])
@@ -83,4 +86,5 @@ for (var i = 0; i < heroes.length; i++) {
   });
 };
 
-module.exports = marvel;
+//exports the Characters table for query
+module.exports = Characters;
