@@ -3,8 +3,8 @@ var Marvel = require('marvel');
 var mysql = require('mysql');
 
 var marvel = new Marvel({
-  publicKey: "",
-  privateKey: ""
+ publicKey: "",
+ privateKey: ""
 });
 
 //defines sequelize
@@ -69,9 +69,9 @@ for (var i = 0; i < heroes.length; i++) {
     .get(function(err, resp) {
       if (err) { console.log("Error: ", err) }
       else {
-        //console.log(resp[0].name);
-        //console.log(resp[0].thumbnail.path);
-        //console.log(resp[0].thumbnail.extension);
+        // console.log(resp[0].name);
+        // console.log(resp[0].thumbnail.path);
+        // console.log(resp[0].thumbnail.extension);
         sequelize.sync({force: true}).then(function () {
           Characters.create({
             char_name: resp[0].name,
@@ -79,7 +79,7 @@ for (var i = 0; i < heroes.length; i++) {
             health_level: 1000,
             attack_power: 100
           }).then(function (data) {
-            console.log(data);
+            // console.log(data);
           });
         });
     }
