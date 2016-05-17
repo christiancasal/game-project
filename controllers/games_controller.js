@@ -16,7 +16,7 @@ router.get('/game', function(req, res){
 		marvelCharacters.findAll({}).then(function(result){
 			hbsObject.characters = result;
 		});
-	} 
+	}
 	res.render('game', { hbsObject });
 });
 
@@ -36,7 +36,7 @@ router.post('/game/signup', function(req, res){
 					}).then(function(user){
 						req.session.logged_in = true;
 						req.session.username = user.username;
-						req.session.message = 'Chose a character, ' + req.session.username;
+						req.session.message = 'Choose a character, ' + req.session.username;
 						res.redirect('/game')
 					});
 				});
@@ -58,7 +58,7 @@ router.post('/game/login', function(req, res){
 
 					req.session.logged_in = true;
 					req.session.username = user.username;
-					req.session.message = 'Chose a character, ' + req.session.username;
+					req.session.message = 'Choose a character, ' + req.session.username;
 					res.redirect('/game');
 				} else {
 					req.session.message = 'Password incorrect';
@@ -66,7 +66,7 @@ router.post('/game/login', function(req, res){
 				}
 			});
 		} else {
-			req.session.message = 'Username not found';	
+			req.session.message = 'Username not found';
 			res.redirect('/game');
 		}
 	})
