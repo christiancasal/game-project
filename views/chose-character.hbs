@@ -1,0 +1,31 @@
+<div id="new-user">
+	<div class="form-container">
+		<div id="message" style="text-align:center;"><h2>{{hbsObject.message}}</h2>
+			<a id="logout" href="logout">Logout</a>
+		</div>
+			<div class="left-float">
+				<div id="current-char">
+					<div id="char-name"></div>
+					<div id="char-health"></div>
+					<div id="char-attack"></div>
+					<div id="char-picture"></div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		<form action="game/chooseCharacter" method="POST">
+			<ul id="character-list">
+				{{#each hbsObject.characters}}
+			    <li>
+			        <label>
+			            <input type="radio" name="character" value="{{this.character_id}}">
+			            <img class="character" src="{{this.char_img}}" data-name="{{this.char_name}}" data-health="{{this.health_level}}" data-attack="{{this.attack_power}}" >
+			        </label>
+			    </li>
+			    {{/each}}
+			</ul>
+			<div class="clearfix"></div>
+			<input type="submit">
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="javascripts/choosePlayer.js"></script>
