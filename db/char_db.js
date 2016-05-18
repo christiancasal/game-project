@@ -5,8 +5,8 @@ var Characters = require('../models/models.js')[0];
 var Users = require('../models/models.js')[1];
 
 var marvel = new Marvel({
- publicKey: "b1b727a58d3508f5c1a681cbd0adce76",
- privateKey: "fc8a8f03c5831137b724047630905a26674adf7c"
+ publicKey: "",
+ privateKey: ""
 });
 
 //defines sequelize
