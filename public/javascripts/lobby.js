@@ -11,6 +11,7 @@ $(document).ready(function(){
 	    	.done(function(response) {
     		for (var i = 0; i < response.length; i++) {
     			if (response[i].gameId == host) {
+    				console.log(response[i].gameId)
     				console.log(response[i].available)
     				if (response[i].available == false) {
     					location.href = "/game/start"

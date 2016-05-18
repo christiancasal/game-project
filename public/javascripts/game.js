@@ -6,7 +6,8 @@ $(document).ready(function(){
 	    url: queryUrl,
 	    method: 'GET'})
 	    .done(function(response) {
-	    	main(response.playerOne.img, response.playerOne.username)
+	    	console.log(response)
+	    	// main(response.playerOne.img, response.playerOne.username)
 
 	    });
 });
