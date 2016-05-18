@@ -1,19 +1,49 @@
 <div id="host" {{!-- style="display:none" --}}>{{hostedGameId}}</div>
 <div id="map-view-container">
+  <div class="map-view">
+    <div id="roll">
+      <h1 id="roll-click">Roll!</h1>
+      <ul >
+        <li class="roll-choice" data="1">Press</li>
+        <li class="roll-choice" data="2">Roll</li>
+        <li class="roll-choice" data="3">Button</li>
+      </ul>
+    </div>
+    <div class="container">
+      <ul id="player-one">
+        <li class="player-one" data="0"></li>
+        <li class="player-one" data="1"></li>
+        <li class="player-one" data="2"></li>
+        <li class="player-one" data="3"></li>
+        <li class="player-one" data="4"></li>
+        <li class="player-one" data="5"></li>
+        <li class="player-one" data="6"></li>
+        <li class="player-one" data="7"></li>
+        <li class="player-one" data="8"></li>
+        <li class="player-one" data="9"></li>
+        <li class="player-one" data="10"></li>
+      </ul>
+      <ul id="player-two">
+        <li class="player-two" data="0"></li>
+        <li class="player-two" data="1"></li>
+        <li class="player-two" data="2"></li>
+        <li class="player-two" data="3"></li>
+        <li class="player-two" data="4"></li>
+        <li class="player-two" data="5"></li>
+        <li class="player-two" data="6"></li>
+        <li class="player-two" data="7"></li>
+        <li class="player-two" data="8"></li>
+        <li class="player-two" data="9"></li>
+        <li class="player-two" data="10"></li>
+      </ul>
+
+    </div>
+  </div>
 
 </div>
 <div id="action-view">
 
+  <h1 id="action-anouncement"></h1>
+
 </div>
-<script type="text/javascript" src="javascripts/game.js">
-$.ajax({
-            dataType: 'json',
-            url: '/game/api/:',
-            cache: false,
-            method: 'GET'})
-            .done(function(response) {
-              
-            });
-
-
-</script>
+<script type="text/javascript" src="javascripts/game.js"></script>
