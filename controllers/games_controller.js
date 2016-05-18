@@ -17,6 +17,8 @@ router.get('/game', function(req, res){
 			}
 			res.render('chose-character.hbs', { hbsObject });
 		});
+	} else if (req.session.start) {
+		res.render('game', { hostedGameId : req.session.hosted });
 	} else if (req.session.lobby) {
 		res.render('lobby', { hostedGameId : req.session.hosted });
 	}
@@ -103,6 +105,22 @@ router.get('/game/join/:gameID', function(req, res){
 		res.redirect('/game');
 	} else {
 		Games.joinGame(req.params.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
+		res.redirect('/game/start');
 	}
+});
+
+router.get('/game/start', function(req, res){
+	req.session.start = true;
+	res.redirect('/game');
+})
+
+router.get('/game/api/:gameId', function(req, res){
+	for (var i = 0; i < Games.activeGames.length; i++) {
+		if (Games.activeGames[i].gameId == req.session.gameID) {
+			var currentGame = Games.activeGames[i];
+		}
+	}
+	console.log('currentGame')
+	res.send(currentGame);
 })
 module.exports = router;

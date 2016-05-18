@@ -10,6 +10,7 @@ $(document).ready(function(){
 	    	method: 'GET'})
 	    	.done(function(response) {
     		console.log(response);
+    		if (response) {}
     		for (var i = 0; i < response.length; i++) {
     			if (response[i].gameId != host && response[i].available) {
     				var link = $('<p>User: ' + response[i].playerOne.name + '<a href="game/join/' + response[i].gameId + '">Join Game</a></p>');
@@ -17,10 +18,10 @@ $(document).ready(function(){
     			} else if (!response[i].available) {
     				console.log(response[i].playerOne.name)
     				var active = $('<p>User ' + response[i].playerOne.name + ' VS ' + response[i].playerTwo.name + '</p>');
-    				$('#unavailable').append(active)
+    				$('#unavailable').append(active);
     			}
     		}
 	    });
-	 setTimeout(ajaxBuild, 1000)
+	 setTimeout(ajaxBuild, 1000);
 	}());
 });
