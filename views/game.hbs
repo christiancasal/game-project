@@ -4,4 +4,15 @@
 <div id="action-view">
 
 </div>
-<script type="text/javascript" src="javascripts/game.js"></script>
+<script type="text/javascript" src="javascripts/game.js">
+$.ajax({
+            dataType: 'json',
+            url: '/game/api/:',
+            cache: false,
+            method: 'GET'})
+            .done(function(response) {
+              
+            });
+
+
+</script>
