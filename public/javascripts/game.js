@@ -6,7 +6,11 @@ $(document).ready(function(){
 	    url: queryUrl,
 	    method: 'GET'})
 	    .done(function(response) {
-	    	console.log(response.playerOne.img)
-	    	console.log(response.playerOne.username)
+	    	main(response.playerOne.img, response.playerOne.username)
+
 	    })
 });
+
+function main(player1img, player1name) {
+
+}

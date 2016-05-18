@@ -96,7 +96,6 @@ var gamesObject = {
 					defense: def,
 					position: undefined
 				}
-				console.log(this.activeGames[i])
 			}
 		}
 		console.log('Successfully joined game')
