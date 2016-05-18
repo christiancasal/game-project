@@ -76,7 +76,7 @@ $('.roll-choice').on('click', function(){
 
 	var playerPos = parseInt(player_one.currentPos);
 
-	if(playerPos == 0){ //if this is your starting move
+	if(playerPos == 0){ //Opening move
 		for(i=0;i<roll;i++){
 			$('.player-one[data="'+i+'"]').css({
 				'background-image' : 'none',
@@ -84,13 +84,15 @@ $('.roll-choice').on('click', function(){
 				'background-color' : '#777'
 			});
 		}
-		$('.player-one[data="'+roll+'"]').css({ //Make the face of the tile you're going
-			'background-image' : 'url('+player_two.image+')', //to have your background image
+		player_one.currentPos = roll; //update current position
+
+		$('.player-one[data="'+roll+'"]').css({ //Update current tile background-image
+			'background-image' : 'url('+player_two.image+')',
 			'background-size' : '50px 50px'
 		});
-		player_one.currentPos = roll; //update current position
+
 	}
-	else{ //if this isn't your starting move
+	else{ //After opening move
 		var nextPos = playerPos + roll;
 		for(i=playerPos;i<nextPos;i++){
 			$('.player-one[data="'+i+'"]').css({
@@ -99,16 +101,18 @@ $('.roll-choice').on('click', function(){
 				'background-color' : '#777'
 			});
 		}
-		$('.player-one[data="'+nextPos+'"]').css({  //Make the NEXT face of the tile
-			'background-image' : 'url('+player_two.image+')',  // you're going to have
-			'background-size' : '50px 50px'                    //your background image
-		});
+
 		player_one.currentPos = nextPos; //update current position
+
+		$('.player-one[data="'+nextPos+'"]').css({  //Update current tile background-image
+			'background-image' : 'url('+player_two.image+')',
+			'background-size' : '50px 50px'
+		});
+
 	}
 
 	$('.roll-choice[data="1"]').html('Press');
 	$('.roll-choice[data="2"]').html('Roll');
 	$('.roll-choice[data="3"]').html('Button');
-
 
 });
