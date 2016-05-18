@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var queryUrl = '/game/api/' + $('#host').text();
-	console.log(queryUrl)
+	console.log('***************** This is queryURL: ', queryUrl)
 	$.ajax({
 	    dataType: 'json',
 	    url: queryUrl,
@@ -8,7 +8,7 @@ $(document).ready(function(){
 	    .done(function(response) {
 	    	main(response.playerOne.img, response.playerOne.username)
 
-	    })
+	    });
 });
 
 function main(player1img, player1name) {
