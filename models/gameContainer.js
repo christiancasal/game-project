@@ -87,7 +87,7 @@ var gamesObject = {
 	joinGame : function(ID, player, img, hth, atk, def){
 		for (var i = 0; i < this.activeGames.length; i++) {
 			if (this.activeGames[i].gameId == ID && this.activeGames[i].available == true) {
-				this.activeGames[i].available == false;
+				this.activeGames[i].available = false;
 				this.activeGames[i].playerTwo = {
 					name: player,
 					image: img,

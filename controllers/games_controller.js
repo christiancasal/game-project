@@ -18,7 +18,7 @@ router.get('/game', function(req, res){
 			res.render('chose-character.hbs', { hbsObject });
 		});
 	} else if (req.session.start) {
-		res.render('game', { hostedGameId : req.session.hosted });
+		res.render('game', { hostedGameId : req.session.gameID });
 	} else if (req.session.lobby) {
 		res.render('lobby', { hostedGameId : req.session.hosted });
 	}
@@ -104,20 +104,25 @@ router.get('/game/join/:gameID', function(req, res){
 	if (!req.session.logged_in || !req.session.chosen) {
 		res.redirect('/game');
 	} else {
-		req.session.gameID = req.params.gameID
-		Games.joinGame(req.params.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
+		req.session.gameID = req.params.gameID;
+		Games.joinGame(req.session.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
+		req.session.playerOne = true;
 		res.redirect('/game/start');
 	}
 });
 
 router.get('/game/start', function(req, res){
+	if (!req.session.playerOne) {
+		console.log('THIS IS GTEURE for ' + req.session.username)
+		req.session.gameID = req.session.hosted;
+	}
 	req.session.start = true;
 	res.redirect('/game');
 })
 
 router.get('/game/api/:gameId', function(req, res){
 	for (var i = 0; i < Games.activeGames.length; i++) {
-		if (Games.activeGames[i].gameId == req.session.gameID) {
+		if (Games.activeGames[i].gameId == req.params.gameId) {
 			var currentGame = Games.activeGames[i];
 		}
 	}
