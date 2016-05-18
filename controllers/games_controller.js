@@ -104,6 +104,7 @@ router.get('/game/join/:gameID', function(req, res){
 	if (!req.session.logged_in || !req.session.chosen) {
 		res.redirect('/game');
 	} else {
+		req.session.gameID = req.params.gameID
 		Games.joinGame(req.params.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
 		res.redirect('/game/start');
 	}
@@ -120,7 +121,6 @@ router.get('/game/api/:gameId', function(req, res){
 			var currentGame = Games.activeGames[i];
 		}
 	}
-	console.log('currentGame')
 	res.send(currentGame);
 })
 module.exports = router;
