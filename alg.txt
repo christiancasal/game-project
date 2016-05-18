@@ -1,0 +1,147 @@
+
+
+How this is actually going to work:
+
+
+* ('/login') 'home' displays the start menu with user Auth
+
+  - LINK filling out auth and submitting will POST to DATABASE and bring you to hbs('/user')
+
+
+* ('/user') displays user information, past scores, and character stats from database.
+    + When you select a character to play, your user-id gets attached to that characters foreign-key and becomes one of your characters)
+  - LINK to character selection hbs('/character_selection')
+
+
+* (/character_selection) all characters from the database will be displayed with their stats.
+    + possible: "Continue with your character.." option.
+    **** How do see if multiple players are online at the moment? This is where two-player game would be selected? ****
+  - LINK to start game hbs('/start')
+
+* (/start)
+
+  - Game init:
+
+    + TOP {
+        The game map is loaded:
+          The player(s) images are placed at the starting position(s).
+            + possible: IF the map is the same for every game (if this is only one
+              map and not a randomly generated one), then the path will never change,
+              therefore the each tile can be a simple <div id="#?"> and player images
+              can fade-in/fade-out along the board as they move.
+
+          + possible: Tile faces display either blank or enemy/power-up locations
+      }
+
+    + Bottom {
+
+      LEFT: The character stats are displayed.
+      CENTER: The mini-game window is drawn using css canvas.
+      RIGHT: Blank / Enemy-stats / Power-up
+
+    }
+
+- First roll:
+
+  + Each character is given an initial roll to see who starts.
+
+MAIN FUNCTION() {
+
+  + Check if player has reached the FINISH
+
+    IF player has reached the finish {
+
+    - display END GAME Graphics
+
+      IF (REPLAY Feature) 
+
+      - POST updated character stats to user info in db
+
+    }
+
+  + possible: IF the tile faces are displayed with enemy/power-up locations
+  the availability of multiple roll options ex. (3,5,1) would easily give
+  an added level of strategy to the game.
+
+  ***** Where is this main function handled? (start.hbs) <script>? *****
+
+  + Roll is generated and character progresses
+
+  + Character image is moved along the map according to roll number
+
+    IF POWER-UP is located at that tile:
+
+      + (event handler) pop-up window || BOTTOM-RIGHT to display item:
+
+        Display POWER-UP type.
+        Display POWER-UP strength, ex: (12, 24, 36).
+        Display option to SMASH.
+
+    IF ENEMY is located on that tile: {
+
+      + (event handler)
+
+        - BOTTOM-RIGHT to display ENEMY stats:
+
+        - BOTTOM-CENTER initiate css canvas {
+          + display character image
+          + display enemy image
+        }
+
+
+        ****** When are these stats generated? ******
+        *
+        * All enemy stats are generated initially on (/start) for all enemies on
+        * the board and saved in an object (most sense?).
+        *
+        * || All enemy stats are generated for each character playing individually
+        * and saved individually (redundant?).
+        *
+        * || In the event of an enemy battle $.post is used call db
+        * (least efficient?).
+        *
+        *********************************************
+
+        Display ENEMY name.
+        Display ENEMY image.
+        Display ENEMY health.
+        Display ENEMY attack.
+        Display ENEMY defense.
+
+      + First roll
+
+        - decides who strikes first.
+
+      + Attack
+
+        - Health points are lost when (Enemy Attack Power points - Character Defense points)
+        - Fighting continues until either Player dies or Enemy dies
+
+        IF character HEALTH = 0
+
+          + Game Over
+
+          IF (player 2)
+
+          + Player 2 wins
+
+            ***** Will player 1 be a spectator? If there is replay and retained
+            character stat growth feature, will there be a bonus
+            for player 1 outliving player 2 || (vise versa)
+
+        IF Player WIN
+
+          + Player HEALTH  += (ENEMY HEALTH * .25)
+
+          IF SOLO PLAY design
+
+            + Init next roll/iteration MAIN FUNCTION().
+
+          IF !SOLO PLAY
+            + Init next player roll
+            ****** How do we handle computer enemy fight? Possible roll based
+              ex: (highest roll strikes, repeat)
+
+              - possible: SKIP feature until for computer characters.
+    }
+  }
