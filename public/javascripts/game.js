@@ -15,6 +15,14 @@ $(document).ready(function(){
 					'background-size' : '50px 50px'
 				});
 
+				$('#player-image').attr('src', player_one.image).css({
+					'width' : '173px',
+					'margin-top' : '5px'
+				});
+				$('#player-health').html(player_one.health);
+				$('#player-defense').html(player_one.defense);
+				$('#player-attack').html(player_one.attack);
+
 				// $('.player-two[data="0"]').css({
 				// 	'background-image' : 'url('+player_two.image+')',
 				// 	'background-size' : '50px 50px'
@@ -60,19 +68,19 @@ function loadItems() {
 		'background-image' : 'url(images/defenseItem.png)',
 		'background-size' : '50px 50px'
 	});
-	$('.player-one[data="'+itemsArray[0]+'"]').attr('data', 'defense');
+	$('.player-one[data="'+itemsArray[0]+'"]').addClass('defense');
 
 	$('.player-one[data="'+itemsArray[2]+'"]').css({
 		'background-image' : 'url(images/defenseItem.png)',
 		'background-size' : '50px 50px'
 	});
-	$('.player-one[data="'+itemsArray[2]+'"]').attr('data', 'defense');
+	$('.player-one[data="'+itemsArray[2]+'"]').addClass('defense');
 
 	$('.player-one[data="'+itemsArray[3]+'"]').css({
 		'background-image' : 'url(images/defenseItem.png)',
 		'background-size' : '50px 50px'
 	});
-	$('.player-one[data="'+itemsArray[3]+'"]').attr('data', 'defense');
+	$('.player-one[data="'+itemsArray[3]+'"]').addClass('defense');
 
 
 
@@ -80,13 +88,13 @@ function loadItems() {
 		'background-image' : 'url(images/apocalypse.png)',
 		'background-size' : '50px 50px'
 	});
-	$('.player-one[data="'+itemsArray[1]+'"]').attr('data', 'boss');
+	$('.player-one[data="'+itemsArray[1]+'"]').addClass('defense');
 
 	$('.player-one[data="10"]').css({
 		'background-image' : 'url(images/apocalypse.png)',
 		'background-size' : '50px 50px'
 	});
-	$('.player-one[data="10"]').attr('data', 'boss');
+	$('.player-one[data="10"]').addClass('defense');
 
 }
 
@@ -114,6 +122,14 @@ function diceRoll(min, max) {
 	}
 }
 
+function defenseItem(){
+	debugger;
+	$('#action-view').append($('<div class="defense-option">'));
+	$('.defense-option').append($('<h1 class="defense-announcement">').html('Select CONSUME or SMASH!'));
+	$('.defense-option').append($('<p class="defense-announcement">').html('Consuming adds 20pts to this items specialty, smashing adds 5 to all attributes'));
+
+}
+
 initRoll();
 loadItems();
 
@@ -132,10 +148,15 @@ $('.roll-choice').on('click', function(){
 	}
 
 	var playerPos = parseInt(player_one.currentPos);
+	var nextPos = playerPos + roll;
 
 	if((playerPos + roll) > 10){
 		alert('You win.');
 		return
+	}
+
+	if($('.player-one[data="'+nextPos+'"]').hasClass('defense')){
+		defenseItem();
 	}
 
 	if(playerPos == 0){ //Opening move
@@ -155,7 +176,6 @@ $('.roll-choice').on('click', function(){
 
 	}
 	else{ //After opening move
-		var nextPos = playerPos + roll;
 		for(i=playerPos;i<nextPos;i++){
 			$('.player-one[data="'+i+'"]').css({
 				'background-image' : 'none',
