@@ -7,7 +7,7 @@ $(document).ready(function(){
 	    method: 'GET'})
 	    .done(function(response) {
 	    	console.log(response)
-	    	// main(response.playerOne.img, response.playerOne.username)
+	    	main = response.playerOne.img
 
 	    })
 });

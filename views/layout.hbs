@@ -15,7 +15,15 @@
 	  				<a href="highscores"><li>High Scores</li></a>
 	  				<a href="characters"><li>Characters</li></a>
 	  				<a href="about"><li>About</li></a>
-	  			</ul>
+          </ul>
+          <div id="userNav">
+            {{#unless hbsObject.logged_in}}
+              <a href="game">log in</a>
+            {{/unless}}
+            {{#if hbsObject.logged_in}}  
+                {{hbsObject.username}}<br> <a id="logout" href="logout">Logout</a>
+            {{/if}}
+          </div>
   		</div>
     </div>
     <div class="clearfix"></div>

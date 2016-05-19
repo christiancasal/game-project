@@ -1,37 +1,46 @@
 /* Navigation styles */
 /*================================================*/
-#navigation .container > ul {
+#navigation .container > li {
 	list-style: none;
-	min-width: 680px;
-	max-width: 700px;
-	margin: 15px auto 0px auto;
-	padding-bottom: 20px;
+
+	/*padding: 20px 0px	;*/
 }
 
-#navigation .container > ul li {
+#navigation .container > ul {
+	vertical-align: top 
+	max-width: 600px;
+	display: inline-block;
+}
+
+#navigation .container > ul a {
 	display: inline-block;
 	border: 1px solid black;
-	width: 140px;
+	width: 130px;
 	height: 80px;
 	text-align: center;
-	padding-top: 25px;
-	font-size: 1.3em;
+	padding-top: 5px;
+	font-size: 1.2em;
 	margin: 0px 10px;
 	border-radius: 3px;
 }
 
 #navigation .container {
 	border-bottom: 1px solid black;
+	width:800px;
+	margin: 0px auto;
 }
 
+#userNav {
+	float: right;
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 5px;
+
+}
 /* Game page styles */
 /*================================================*/
-#logout {
-	position: relative;
-	font-size: 1.3em;
-	border: 1px solid black;
-	padding: 5px;
-	border-radius: 3px;
+
 }
 /* Current Character styles */
 /*================================================*/

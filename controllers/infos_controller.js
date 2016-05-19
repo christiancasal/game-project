@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Games = require('../models/gameContainer.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -19,6 +20,7 @@ router.get('/about', function(req, res){
 });
 
 router.get('/logout', function(req, res){
+	Games.endGame(req.session.hosted);
 	req.session.destroy();
 	res.redirect('/game')
 })
