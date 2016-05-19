@@ -7,6 +7,7 @@ $(document).ready(function(){
 	    method: 'GET'})
 	    .done(function(response) {
 	    	console.log(response)
+
 	    	main(response.playerOne, response.playerTwo);
 
 				$('.player-one[data="0"]').css({

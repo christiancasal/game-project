@@ -65,7 +65,7 @@ var gamesObject = {
 		}
 	],
 	newGame : function(player, img, hth, atk, def){
-		var ID = Math.random().toFixed(4) * 10000;
+		var ID = Math.floor(Math.random() * 1000) + 1 
 		this.activeGames.push(
 			{
 				gameId : ID,
