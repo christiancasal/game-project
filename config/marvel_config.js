@@ -40,7 +40,14 @@ var marvel_call = {
       faux_rm.create(heroes[i]);
     };
   },
+  config_hp: function(character, new_hp){
+    faux_rm.update_health(character, new_hp);
+  },
+  config_att: function(character, new_att){
+    faux_rm.update_attack(character, new_att);
+  }
 }
+
 
 module.exports = marvel_call;
 
@@ -57,6 +64,10 @@ module.exports = marvel_call;
 //
 //adds the first set of heroes(21) to the Database
 //marvel_call.initialize();
+//
+//
+//TO UPDATE THE CHARACTERS HP AND ATTACK
+//marvel_call.config_hp('Hulk', 10000);
 //
 //--------------------------------------
 
