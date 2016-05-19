@@ -13,8 +13,12 @@ $(document).ready(function(){
     			allGames.push(response[i].gameId)
     		};
     		for (var i = 0; i < response.length; i++) {
+    			console.log('hi')
     			if (response[i].gameId == host) {
+    				console.log(host)
+    				console.log(response[i].available)
     				if (response[i].available == false) {
+    					console.log('here')
     					location.href = "/game/start"
     				};
     			}
