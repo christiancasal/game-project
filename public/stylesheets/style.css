@@ -106,24 +106,95 @@ input[type="radio"]:checked + img {
 	box-shadow: 0px 0px 15px 2px black;
 }
 
+/* Map-View Styles */
+/*================================================*/
+#map-view-container .map-view .container > ul {
+	list-style: none;
+	min-width: 680px;
+	/*max-width: 700px;*/
+	margin: 15px auto 0px auto;
+	padding-bottom: 20px;
+	display: inline-block;
+}
+
+#map-view-container .map-view .container > ul li {
+	display: inline-block;
+	border: 1px solid black;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	padding-top: 10px;
+	font-size: 1.3em;
+	margin: 0px 10px;
+	border-radius: 3px;
+}
+
+#map-view-container .map-view {
+	border-bottom: 1px solid black;
+}
+
+#map-view-container .map-view .container {
+	width: 840px;
+  display: inline-block;
+	margin-top: 14px;
+	height: 180px;
+}
+
 #map-view-container {
    width: 100%;
    text-align: center;
 }
 
-#map-view {
+.map-view {
+	/*padding: 15px;*/
+	width: 1175px;
+	height: 195px;
 	border: 1px solid black;
 	margin: 10px auto;
-	display: inline;
 	position: relative;
 }
 
 #action-view {
+	text-align: center;
 	width: 800px;
 	height: 350px;
 	border: 1px solid black;
 	margin: 0px auto 10px auto;
 	position: relative;
+}
+
+#roll {
+	height: 180px;
+	margin: 7px;
+	float: left;
+	display: inline-block;
+	width: 220px;
+	/* margin-right: 60px; */
+	border: 1px solid black;
+	border-radius: 3px;
+	/* margin-top: 15px; */
+}
+
+.roll-choice {
+	display: inline-block;
+	border: 1px solid black;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	padding-top: 14px;
+	font-size: 1em;
+	margin: 0px 10px;
+	border-radius: 3px;
+}
+
+#roll-click {
+	padding-top: 20px;
+  font-size: 18pt;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 70px;
+  height: 70px;
+  width: 70px;
 }
 
 /*Lobby View*/

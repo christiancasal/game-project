@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
 var games_controller = require('./controllers/games_controller.js');
 var infos_controller = require('./controllers/infos_controller.js');
 
