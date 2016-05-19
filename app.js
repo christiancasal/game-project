@@ -10,7 +10,7 @@ var infos_controller = require('./controllers/infos_controller.js');
 
 var app = express();
 
-app.use(session({ secret: 'app', cookie: { maxAge: 60000 }}));
+app.use(session({ secret: 'app', cookie: { maxAge: 600000 }}));
 app.use(cookieParser());
 
 // view engine setup

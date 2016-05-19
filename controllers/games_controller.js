@@ -7,20 +7,24 @@ var User = require('../models/models.js')[1];
 var Games = require('../models/gameContainer.js');
 
 router.get('/game', function(req, res){
+	var hbsObject = { 
+		message : req.session.message,
+		hostedGameId : req.session.hosted,
+		logged_in : req.session.logged_in,
+		username : req.session.username
+	};
 	if (!req.session.logged_in) {
-		res.render('login.hbs', {message : req.session.message});
+		res.render('login.hbs', { hbsObject });
 	} else if (!req.session.chosen && req.session.logged_in) {
 		marvelCharacters.findAll({}).then(function(result){
-			var hbsObject = {
-				characters : result,
-				message : req.session.message
-			}
+				hbsObject.characters = result;
+				hbsObject.message = req.session.message;
 			res.render('chose-character.hbs', { hbsObject });
 		});
 	} else if (req.session.start) {
-		res.render('game', { hostedGameId : req.session.gameID });
+		res.render('game', { hbsObject });
 	} else if (req.session.lobby) {
-		res.render('lobby', { hostedGameId : req.session.hosted });
+		res.render('lobby', { hbsObject });
 	}
 });
 
@@ -104,17 +108,16 @@ router.get('/game/join/:gameID', function(req, res){
 	if (!req.session.logged_in || !req.session.chosen) {
 		res.redirect('/game');
 	} else {
-		req.session.gameID = req.params.gameID;
-		Games.joinGame(req.session.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
-		req.session.playerOne = true;
+		Games.joinGame(req.params.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
+		req.session.playerTwo = true;
 		res.redirect('/game/start');
 	}
 });
 
 router.get('/game/start', function(req, res){
-	if (!req.session.playerOne) {
+	if (!req.session.playerTwo) {
 		console.log('THIS IS GTEURE for ' + req.session.username)
-		req.session.gameID = req.session.hosted;
+		req.session.hosted = req.session.hosted;
 	}
 	req.session.start = true;
 	res.redirect('/game');
