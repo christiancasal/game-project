@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var games_controller = require('./controllers/games_controller.js');
 var infos_controller = require('./controllers/infos_controller.js');
+var apis_controller = require('./controllers/apis_controller.js');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', infos_controller);
 app.use('/', games_controller);
+app.use('/', apis_controller);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

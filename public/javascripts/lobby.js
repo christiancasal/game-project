@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			dataType: 'json',
-	    	url: '/game/api',
+	    	url: '/api',
 	    	cache: false,
 	    	method: 'GET'})
 	    	.done(function(response) {
@@ -24,14 +24,14 @@ $(document).ready(function(){
     			}
     			if (response[i].gameId != host && response[i].available) {
     				if ($('#' + response[i].gameId).length == 0) {
-    					var link = $('<p class="game" id="' + response[i].gameId + '">User: ' + response[i].playerOne.name + '<a href="game/join/' + response[i].gameId + '">Join Game</a></p>');
+    					var link = $('<p class="game" id="' + response[i].gameId + '">User: ' + response[i].playerTwo.name + '<a href="game/join/' + response[i].gameId + '">Join Game</a></p>');
     					$('#available').append(link);
     				}
     			} else if (!response[i].available) {
     				if ($('#' + response[i].gameId).length =! 0) {
     					$('#' + response[i].gameId).remove();
     				}
-    				var active = $('<p class="game" id="' + response[i].gameId + '">User ' + response[i].playerOne.name + ' VS ' + response[i].playerTwo.name + '</p>');
+    				var active = $('<p class="game" id="' + response[i].gameId + '">User ' + response[i].playerTwo.name + ' VS ' + response[i].playerTwo.name + '</p>');
     				$('#unavailable').append(active);
     			}
     		};

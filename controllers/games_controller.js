@@ -11,7 +11,8 @@ router.get('/game', function(req, res){
 		message : req.session.message,
 		hostedGameId : req.session.hosted,
 		logged_in : req.session.logged_in,
-		username : req.session.username
+		username : req.session.username,
+		playerOne : req.session.playerOne
 	};
 	if (!req.session.logged_in) {
 		res.render('login.hbs', { hbsObject });
@@ -96,26 +97,19 @@ router.post('/game/chooseCharacter', function(req, res){
 	});
 })
 
-router.get('/game/api', function(req, response){
-	var allGames = Games.activeGames
-	for (var i = 0; i < allGames.length; i++) {
-
-	}
-	response.send(allGames);
-});
-
 router.get('/game/join/:gameID', function(req, res){
 	if (!req.session.logged_in || !req.session.chosen) {
 		res.redirect('/game');
 	} else {
+		req.session.hosted = req.params.gameID;
 		Games.joinGame(req.params.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
-		req.session.playerTwo = true;
+		req.session.playerOne = true;
 		res.redirect('/game/start');
 	}
 });
 
 router.get('/game/start', function(req, res){
-	if (!req.session.playerTwo) {
+	if (!req.session.playerOne) {
 		console.log('THIS IS GTEURE for ' + req.session.username)
 		req.session.hosted = req.session.hosted;
 	}
@@ -123,12 +117,4 @@ router.get('/game/start', function(req, res){
 	res.redirect('/game');
 })
 
-router.get('/game/api/:gameId', function(req, res){
-	for (var i = 0; i < Games.activeGames.length; i++) {
-		if (Games.activeGames[i].gameId == req.params.gameId) {
-			var currentGame = Games.activeGames[i];
-		}
-	}
-	res.send(currentGame);
-})
 module.exports = router;
