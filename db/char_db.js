@@ -19,7 +19,7 @@ var faux_rm = {
       cb(posts);
     });
   },
-  create: function(some_name, cb){
+  create: function(some_name){
      marvel.characters.name(some_name).get(function(err, resp){
        if (err) { console.log("Error: ", err) }
        else{
@@ -32,9 +32,28 @@ var faux_rm = {
            // console.log(data);
             console.log('Added ' + some_name + ' to Database !');
             });
-         }
-       })
+         }// end of else
+       })// end of marvel function
+  },//end of create function
+  update_health: function(some_name, some_val){
+    Characters.update({
+      health_level: some_val
+    },{
+      where: {
+        char_name: some_name
+      }
+    });
+  },
+  update_attack: function(some_name, some_val){
+    Characters.update({
+      attack_power: some_val
+    },{
+      where: {
+        char_name: some_name
+      }
+    });
   }
 }
+
 
 module.exports = faux_rm;
