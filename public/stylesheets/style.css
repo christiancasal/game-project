@@ -7,7 +7,7 @@
 }
 
 #navigation .container > ul {
-	vertical-align: top 
+	vertical-align: top
 	max-width: 600px;
 	display: inline-block;
 }
@@ -154,15 +154,6 @@ input[type="radio"]:checked + img {
 	position: relative;
 }
 
-#action-view {
-	text-align: center;
-	width: 800px;
-	height: 350px;
-	border: 1px solid black;
-	margin: 0px auto 10px auto;
-	position: relative;
-}
-
 #roll {
 	height: 180px;
 	margin: 7px;
@@ -195,6 +186,44 @@ input[type="radio"]:checked + img {
   border-radius: 70px;
   height: 70px;
   width: 70px;
+}
+
+#action-container {
+	width: 1175px;
+	margin: 0 auto;
+}
+
+#player-stats {
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	width: 183px;
+	height: 350px;
+	border: 1px solid black;
+	margin: 0px auto 10px auto;
+	position: relative;
+}
+
+#action-view {
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	width: 800px;
+	height: 350px;
+	border: 1px solid black;
+	margin: 0px auto 10px auto;
+	position: relative;
+}
+
+#enemy-stats {
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	width: 183px;
+	height: 350px;
+	border: 1px solid black;
+	margin: 0px auto 10px auto;
+	position: relative;
 }
 
 /*Lobby View*/
