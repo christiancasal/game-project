@@ -4,7 +4,7 @@ var gamesObject = {
 			gameId : 5362,
 			available: true,
 			currentMove: 0,
-			playerOne : {
+			playerTwo : {
 				name: "night_slayer",
 				image: undefined,
 				health: undefined,
@@ -12,7 +12,7 @@ var gamesObject = {
 				defense: undefined,
 				position: undefined
 			},
-			playerTwo : {
+			playerOne : {
 				name: undefined,
 				image: undefined,
 				health: undefined,
@@ -25,7 +25,7 @@ var gamesObject = {
 			gameId : 34521,
 			available: false,
 			currentMove: 0,
-			playerOne : {
+			playerTwo : {
 				name: "Spider_dude",
 				image: undefined,
 				health: undefined,
@@ -33,7 +33,7 @@ var gamesObject = {
 				defense: undefined,
 				position: undefined
 			},
-			playerTwo : {
+			playerOne : {
 				name: "Funtimezzz123",
 				image: undefined,
 				health: undefined,
@@ -46,7 +46,7 @@ var gamesObject = {
 			gameId : 13413,
 			available: true,
 			currentMove: 0,
-			playerOne : {
+			playerTwo : {
 				name: "Martin-xXxXx",
 				image: undefined,
 				health: undefined,
@@ -54,7 +54,7 @@ var gamesObject = {
 				defense: undefined,
 				position: undefined
 			},
-			playerTwo : {
+			playerOne : {
 				name: undefined,
 				image: undefined,
 				health: undefined,
@@ -71,7 +71,7 @@ var gamesObject = {
 				gameId : ID,
 				available: true,
 				currentMove: 0,
-				playerOne : {
+				playerTwo : {
 					name: player,
 					image: img,
 					health: hth,
@@ -88,7 +88,7 @@ var gamesObject = {
 		for (var i = 0; i < this.activeGames.length; i++) {
 			if (this.activeGames[i].gameId == ID && this.activeGames[i].available == true) {
 				this.activeGames[i].available = false;
-				this.activeGames[i].playerTwo = {
+				this.activeGames[i].playerOne = {
 					name: player,
 					image: img,
 					health: hth,
