@@ -60,9 +60,9 @@ function loadItems() {
 	        itemsArray.push(random_number);
 	    }
 	}
-	console.log('This is itemsArray NOT sorted: ', itemsArray);
+	// console.log('This is itemsArray NOT sorted: ', itemsArray);
 	itemsArray.sort();
-	console.log('This is itemsArray sorted: ', itemsArray);
+	// console.log('This is itemsArray sorted: ', itemsArray);
 
 	$('.player-one[data="'+itemsArray[0]+'"]').css({
 		'background-image' : 'url(images/defenseItem.png)',
@@ -164,6 +164,7 @@ $('.roll-choice').on('click', function(){
 
 
 	if($('.player-one[data="'+nextPos+'"]').hasClass('defense')){
+		$('#roll').hide();
 		defenseItem();
 	}
 
@@ -235,6 +236,7 @@ $(document).on('click', '#select-consume', function(){
 	consumeHealthInt = consumeHealthInt + 20;
 	$('#player-health').html(consumeHealthInt);
 	$('.defense-option').remove();
+	$('#roll').show();
 });
 
 $(document).on('click', '#select-smash', function(){
@@ -258,4 +260,5 @@ $(document).on('click', '#select-smash', function(){
 	$('#player-attack').html(smashAttackInt);
 
 	$('.defense-option').remove();
+	$('#roll').show();
 });
