@@ -11,28 +11,83 @@ $(document).ready(function(){
 	    	main(response.playerOne, response.playerTwo);
 
 				$('.player-one[data="0"]').css({
-					'background-image' : 'url('+player_two.image+')',
+					'background-image' : 'url('+player_one.image+')',
 					'background-size' : '50px 50px'
 				});
 
-				$('.player-two[data="0"]').css({
-					'background-image' : 'url('+player_two.image+')',
-					'background-size' : '50px 50px'
-				});
+				// $('.player-two[data="0"]').css({
+				// 	'background-image' : 'url('+player_two.image+')',
+				// 	'background-size' : '50px 50px'
+				// });
 
 				currentMove = response.currentMove;
 
 	    });
 });
+
 var currentMove;
 var player_one = {};
 var player_two = {};
 
 function main(playerOne, playerTwo) {
 	player_one = playerOne;
-	player_two = playerTwo;
+	// player_two = playerTwo;
 	player_one.currentPos = 0;
-	player_two.currentPos = 0;
+	// player_two.currentPos = 0;
+}
+
+function loadItems() {
+	var limit = 4,
+	    amount = 0,
+	    lower_bound = 1,
+	    upper_bound = 9,
+	    itemsArray = [];
+
+	if (amount > limit) {
+		limit = amount;
+	}
+	while (itemsArray.length < limit) {
+	    var random_number = Math.round(Math.random()*(upper_bound - lower_bound) + lower_bound);
+	    if (itemsArray.indexOf(random_number) == -1) {
+	        itemsArray.push(random_number);
+	    }
+	}
+	console.log('This is itemsArray NOT sorted: ', itemsArray);
+	itemsArray.sort();
+	console.log('This is itemsArray sorted: ', itemsArray);
+
+	$('.player-one[data="'+itemsArray[0]+'"]').css({
+		'background-image' : 'url(images/defenseItem.png)',
+		'background-size' : '50px 50px'
+	});
+	$('.player-one[data="'+itemsArray[0]+'"]').attr('data', 'defense');
+
+	$('.player-one[data="'+itemsArray[2]+'"]').css({
+		'background-image' : 'url(images/defenseItem.png)',
+		'background-size' : '50px 50px'
+	});
+	$('.player-one[data="'+itemsArray[2]+'"]').attr('data', 'defense');
+
+	$('.player-one[data="'+itemsArray[3]+'"]').css({
+		'background-image' : 'url(images/defenseItem.png)',
+		'background-size' : '50px 50px'
+	});
+	$('.player-one[data="'+itemsArray[3]+'"]').attr('data', 'defense');
+
+
+
+	$('.player-one[data="'+itemsArray[1]+'"]').css({
+		'background-image' : 'url(images/apocalypse.png)',
+		'background-size' : '50px 50px'
+	});
+	$('.player-one[data="'+itemsArray[1]+'"]').attr('data', 'boss');
+
+	$('.player-one[data="10"]').css({
+		'background-image' : 'url(images/apocalypse.png)',
+		'background-size' : '50px 50px'
+	});
+	$('.player-one[data="10"]').attr('data', 'boss');
+
 }
 
 function initRoll(min, max) { //WHO GOES FIRST
@@ -60,6 +115,7 @@ function diceRoll(min, max) {
 }
 
 initRoll();
+loadItems();
 
 $('#roll-click').on('click', function(){
 	// debugger;
@@ -77,6 +133,11 @@ $('.roll-choice').on('click', function(){
 
 	var playerPos = parseInt(player_one.currentPos);
 
+	if((playerPos + roll) > 10){
+		alert('You win.');
+		return
+	}
+
 	if(playerPos == 0){ //Opening move
 		for(i=0;i<roll;i++){
 			$('.player-one[data="'+i+'"]').css({
@@ -88,7 +149,7 @@ $('.roll-choice').on('click', function(){
 		player_one.currentPos = roll; //update current position
 
 		$('.player-one[data="'+roll+'"]').css({ //Update current tile background-image
-			'background-image' : 'url('+player_two.image+')',
+			'background-image' : 'url('+player_one.image+')',
 			'background-size' : '50px 50px'
 		});
 
@@ -106,7 +167,7 @@ $('.roll-choice').on('click', function(){
 		player_one.currentPos = nextPos; //update current position
 
 		$('.player-one[data="'+nextPos+'"]').css({  //Update current tile background-image
-			'background-image' : 'url('+player_two.image+')',
+			'background-image' : 'url('+player_one.image+')',
 			'background-size' : '50px 50px'
 		});
 
@@ -116,4 +177,22 @@ $('.roll-choice').on('click', function(){
 	$('.roll-choice[data="2"]').html('Roll');
 	$('.roll-choice[data="3"]').html('Button');
 
+});
+
+$('#reset').on('click', function(){
+	for(i=1;i<=player_one.currentPos;i++){
+		$('.player-one[data="'+i+'"]').css({
+			'background-image' : 'none',
+			'background-size' : '50px 50px',
+			'background-color' : '#FFF'
+
+		});
+	}
+
+	player_one.currentPos = 0;
+
+	$('.player-one[data="'+0+'"]').css({ //Update current tile background-image
+		'background-image' : 'url('+player_one.image+')',
+		'background-size' : '50px 50px'
+	});
 });

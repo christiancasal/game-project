@@ -80,7 +80,7 @@ $(document).ready(function(){
       };
 
       I.explode = function() {
-        Sound.play("explosion");
+        // Sound.play("explosion");
 
         this.active = false;
         // Extra Credit: Add an explosion graphic
@@ -185,7 +185,7 @@ $(document).ready(function(){
       };
 
       I.explode = function() {
-        Sound.play("explosion");
+        // Sound.play("explosion");
 
         this.active = false;
         // Extra Credit: Add an explosion graphic
@@ -255,7 +255,7 @@ $(document).ready(function(){
     }
 
     player.shoot = function() {
-      Sound.play("shoot");
+      // Sound.play("shoot");
 
       var bulletPosition = this.midpoint();
 
@@ -352,6 +352,11 @@ $(document).ready(function(){
 
   $('#start').on('click', function(){
     main();
+  });
+  $('#stop').on('click', function(){
+    function stop(){
+      clearInterval(main);
+    }
   });
 });
 
