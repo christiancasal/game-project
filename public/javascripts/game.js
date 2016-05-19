@@ -40,9 +40,9 @@ function initRoll(min, max) { //WHO GOES FIRST
 	var roll = Math.floor(Math.random() * (max - min)) + min;
 
 	if(roll == 1){
-		$('#action-anouncement').html('Player 1 wins the starting roll!');
+		// $('#action-anouncement').html('Player 1 wins the starting roll!');
 	}else if(roll == 2){
-		$('#action-anouncement').html('Player 2 wins the starting roll!');
+		// $('#action-anouncement').html('Player 2 wins the starting roll!');
 	}else{
 		console.log('weird, this was roll: ', roll);
 	}
