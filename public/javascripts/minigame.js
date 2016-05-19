@@ -1,14 +1,4 @@
-//<![CDATA[
-
-// var playerHealth = $('#player-health').data('number');
-// var bossHealth = $('#boss-health').data('number');
-//
-// $('#player-health').html(playerHealth);
-// $('#boss-health').html(bossHealth);
-
-$(document).ready(function(){
-
-  var main = function(){
+  function startMinigame(){
 
     var CANVAS_WIDTH = 800; //1200
     var CANVAS_HEIGHT = 350;
@@ -25,19 +15,6 @@ $(document).ready(function(){
         canvas.fillRect(this.x, this.y, this.width, this.height);
       }
     };
-
-    // var boss = {
-    //   active: true,
-    //   color: "#00A",
-    //   x: 1120,
-    //   y: 160,
-    //   width: 60,
-    //   height: 111,
-    //   draw: function() {
-    //     canvas.fillStyle = this.color;
-    //     canvas.fillRect(this.x, this.y, this.width, this.height);
-    //   }
-    // };
 
     var bossContainer = [];
 
@@ -311,7 +288,7 @@ $(document).ready(function(){
             // bossHealth = bossHealth - 1;
             // $('#boss-health').html(bossHealth);
             console.log('working')
-            boss.explode();
+            Boss.explode();
             bullet.active = false;
           }
         });
@@ -326,48 +303,37 @@ $(document).ready(function(){
     }
 
     player.explode = function() {
-      // playerHealth = playerHealth - 1;
-      // $('#player-health').html(playerHealth);
+      var playerHealthString = $('#player-health').html();
+      var playerHealthInt = parseInt(playerHealthString);
+
+      playerHealthInt = playerHealthInt - 20;
+      $('#player-health').html(playerHealthInt);
 
       this.active = false;
-      // Extra Credit: Add an explosion graphic and then end the game
     };
 
     player.sprite = Sprite("captain america");
-
 
     player.draw = function() {
       this.sprite.draw(canvas, this.x, this.y);
     };
 
     Boss.explode = function() {
-      bossHealth = bossHealth - 1;
-      $('#boss-health').html(bossHealth);
+      var bossHealthString = $('#player-health').html();
+      var bossHealthInt = parseInt(bossHealthString);
+
+      bossHealthInt = bossHealthInt - 20;
+      $('#enemy-health').html(bossHealthInt);
+
       this.active = false;
-
-
     };
-
-  }
+  } //end startMinigame() ******************
 
   $('#start').on('click', function(){
-    main();
+    startMinigame();
   });
   $('#stop').on('click', function(){
     function stop(){
-      clearInterval(main);
+      clearInterval(startMinigame);
     }
   });
-});
-
-
-
-
-
-  // Boss.sprite = Sprite("boss");
-  //
-  //
-  // Boss.draw = function() {
-  //   this.sprite.draw(canvas, this.x, this.y);
-  // };
-//]]>

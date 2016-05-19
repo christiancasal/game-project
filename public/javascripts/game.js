@@ -8,7 +8,7 @@ $(document).ready(function(){
 	    .done(function(response) {
 	    	console.log(response)
 
-	    	main(response.playerOne, response.playerTwo);
+	    	getPlayers(response.playerOne, response.playerTwo);
 
 				$('.player-one[data="0"]').css({
 					'background-image' : 'url('+player_one.image+')',
@@ -37,7 +37,7 @@ var currentMove;
 var player_one = {};
 var player_two = {};
 
-function main(playerOne, playerTwo) {
+function getPlayers(playerOne, playerTwo) {
 	player_one = playerOne;
 	// player_two = playerTwo;
 	player_one.currentPos = 0;
@@ -88,13 +88,13 @@ function loadItems() {
 		'background-image' : 'url(images/apocalypse.png)',
 		'background-size' : '50px 50px'
 	});
-	$('.player-one[data="'+itemsArray[1]+'"]').addClass('defense');
+	$('.player-one[data="'+itemsArray[1]+'"]').addClass('boss');
 
 	$('.player-one[data="10"]').css({
 		'background-image' : 'url(images/apocalypse.png)',
 		'background-size' : '50px 50px'
 	});
-	$('.player-one[data="10"]').addClass('defense');
+	$('.player-one[data="10"]').addClass('boss');
 
 }
 
@@ -123,11 +123,11 @@ function diceRoll(min, max) {
 }
 
 function defenseItem(){
-	debugger;
 	$('#action-view').append($('<div class="defense-option">'));
 	$('.defense-option').append($('<h1 class="defense-announcement">').html('Select CONSUME or SMASH!'));
 	$('.defense-option').append($('<p class="defense-announcement">').html('Consuming adds 20pts to this items specialty, smashing adds 5 to all attributes'));
-
+	$('.defense-option').append($('<button id="select-consume">').html('CONSUME'));
+	$('.defense-option').append($('<button id="select-smash">').html('SMASH'));
 }
 
 initRoll();
@@ -150,13 +150,25 @@ $('.roll-choice').on('click', function(){
 	var playerPos = parseInt(player_one.currentPos);
 	var nextPos = playerPos + roll;
 
+	if((playerPos + roll) == 10){
+		$('#action-view').append($('<div class="defense-option">'));
+		$('.defense-option').append($('<h1 class="defense-announcement">').html('Final Battle Good Luck!'));
+		$()
+	}
+
 	if((playerPos + roll) > 10){
-		alert('You win.');
+		alert('Too far, roll again!');
 		return
 	}
 
+
+
 	if($('.player-one[data="'+nextPos+'"]').hasClass('defense')){
 		defenseItem();
+	}
+
+	if($('.player-one[data="'+nextPos+'"]').hasClass('boss')){
+		startMinigame();
 	}
 
 	if(playerPos == 0){ //Opening move
@@ -215,4 +227,35 @@ $('#reset').on('click', function(){
 		'background-image' : 'url('+player_one.image+')',
 		'background-size' : '50px 50px'
 	});
+});
+
+$(document).on('click', '#select-consume', function(){
+	var consumeHealthString =  $('#player-health').html();
+	var consumeHealthInt = parseInt(consumeHealthString);
+	consumeHealthInt = consumeHealthInt + 20;
+	$('#player-health').html(consumeHealthInt);
+	$('.defense-option').remove();
+});
+
+$(document).on('click', '#select-smash', function(){
+
+	var smashHealthString =  $('#player-health').html();
+	var smashDefenseString = $('#player-defense').html();
+	var smashAttackString = $('#player-attack').html();
+
+
+	var smashHealthInt = parseInt(smashHealthString);
+	var smashDefenseInt = parseInt(smashDefenseString);
+	var smashAttackInt = parseInt(smashAttackString);
+
+	smashHealthInt = smashHealthInt + 5;
+	$('#player-health').html(smashHealthInt);
+
+	smashDefenseInt = smashDefenseInt + 5;
+	$('#player-defense').html(smashDefenseInt);
+
+	smashAttackInt = smashAttackInt + 5;
+	$('#player-attack').html(smashAttackInt);
+
+	$('.defense-option').remove();
 });
