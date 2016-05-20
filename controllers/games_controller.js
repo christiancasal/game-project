@@ -41,7 +41,8 @@ router.post('/game/signup', function(req, res){
 						password_hash: hash,
 						wins: 0,
 						loses: 0,
-						streak: 0
+						streak: 0,
+						high_score:0
 					}).then(function(user){
 						req.session.logged_in = true;
 						req.session.username = user.username;
