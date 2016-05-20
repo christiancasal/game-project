@@ -1,4 +1,15 @@
 var updater = {
+	newTurn : function(){ //This function updates currentMove in the shared database resulting in the end of the players turn
+		var queryUrl = '/api/move/' + $('#host').text();
+		$.ajax({
+		    dataType: 'text',
+		    url: queryUrl,
+		    method: 'GET'})
+		.done(function(response) {
+		    console.log(response)
+		    main();
+		})
+	},
 	allStats : function(atk, hp, def, pos) { //This function updates the players stats in the shared database.
 		var queryUrl = '/api/update/' + $('#host').text() + '/' + atk + '/' + hp + '/' + def + '/' + pos;
 		$.ajax({
