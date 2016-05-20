@@ -53,16 +53,16 @@ module.exports = marvel_call;
 
 //example calls-----------------------------
 //
-//read the current table and returns it to console
+//READS THE CHARACTERS TABLE AND RETURNS IT TO CONSOLE
 //marvel_call.read(function(data){
 //console.log(data);
 //});
 //
 //
-//adds 'hawkeye' to the character table
+//ADDS 'HAWKEYE' TO THE CHARACTERS TABLE
 ////marvel_call.add_character('hawkeye')
 //
-//adds the first set of heroes(21) to the Database
+//ADDS THE INITIAL SET OF HEROES TO THE DATABASE
 //marvel_call.initialize();
 //
 //
@@ -70,9 +70,3 @@ module.exports = marvel_call;
 //marvel_call.config_hp('Hulk', 10000);
 //
 //--------------------------------------
-
-// Users.findAll({})
-//   .then(function(posts){
-//   msg.msgIn = posts;
-//   console.log(posts);
-// });
