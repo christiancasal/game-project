@@ -11,9 +11,11 @@ var user_call = {
   },
   config_lose: function(character){
     faux_rm.update_losses(character);
+  },
+  config_score: function(character, score){
+    faux_rm.update_high_score(character, score);
   }
 }
-
 
 
 module.exports = user_call;
