@@ -1,4 +1,6 @@
 var init;
+var enemyInitialHealth = enemyHealthInt;
+
 function startMinigame(){
 
   var playerHealthString = $('#player-health').html();
@@ -14,6 +16,8 @@ function startMinigame(){
   var enemyDefenseInt = parseInt(enemyDefenseString);
   var enemyAttackString = $('#enemy-attack').html();
   var enemyAttackInt = parseInt(enemyAttackString);
+
+
 
   var CANVAS_WIDTH = 800; //1200
   var CANVAS_HEIGHT = 350;
@@ -315,10 +319,15 @@ function startMinigame(){
   }
 
   player.explode = function() {
-
-    if(playerHealthInt == 0){
-      stop();
-
+    console.log(playerHealthInt);
+    if(playerHealthInt < 0){
+      pause();
+      $('#action-view').append($('<div class="defense-option">'));
+      $('.defense-option').append($('<h1 class="defense-announcement">').html('Game Over! You LOSE!'));
+      setTimeout(function(){
+      }, 2000);
+      $('.defense-option').remove();
+      $('canvas').remove();
     }
 
     playerHealthInt = playerHealthInt - (enemyAttackInt - playerDefenseInt);
@@ -334,6 +343,16 @@ function startMinigame(){
   };
 
   Boss.explode = function() {
+    if(enemyHealthInt < 0){
+      pause();
+      $('#action-view').append($('<div class="defense-option">'));
+      $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
+      setTimeout(function(){
+      }, 2000);
+      $('.defense-option').remove();
+      $('canvas').remove();
+
+    }
     // debugger;
     enemyHealthInt = enemyHealthInt - (playerAttackInt - enemyDefenseInt);
     $('#enemy-health').html(enemyHealthInt);
