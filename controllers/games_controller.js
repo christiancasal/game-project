@@ -7,7 +7,7 @@ var User = require('../models/models.js')[1];
 var Games = require('../models/gameContainer.js');
 
 router.get('/game', function(req, res){
-	var hbsObject = { 
+	var hbsObject = {
 		message : req.session.message,
 		hostedGameId : req.session.hosted,
 		logged_in : req.session.logged_in,
@@ -23,7 +23,7 @@ router.get('/game', function(req, res){
 			res.render('chose-character.hbs', { hbsObject });
 		});
 	} else if (req.session.start) {
-		res.render('testgame', { hbsObject });
+		res.render('game', { hbsObject });
 	} else if (req.session.lobby) {
 		res.render('lobby', { hbsObject });
 	}

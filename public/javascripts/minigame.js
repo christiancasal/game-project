@@ -1,5 +1,6 @@
 var init;
-var enemyInitialHealth = enemyHealthInt;
+var enemyInitialHealthString = $('#enemy-health').html();
+var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
 
 function startMinigame(){
 
@@ -76,10 +77,8 @@ function startMinigame(){
     };
 
     I.explode = function() {
-      // Sound.play("explosion");
 
       this.active = false;
-      // Extra Credit: Add an explosion graphic
     };
 
     return I;
@@ -345,15 +344,19 @@ function startMinigame(){
   Boss.explode = function() {
     if(enemyHealthInt < 0){
       pause();
-      $('#action-view').append($('<div class="defense-option">'));
-      $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
       setTimeout(function(){
+        $('#action-view').append($('<div class="defense-option">'));
+        $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
       }, 2000);
+      playerHealthInt += enemyInitialHealthInt / 4;
+      $('#player-health').html(playerHealthInt);
+
       $('.defense-option').remove();
       $('canvas').remove();
+      $('#roll').show();
 
     }
-    // debugger;
+
     enemyHealthInt = enemyHealthInt - (playerAttackInt - enemyDefenseInt);
     $('#enemy-health').html(enemyHealthInt);
 
@@ -366,11 +369,3 @@ var pause = function(){
   console.log(init);
   clearInterval(init);
 }
-// $('#start').on('click', function(){
-//   startMinigame();
-// });
-// $('#stop').on('click', function(){
-//   function stop(){
-//     clearInterval(startMinigame);
-//   }
-// });

@@ -170,6 +170,7 @@ $('.roll-choice').on('click', function(){
 
 	if($('.player-one[data="'+nextPos+'"]').hasClass('boss')){
 		startMinigame();
+		$('#roll').hide();
 	}
 
 	if(playerPos == 0){ //Opening move
