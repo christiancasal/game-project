@@ -4,6 +4,15 @@ var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO 
 
 function startMinigame(){
 
+  // // Background image
+  // var bgReady = false;
+  // var bgImage = new Image();
+  // bgImage.onload = function () {
+  // 	bgReady = true;
+  // };
+  // bgImage.src = "images/background.jpg";
+
+
   var playerHealthString = $('#player-health').html();
   var playerHealthInt = parseInt(playerHealthString);
   var playerDefenseString = $('#player-defense').html();
@@ -98,10 +107,10 @@ function startMinigame(){
 
     I.yVelocity = 0;
     I.xVelocity = I.speed;
-    I.width = 3;
-    I.height = 3;
+    I.width = 50;
+    I.height =50;
     I.color = "blue";
-    I.sprite = Sprite("bullet");
+    I.sprite = Sprite("Falcon-bullet");
 
     I.inBounds = function() {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -190,7 +199,7 @@ function startMinigame(){
   };
 
   var canvasElement = $("<canvas width='" + CANVAS_WIDTH +
-    "' height='" + CANVAS_HEIGHT + "'></canvas");
+    "' height='" + CANVAS_HEIGHT + "'></canvas")//.css('background-image', 'url(images/background.png)');
   var canvas = canvasElement.get(0).getContext("2d");
   canvasElement.appendTo('#action-view');
 
@@ -198,6 +207,60 @@ function startMinigame(){
     update();
     draw();
   }, 1000/FPS);
+
+  setInterval(function() {
+    drawChar();
+  }, 5000/FPS);
+
+
+  function drawChar(){
+
+    if(keydown.space) {
+      player.sprite = Sprite("Ant-Man-shoot");
+      player.draw = function() {
+        this.sprite.draw(canvas, this.x, this.y);
+      };
+    }
+
+    if(keydown.left) {
+
+      player.sprite = Sprite("Ant-Man-left");
+      player.draw = function() {
+        this.sprite.draw(canvas, this.x, this.y);
+      };
+    }
+
+    if(keydown.right) {
+
+      player.sprite = Sprite("Ant-Man-right");
+      player.draw = function() {
+        this.sprite.draw(canvas, this.x, this.y);
+      };
+    }
+
+    if(keydown.down) {
+
+      player.sprite = Sprite("Ant-Man-down");
+      player.draw = function() {
+        this.sprite.draw(canvas, this.x, this.y);
+      };
+    }
+
+    if(keydown.up) {
+
+      player.sprite = Sprite("Ant-Man-up");
+      player.draw = function() {
+        this.sprite.draw(canvas, this.x, this.y);
+      };
+    }
+
+    else{
+      player.sprite = Sprite("Ant-Man-stand");
+      player.draw = function() {
+        this.sprite.draw(canvas, this.x, this.y);
+      };
+    }
+  }
 
   function update() {
     if(keydown.space) {
@@ -323,8 +386,8 @@ function startMinigame(){
       pause();
       $('#action-view').append($('<div class="defense-option">'));
       $('.defense-option').append($('<h1 class="defense-announcement">').html('Game Over! You LOSE!'));
-      setTimeout(function(){
-      }, 2000);
+      // setTimeout(function(){
+      // }, 2000);
       $('.defense-option').remove();
       $('canvas').remove();
     }
@@ -335,7 +398,7 @@ function startMinigame(){
     this.active = false;
   };
 
-  player.sprite = Sprite("captain america");
+  player.sprite = Sprite("Ant-Man-stand");
 
   player.draw = function() {
     this.sprite.draw(canvas, this.x, this.y);

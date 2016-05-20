@@ -30,6 +30,14 @@ $(document).ready(function(){
 
 				currentMove = response.currentMove;
 
+				var min = 1;
+				var max = 6;
+				var roll = Math.floor(Math.random() * (max - min)) + min;
+
+				$('#action-view').css({
+					'background-image' : 'url(images/background'+roll+'.png)'
+				});
+
 	    });
 });
 
