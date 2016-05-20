@@ -7,9 +7,9 @@ router.get('/', function(req, res) {
 	res.redirect('/game')
 });
 
-router.get('/highscores', function(req, res){
-	res.render('highscores', {title: 'Highscores page'});
-});
+// router.get('/highscores', function(req, res){
+// 	res.render('highscores', {title: 'Highscores page'});
+// });
 
 router.get('/characters', function(req, res){
 	res.render('characters', {title: 'Characters page'});
