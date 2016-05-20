@@ -110,7 +110,7 @@ function startMinigame(){
     I.width = 50;
     I.height =50;
     I.color = "blue";
-    I.sprite = Sprite("Falcon-bullet");
+    I.sprite = Sprite("Black Panter-bullet");
 
     I.inBounds = function() {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -216,31 +216,32 @@ function startMinigame(){
   function drawChar(){
 
     if(keydown.space) {
-      player.sprite = Sprite("Ant-Man-shoot");
+      console.log('space working');
+      player.sprite = Sprite("Black Panter-shoot");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
       };
     }
 
     if(keydown.left) {
-
-      player.sprite = Sprite("Ant-Man-left");
+      console.log('left working');
+      player.sprite = Sprite("Black Panter-left");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
       };
     }
 
     if(keydown.right) {
-
-      player.sprite = Sprite("Ant-Man-right");
+      console.log('right working');
+      player.sprite = Sprite("Black Panter-right");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
       };
     }
 
     if(keydown.down) {
-
-      player.sprite = Sprite("Ant-Man-down");
+      console.log('down working');
+      player.sprite = Sprite("Black Panter-down");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
       };
@@ -248,14 +249,14 @@ function startMinigame(){
 
     if(keydown.up) {
 
-      player.sprite = Sprite("Ant-Man-up");
+      player.sprite = Sprite("Black Panter-up");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
       };
     }
 
     else{
-      player.sprite = Sprite("Ant-Man-stand");
+      player.sprite = Sprite("Black Panter-stand");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
       };
@@ -398,7 +399,7 @@ function startMinigame(){
     this.active = false;
   };
 
-  player.sprite = Sprite("Ant-Man-stand");
+  player.sprite = Sprite("Black Panter-stand");
 
   player.draw = function() {
     this.sprite.draw(canvas, this.x, this.y);
