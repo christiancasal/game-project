@@ -110,7 +110,7 @@ function startMinigame(){
     I.width = 50;
     I.height =50;
     I.color = "blue";
-    I.sprite = Sprite("Black Panter-bullet");
+    I.sprite = Sprite("Spider-Man-bullet");
 
     I.inBounds = function() {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -132,7 +132,7 @@ function startMinigame(){
 
     I.explode = function() {
       this.active = false;
-      // Extra Credit: Add an explosion graphic
+
     };
 
     return I;
@@ -192,7 +192,7 @@ function startMinigame(){
       // Sound.play("explosion");
 
       this.active = false;
-      // Extra Credit: Add an explosion graphic
+
     };
 
     return I;
@@ -210,55 +210,73 @@ function startMinigame(){
 
   setInterval(function() {
     drawChar();
-  }, 5000/FPS);
+  }, 3000/FPS);
 
 
   function drawChar(){
-
-    if(keydown.space) {
-      console.log('space working');
-      player.sprite = Sprite("Black Panter-shoot");
-      player.draw = function() {
-        this.sprite.draw(canvas, this.x, this.y);
-      };
-    }
+    console.log("this is player.sprite: ", player.sprite);
+    // if(keydown.space) {
+    //   console.log('space working');
+    //   player.sprite = Sprite("Spider-Man-shoot");
+    //   player.draw = function() {
+    //     this.sprite.draw(canvas, this.x, this.y);
+    //     console.log('"this" at space: ', this);
+    //     console.log("space sprite: ", this.sprite);
+    //   };
+    // }
 
     if(keydown.left) {
-      console.log('left working');
-      player.sprite = Sprite("Black Panter-left");
+      alert('left working');
+      player.sprite = Sprite("Spider-Man-left");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
+        console.log('"this" at left: ', this);
+        console.log("left sprite: ", this.sprite);
       };
-    }
 
-    if(keydown.right) {
-      console.log('right working');
-      player.sprite = Sprite("Black Panter-right");
-      player.draw = function() {
-        this.sprite.draw(canvas, this.x, this.y);
-      };
     }
 
     if(keydown.down) {
       console.log('down working');
-      player.sprite = Sprite("Black Panter-down");
+      player.sprite = Sprite("Spider-Man-down");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
+        console.log('"this" at down: ', this);
+        console.log("down sprite: ", this.sprite);
       };
     }
 
-    if(keydown.up) {
+    // if(keydown.up) {
+    //   console.log('up working');
+    //   player.sprite = Sprite("Spider-Man-up");
+    //   player.draw = function() {
+    //     this.sprite.draw(canvas, this.x, this.y);
+    //     console.log('"this" at up: ', this);
+    //     console.log("up sprite: ", this.sprite);
+    //   };
+    // }
 
-      player.sprite = Sprite("Black Panter-up");
+    if(keydown.right) {
+      player.sprite = Sprite("Spider-Man-right");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
+        alert('right working');
+        console.log('"this" at right: ', this);
+        console.log("left sprite: ", this.sprite);
       };
+
+      // player.draw();
+
+
     }
 
     else{
-      player.sprite = Sprite("Black Panter-stand");
+      console.log('stand working');
+      player.sprite = Sprite("Spider-Man-stand");
       player.draw = function() {
         this.sprite.draw(canvas, this.x, this.y);
+        console.log('"this" at stand: ', this);
+        console.log("stand sprite: ", this.sprite);
       };
     }
   }
@@ -399,7 +417,7 @@ function startMinigame(){
     this.active = false;
   };
 
-  player.sprite = Sprite("Black Panter-stand");
+  player.sprite = Sprite("Spider-Man-stand");
 
   player.draw = function() {
     this.sprite.draw(canvas, this.x, this.y);
