@@ -194,7 +194,6 @@ function main(turn, player){
 			});
 
 			$('.roll-choice').on('click', function(){
-				$('.roll-choice').off();
 				$('#roll-click').on('click', function(){
 					diceRoll();
 					$('#roll-click').off();
@@ -213,6 +212,7 @@ function main(turn, player){
 				var nextPos = playerPos + roll;
 				console.log('now at ' + nextPos);
 				if((playerPos + roll) == 10){
+					$('.roll-choice').off();
 					$('#action-view').append($('<div class="defense-option">'));
 					$('.defense-option').append($('<h1 class="defense-announcement">').html('Final Battle Good Luck!'));
 				}
@@ -233,6 +233,7 @@ function main(turn, player){
 					$('#roll-click').off();
 					$('.roll-choice').off();
 					startMinigame(nextPos);
+					return;
 				}
 
 				if(playerPos == 0){ //Opening move

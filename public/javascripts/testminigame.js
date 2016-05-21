@@ -1,5 +1,17 @@
 var init;
-function startMinigame(pos){
+var enemyInitialHealthString = $('#enemy-health').html();
+var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
+
+function startMinigame(atk, hlt, def, pos){
+
+  // // Background image
+  // var bgReady = false;
+  // var bgImage = new Image();
+  // bgImage.onload = function () {
+  // 	bgReady = true;
+  // };
+  // bgImage.src = "images/background.jpg";
+
 
   var playerHealthString = $('#player-health').html();
   var playerHealthInt = parseInt(playerHealthString);
@@ -22,16 +34,59 @@ function startMinigame(pos){
   var FPS = 30;
 
   var player = {
-    color: "#00A",
+    // color: "#00A",
     x: 120,
     y: 160,
-    width: 20,
-    height: 30,
+    width: 0,
+    height: 0,
     draw: function() {
-      canvas.fillStyle = this.color;
+      // canvas.fillStyle = this.color;
+      // canvas.fillRect(this.x, this.y, this.width, this.height);
+    },
+    drawUp: function() {
+      player.sprite.draw(canvas, this.x, this.y);
+      player.sprite = Sprite("Spider-Man-up");
+
+      canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
-    }
+    },
+    drawDown: function() {
+      player.sprite.draw(canvas, this.x, this.y);
+      player.sprite = Sprite("Spider-Man-down");
+      canvas.fillStyle = this.sprite;
+      canvas.fillRect(this.x, this.y, this.width, this.height);
+    },
+    drawLeft: function() {
+      player.sprite.draw(canvas, this.x, this.y);
+      player.sprite = Sprite("Spider-Man-left");
+      canvas.fillStyle = this.sprite;
+      canvas.fillRect(this.x, this.y, this.width, this.height);
+    },
+    drawRight: function() {
+      player.sprite.draw(canvas, this.x, this.y);
+      player.sprite = Sprite("Spider-Man-right");
+      canvas.fillStyle = this.sprite;
+      canvas.fillRect(this.x, this.y, this.width, this.height);
+    },
+    drawSpace: function() {
+      player.sprite.draw(canvas, this.x, this.y);
+      player.sprite = Sprite("Spider-Man-shoot");
+      canvas.fillStyle = this.sprite;
+      canvas.fillRect(this.x, this.y, this.width, this.height);
+    },
+    drawStand: function() {
+      player.sprite.draw(canvas, this.x, this.y);
+      player.sprite = Sprite("Spider-Man-stand");
+      canvas.fillStyle = this.sprite;
+      canvas.fillRect(this.x, this.y, this.width, this.height);
+    },
   };
+
+  player.sprite = Sprite("Spider-Man-stand");
+
+  // player.drawStand = function() {
+  //   this.sprite.draw(canvas, this.x, this.y);
+  // };
 
   var bossContainer = [];
 
@@ -74,10 +129,8 @@ function startMinigame(pos){
     };
 
     I.explode = function() {
-      // Sound.play("explosion");
 
       this.active = false;
-      // Extra Credit: Add an explosion graphic
     };
 
     return I;
@@ -97,10 +150,10 @@ function startMinigame(pos){
 
     I.yVelocity = 0;
     I.xVelocity = I.speed;
-    I.width = 3;
-    I.height = 3;
+    I.width = 50;
+    I.height =50;
     I.color = "blue";
-    I.sprite = Sprite("bullet");
+    I.sprite = Sprite("Spider-Man-bullet");
 
     I.inBounds = function() {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -122,7 +175,7 @@ function startMinigame(pos){
 
     I.explode = function() {
       this.active = false;
-      // Extra Credit: Add an explosion graphic
+
     };
 
     return I;
@@ -182,21 +235,102 @@ function startMinigame(pos){
       // Sound.play("explosion");
 
       this.active = false;
-      // Extra Credit: Add an explosion graphic
+
     };
 
     return I;
   };
 
   var canvasElement = $("<canvas width='" + CANVAS_WIDTH +
-    "' height='" + CANVAS_HEIGHT + "'></canvas");
+    "' height='" + CANVAS_HEIGHT + "'></canvas")//.css('background-image', 'url(images/background.png)');
   var canvas = canvasElement.get(0).getContext("2d");
   canvasElement.appendTo('#action-view');
 
   init = setInterval(function() {
+    drawChar();
     update();
     draw();
   }, 1000/FPS);
+
+  // setInterval(function() {
+  //   drawChar();
+  // }, 1000/FPS);
+
+
+  function drawChar(){
+
+    canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+    if(keydown.space) {
+
+      player.drawSpace();
+      console.log('space working');
+      // player.sprite = Sprite("Spider-Man-shoot");
+      // player.drawSpace = function() {
+      //   this.sprite.draw(canvas, this.x, this.y);
+      //   console.log('"this" at space: ', this);
+      //   console.log("space sprite: ", this.sprite);
+      // };
+    } else if(keydown.left) {
+
+      player.drawLeft();
+      // player.sprite = Sprite("Spider-Man-left");
+      // player.drawLeft = function() {
+      //   this.sprite.draw(canvas, this.x, this.y);
+      //   console.log('"this" at left: ', this);
+      //   console.log("left sprite: ", this.sprite);
+      // };
+
+    } else if (keydown.down) {
+
+      player.drawDown();
+      // console.log('down working');
+      // player.sprite = Sprite("Spider-Man-down");
+      // player.drawDown = function() {
+      //   this.sprite.draw(canvas, this.x, this.y);
+      //   console.log('"this" at down: ', this);
+      //   console.log("down sprite: ", this.sprite);
+      // };
+    } else if (keydown.up) {
+
+      player.drawUp();
+      // console.log('up working');
+      // player.sprite = Sprite("Spider-Man-up");
+      // player.drawUp = function() {
+      //   this.sprite.draw(canvas, this.x, this.y);
+      //   console.log('"this" at up: ', this);
+      //   console.log("up sprite: ", this.sprite);
+      // };
+    } else if (keydown.right) {
+
+      player.drawRight();
+      // player.sprite = Sprite("Spider-Man-right");
+      // player.drawRight = function() {
+      //   this.sprite.draw(canvas, this.x, this.y);
+      //   alert('right working');
+      //   console.log('"this" at right: ', this);
+      //   console.log("left sprite: ", this.sprite);
+      // };
+
+      // player.draw();
+
+
+    } else {
+
+      player.drawStand();
+      // console.log('stand working');
+      // player.sprite = Sprite("Spider-Man-stand");
+      // player.drawStand = function() {
+      //   this.sprite.drawStand(canvas, this.x, this.y);
+      //   console.log('"this" at stand: ', this);
+      //   console.log("stand sprite: ", this.sprite);
+      // };
+    }
+
+    // if (player.spriteSpace){
+    //   debugger;
+    // }
+  }
 
   function update() {
     if(keydown.space) {
@@ -268,7 +402,7 @@ function startMinigame(pos){
   };
 
   function draw() {
-    canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    // canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     player.draw();
     // Boss.draw();
 
@@ -322,8 +456,8 @@ function startMinigame(pos){
       pause();
       $('#action-view').append($('<div class="defense-option">'));
       $('.defense-option').append($('<h1 class="defense-announcement">').html('Game Over! You LOSE!'));
-      setTimeout(function(){
-      }, 2000);
+      // setTimeout(function(){
+      // }, 2000);
       $('.defense-option').remove();
       $('canvas').remove();
     }
@@ -334,24 +468,22 @@ function startMinigame(pos){
     this.active = false;
   };
 
-  player.sprite = Sprite("captain america");
-
-  player.draw = function() {
-    this.sprite.draw(canvas, this.x, this.y);
-  };
-
   Boss.explode = function() {
     if(enemyHealthInt < 0){
       pause();
-      $('#action-view').append($('<div class="defense-option">'));
-      $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
       setTimeout(function(){
+        $('#action-view').append($('<div class="defense-option">'));
+        $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
       }, 2000);
+      playerHealthInt += enemyInitialHealthInt / 4;
+      $('#player-health').html(playerHealthInt);
+
       $('.defense-option').remove();
       $('canvas').remove();
+      $('#roll').show();
       updater.allStats(playerAttackInt, playerHealthInt, playerDefenseInt, pos);
     }
-    // debugger;
+
     enemyHealthInt = enemyHealthInt - (playerAttackInt - enemyDefenseInt);
     $('#enemy-health').html(enemyHealthInt);
 
@@ -364,11 +496,3 @@ var pause = function(){
   console.log(init);
   clearInterval(init);
 }
-// $('#start').on('click', function(){
-//   startMinigame();
-// });
-// $('#stop').on('click', function(){
-//   function stop(){
-//     clearInterval(startMinigame);
-//   }
-// });
