@@ -1,5 +1,5 @@
 var init;
-function startMinigame(){
+function startMinigame(pos){
 
   var playerHealthString = $('#player-health').html();
   var playerHealthInt = parseInt(playerHealthString);
@@ -349,7 +349,7 @@ function startMinigame(){
       }, 2000);
       $('.defense-option').remove();
       $('canvas').remove();
-
+      updater.allStats(playerAttackInt, playerHealthInt, playerDefenseInt, pos);
     }
     // debugger;
     enemyHealthInt = enemyHealthInt - (playerAttackInt - enemyDefenseInt);

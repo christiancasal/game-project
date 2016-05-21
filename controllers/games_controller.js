@@ -12,8 +12,10 @@ router.get('/game', function(req, res){
 		hostedGameId : req.session.hosted,
 		logged_in : req.session.logged_in,
 		username : req.session.username,
-		playerOne : req.session.playerOne
+		playerOne : req.session.playerOne,
+		active : req.session.activeGame
 	};
+	console.log("activie game" + req.session.activeGame)
 	if (!req.session.logged_in) {
 		res.render('login.hbs', { hbsObject });
 	} else if (!req.session.chosen && req.session.logged_in) {
@@ -91,7 +93,8 @@ router.post('/game/chooseCharacter', function(req, res){
 		req.session.img = user.char_img;
 		req.session.health = user.health_level;
 		req.session.attack = user.attack_power;
-		req.session.hosted = Games.newGame(req.session.username, req.session.img, req.session.health, req.session.attack, 15);
+		req.session.character = user.char_name;
+		req.session.hosted = Games.newGame(req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, 15);
 		req.session.lobby = true;
 		res.redirect('/game');
 	});
@@ -102,17 +105,13 @@ router.get('/game/join/:gameID', function(req, res){
 		res.redirect('/game');
 	} else {
 		req.session.hosted = req.params.gameID;
-		Games.joinGame(req.params.gameID, req.session.username, req.session.img, req.session.health, req.session.attack, 15);
+		Games.joinGame(req.params.gameID, req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, 15);
 		req.session.playerOne = true;
 		res.redirect('/game/start');
 	}
 });
 
 router.get('/game/start', function(req, res){
-	if (!req.session.playerOne) {
-		console.log('THIS IS GTEURE for ' + req.session.username)
-		req.session.hosted = req.session.hosted;
-	}
 	req.session.start = true;
 	res.redirect('/game');
 })
