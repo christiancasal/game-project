@@ -55,6 +55,10 @@ var Users = sequelizeConnection.define('users', {
 	streak: {
 		type: Sequelize.INTEGER,
 		allowNull: false
+	},
+	high_score: {
+		type: Sequelize.INTEGER,
+		allowNull: false
 	}
 },
 {

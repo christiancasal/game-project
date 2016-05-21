@@ -2,7 +2,7 @@
 var Marvel = require('marvel');
 var mysql = require('mysql');
 var Characters = require('../models/models.js')[0];
-var Users = require('../models/models.js')[1];
+
 
 var marvel = new Marvel({
  publicKey: "",
