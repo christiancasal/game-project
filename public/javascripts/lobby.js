@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $("#loading_mask").hide();
 	var host = $('#host').text();
 	(function ajaxBuild(){
 
@@ -44,4 +45,27 @@ $(document).ready(function(){
 	    });
 	 setTimeout(ajaxBuild, 1000);
 	}());
+});
+
+// delegate all clicks on "a" tag (links)
+$(document).on("click", "a", function () {
+
+    // get the href attribute
+    var newUrl = $(this).attr("href");
+
+    // veryfy if the new url exists or is a hash
+    if (!newUrl || newUrl[0] === "#") {
+        // set that hash
+        location.hash = newUrl;
+        return;
+    }
+
+    // now, fadeout the html (whole page)
+    $("#loading_mask").fadeIn(700,function () {
+        // when the animation is complete, set the new location
+        location = newUrl;
+    });
+
+    // prevent the default browser behavior.
+    return false;
 });

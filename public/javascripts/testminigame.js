@@ -1,24 +1,13 @@
 var init;
+var k = 0;
 var enemyInitialHealthString = $('#enemy-health').html();
 var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
 
-function startMinigame(atk, hlt, def, pos){
+function startMinigame(_player, _enemy){
 
-  // // Background image
-  // var bgReady = false;
-  // var bgImage = new Image();
-  // bgImage.onload = function () {
-  // 	bgReady = true;
-  // };
-  // bgImage.src = "images/background.jpg";
-
-
-  var playerHealthString = $('#player-health').html();
-  var playerHealthInt = parseInt(playerHealthString);
-  var playerDefenseString = $('#player-defense').html();
-  var playerDefenseInt = parseInt(playerDefenseString);
-  var playerAttackString = $('#player-attack').html();
-  var playerAttackInt = parseInt(playerAttackString);
+  _player.health = parseInt(_player.health);
+  _player.defense = parseInt(_player.defense);
+  _player.attack = parseInt(_player.attack);
 
   var enemyHealthString = $('#enemy-health').html();
   var enemyHealthInt = parseInt(enemyHealthString);
@@ -26,8 +15,6 @@ function startMinigame(atk, hlt, def, pos){
   var enemyDefenseInt = parseInt(enemyDefenseString);
   var enemyAttackString = $('#enemy-attack').html();
   var enemyAttackInt = parseInt(enemyAttackString);
-
-
 
   var CANVAS_WIDTH = 800; //1200
   var CANVAS_HEIGHT = 350;
@@ -45,44 +32,44 @@ function startMinigame(atk, hlt, def, pos){
     },
     drawUp: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-up");
+      player.sprite = Sprite("Ant-Man-up");
 
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawDown: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-down");
+      player.sprite = Sprite("Ant-Man-down");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawLeft: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-left");
+      player.sprite = Sprite("Ant-Man-left");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawRight: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-right");
+      player.sprite = Sprite("Ant-Man-right");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawSpace: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-shoot");
+      player.sprite = Sprite("Ant-Man-shoot");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawStand: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-stand");
+      player.sprite = Sprite("Ant-Man-stand");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
   };
 
-  player.sprite = Sprite("Spider-Man-stand");
+  player.sprite = Sprite("Ant-Man-stand");
 
   // player.drawStand = function() {
   //   this.sprite.draw(canvas, this.x, this.y);
@@ -153,7 +140,7 @@ function startMinigame(atk, hlt, def, pos){
     I.width = 50;
     I.height =50;
     I.color = "blue";
-    I.sprite = Sprite("Spider-Man-bullet");
+    I.sprite = Sprite("Ant-Man-bullet");
 
     I.inBounds = function() {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -242,7 +229,7 @@ function startMinigame(atk, hlt, def, pos){
   };
 
   var canvasElement = $("<canvas width='" + CANVAS_WIDTH +
-    "' height='" + CANVAS_HEIGHT + "'></canvas")//.css('background-image', 'url(images/background.png)');
+    "' height='" + CANVAS_HEIGHT + "'></canvas")
   var canvas = canvasElement.get(0).getContext("2d");
   canvasElement.appendTo('#action-view');
 
@@ -265,7 +252,7 @@ function startMinigame(atk, hlt, def, pos){
 
       player.drawSpace();
       console.log('space working');
-      // player.sprite = Sprite("Spider-Man-shoot");
+      // player.sprite = Sprite("Ant-Man-shoot");
       // player.drawSpace = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at space: ', this);
@@ -274,7 +261,7 @@ function startMinigame(atk, hlt, def, pos){
     } else if(keydown.left) {
 
       player.drawLeft();
-      // player.sprite = Sprite("Spider-Man-left");
+      // player.sprite = Sprite("Ant-Man-left");
       // player.drawLeft = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at left: ', this);
@@ -285,7 +272,7 @@ function startMinigame(atk, hlt, def, pos){
 
       player.drawDown();
       // console.log('down working');
-      // player.sprite = Sprite("Spider-Man-down");
+      // player.sprite = Sprite("Ant-Man-down");
       // player.drawDown = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at down: ', this);
@@ -295,7 +282,7 @@ function startMinigame(atk, hlt, def, pos){
 
       player.drawUp();
       // console.log('up working');
-      // player.sprite = Sprite("Spider-Man-up");
+      // player.sprite = Sprite("Ant-Man-up");
       // player.drawUp = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at up: ', this);
@@ -304,7 +291,7 @@ function startMinigame(atk, hlt, def, pos){
     } else if (keydown.right) {
 
       player.drawRight();
-      // player.sprite = Sprite("Spider-Man-right");
+      // player.sprite = Sprite("Ant-Man-right");
       // player.drawRight = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   alert('right working');
@@ -319,7 +306,7 @@ function startMinigame(atk, hlt, def, pos){
 
       player.drawStand();
       // console.log('stand working');
-      // player.sprite = Sprite("Spider-Man-stand");
+      // player.sprite = Sprite("Ant-Man-stand");
       // player.drawStand = function() {
       //   this.sprite.drawStand(canvas, this.x, this.y);
       //   console.log('"this" at stand: ', this);
@@ -402,10 +389,8 @@ function startMinigame(atk, hlt, def, pos){
   };
 
   function draw() {
-    // canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    player.draw();
-    // Boss.draw();
 
+    player.draw();
     bossContainer.forEach(function(boss) {
       boss.draw();
     });
@@ -425,7 +410,7 @@ function startMinigame(atk, hlt, def, pos){
       a.y < b.y + b.height &&
       a.y + a.height > b.y;
   }
-  //
+
   function handleCollisions() {
     playerBullets.forEach(function(bullet) {
       enemies.forEach(function(enemy) {
@@ -451,8 +436,8 @@ function startMinigame(atk, hlt, def, pos){
   }
 
   player.explode = function() {
-    console.log(playerHealthInt);
-    if(playerHealthInt < 0){
+    console.log(_player.health);
+    if(_player.health < 0){
       pause();
       $('#action-view').append($('<div class="defense-option">'));
       $('.defense-option').append($('<h1 class="defense-announcement">').html('Game Over! You LOSE!'));
@@ -462,29 +447,36 @@ function startMinigame(atk, hlt, def, pos){
       $('canvas').remove();
     }
 
-    playerHealthInt = playerHealthInt - (enemyAttackInt - playerDefenseInt);
-    $('#player-health').html(playerHealthInt);
+    _player.health = _player.health - (enemyAttackInt - _player.defense);
+    $('#player-health').html(_player.health);
 
     this.active = false;
   };
 
   Boss.explode = function() {
+  	console.log(enemyHealthInt)
     if(enemyHealthInt < 0){
+    	k++;
+    	Boss.explode = null;
       pause();
       setTimeout(function(){
         $('#action-view').append($('<div class="defense-option">'));
         $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
       }, 2000);
-      playerHealthInt += enemyInitialHealthInt / 4;
-      $('#player-health').html(playerHealthInt);
+      _player.health += enemyInitialHealthInt / 4;
+      $('#player-health').html(_player.health);
 
       $('.defense-option').remove();
       $('canvas').remove();
       $('#roll').show();
-      updater.allStats(playerAttackInt, playerHealthInt, playerDefenseInt, pos);
-    }
-
-    enemyHealthInt = enemyHealthInt - (playerAttackInt - enemyDefenseInt);
+      if (k==1){
+      	console.log('in here with k')
+     	 updater.allStats(_player.attack, _player.health, _player.defense, _player.position);
+  	}
+  }
+    
+  console.log(_player.attack)
+    enemyHealthInt = enemyHealthInt - (_player.attack - enemyDefenseInt);
     $('#enemy-health').html(enemyHealthInt);
 
     this.active = false;
@@ -496,3 +488,4 @@ var pause = function(){
   console.log(init);
   clearInterval(init);
 }
+
