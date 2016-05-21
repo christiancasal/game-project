@@ -4,15 +4,6 @@ var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO 
 
 function startMinigame(){
 
-  // // Background image
-  // var bgReady = false;
-  // var bgImage = new Image();
-  // bgImage.onload = function () {
-  // 	bgReady = true;
-  // };
-  // bgImage.src = "images/background.jpg";
-
-
   var playerHealthString = $('#player-health').html();
   var playerHealthInt = parseInt(playerHealthString);
   var playerDefenseString = $('#player-defense').html();
@@ -26,8 +17,6 @@ function startMinigame(){
   var enemyDefenseInt = parseInt(enemyDefenseString);
   var enemyAttackString = $('#enemy-attack').html();
   var enemyAttackInt = parseInt(enemyAttackString);
-
-
 
   var CANVAS_WIDTH = 800; //1200
   var CANVAS_HEIGHT = 350;
@@ -45,44 +34,44 @@ function startMinigame(){
     },
     drawUp: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-up");
+      player.sprite = Sprite("Ant-Man-up");
 
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawDown: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-down");
+      player.sprite = Sprite("Ant-Man-down");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawLeft: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-left");
+      player.sprite = Sprite("Ant-Man-left");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawRight: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-right");
+      player.sprite = Sprite("Ant-Man-right");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawSpace: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-shoot");
+      player.sprite = Sprite("Ant-Man-shoot");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
     drawStand: function() {
       player.sprite.draw(canvas, this.x, this.y);
-      player.sprite = Sprite("Spider-Man-stand");
+      player.sprite = Sprite("Ant-Man-stand");
       canvas.fillStyle = this.sprite;
       canvas.fillRect(this.x, this.y, this.width, this.height);
     },
   };
 
-  player.sprite = Sprite("Spider-Man-stand");
+  player.sprite = Sprite("Ant-Man-stand");
 
   // player.drawStand = function() {
   //   this.sprite.draw(canvas, this.x, this.y);
@@ -153,7 +142,7 @@ function startMinigame(){
     I.width = 50;
     I.height =50;
     I.color = "blue";
-    I.sprite = Sprite("Spider-Man-bullet");
+    I.sprite = Sprite("Ant-Man-bullet");
 
     I.inBounds = function() {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -265,7 +254,7 @@ function startMinigame(){
 
       player.drawSpace();
       console.log('space working');
-      // player.sprite = Sprite("Spider-Man-shoot");
+      // player.sprite = Sprite("Ant-Man-shoot");
       // player.drawSpace = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at space: ', this);
@@ -274,7 +263,7 @@ function startMinigame(){
     } else if(keydown.left) {
 
       player.drawLeft();
-      // player.sprite = Sprite("Spider-Man-left");
+      // player.sprite = Sprite("Ant-Man-left");
       // player.drawLeft = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at left: ', this);
@@ -285,7 +274,7 @@ function startMinigame(){
 
       player.drawDown();
       // console.log('down working');
-      // player.sprite = Sprite("Spider-Man-down");
+      // player.sprite = Sprite("Ant-Man-down");
       // player.drawDown = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at down: ', this);
@@ -295,7 +284,7 @@ function startMinigame(){
 
       player.drawUp();
       // console.log('up working');
-      // player.sprite = Sprite("Spider-Man-up");
+      // player.sprite = Sprite("Ant-Man-up");
       // player.drawUp = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   console.log('"this" at up: ', this);
@@ -304,7 +293,7 @@ function startMinigame(){
     } else if (keydown.right) {
 
       player.drawRight();
-      // player.sprite = Sprite("Spider-Man-right");
+      // player.sprite = Sprite("Ant-Man-right");
       // player.drawRight = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
       //   alert('right working');
@@ -319,7 +308,7 @@ function startMinigame(){
 
       player.drawStand();
       // console.log('stand working');
-      // player.sprite = Sprite("Spider-Man-stand");
+      // player.sprite = Sprite("Ant-Man-stand");
       // player.drawStand = function() {
       //   this.sprite.drawStand(canvas, this.x, this.y);
       //   console.log('"this" at stand: ', this);
@@ -402,10 +391,8 @@ function startMinigame(){
   };
 
   function draw() {
-    // canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    player.draw();
-    // Boss.draw();
 
+    player.draw();
     bossContainer.forEach(function(boss) {
       boss.draw();
     });
@@ -425,7 +412,7 @@ function startMinigame(){
       a.y < b.y + b.height &&
       a.y + a.height > b.y;
   }
-  //
+
   function handleCollisions() {
     playerBullets.forEach(function(bullet) {
       enemies.forEach(function(enemy) {
