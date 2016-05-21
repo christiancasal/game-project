@@ -1,33 +1,57 @@
 var updater = {
 	newTurn : function(){ //This function updates currentMove in the shared database resulting in the end of the players turn
-		var queryUrl = '/api/move/' + $('#host').text();
+		console.log('step three')
+		var queryUrl = '/api/move'
 		$.ajax({
 		    dataType: 'text',
 		    url: queryUrl,
 		    method: 'GET'})
 		.done(function(response) {
+			console.log('step four')
 		    console.log(response)
-		    main();
+		    update(false);
 		})
 	},
-	allStats : function(atk, hp, def, pos) { //This function updates the players stats in the shared database.
-		var queryUrl = '/api/update/' + $('#host').text() + '/' + atk + '/' + hp + '/' + def + '/' + pos;
+	gameBoard : function(board) {
+		var queryUrl = '/api/board/' + board[0] + '/' + board[1] + '/' + board[2] + '/' + board[3];
 		$.ajax({
-	    	dataType: 'text',
+	    	dataType: 'json',
+	    	url: queryUrl,
+	    	async: false,
+	    	method: 'GET'})
+	    .done(function(response) {
+	    	if (response[0].failed) {
+	    		updater.gameBoard(board);
+	    	} else {
+	    		console.log('These should be first')
+	    	}
+	    })	
+	},
+	allStats : function(atk, hp, def, pos) { //This function updates the players stats in the shared database.
+		console.log('step one')
+		console.log(atk)
+		console.log(hp)
+		console.log(def)
+		console.log(pos)
+		var queryUrl = '/api/update/' + atk + '/' + hp + '/' + def + '/' + pos;
+		$.ajax({
+	    	dataType: 'json',
 	    	url: queryUrl,
 	    	method: 'GET'})
 	    .done(function(response) {
-	    	console.log(response)
+	    	console.log('step two')
+	    	updater.newTurn();
 		})
 	},
 	health : function(hp) {
 		var queryUrl = '/api/health/' + hp;
 		$.ajax({
-	    	dataType: 'text',
+	    	dataType: 'json',
 	    	url: queryUrl,
 	    	method: 'GET'})
 	    .done(function(response) {
-	    	console.log(response)
+	    	console.log(response.status)
+	    	updater.newTurn();
 		})
 	},
 	attack : function(atk) {
