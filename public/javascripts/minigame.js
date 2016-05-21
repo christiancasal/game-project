@@ -4,15 +4,6 @@ var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO 
 
 function startMinigame(){
 
-  // // Background image
-  // var bgReady = false;
-  // var bgImage = new Image();
-  // bgImage.onload = function () {
-  // 	bgReady = true;
-  // };
-  // bgImage.src = "images/background.jpg";
-
-
   var playerHealthString = $('#player-health').html();
   var playerHealthInt = parseInt(playerHealthString);
   var playerDefenseString = $('#player-defense').html();
@@ -26,8 +17,6 @@ function startMinigame(){
   var enemyDefenseInt = parseInt(enemyDefenseString);
   var enemyAttackString = $('#enemy-attack').html();
   var enemyAttackInt = parseInt(enemyAttackString);
-
-
 
   var CANVAS_WIDTH = 800; //1200
   var CANVAS_HEIGHT = 350;
