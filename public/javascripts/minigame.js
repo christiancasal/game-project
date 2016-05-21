@@ -32,6 +32,7 @@ function startMinigame(){
       // canvas.fillStyle = this.color;
       // canvas.fillRect(this.x, this.y, this.width, this.height);
     },
+
     drawUp: function() {
       player.sprite.draw(canvas, this.x, this.y);
       player.sprite = Sprite("Ant-Man-up");
@@ -253,7 +254,7 @@ function startMinigame(){
     if(keydown.space) {
 
       player.drawSpace();
-      console.log('space working');
+      // console.log('space working');
       // player.sprite = Sprite("Ant-Man-shoot");
       // player.drawSpace = function() {
       //   this.sprite.draw(canvas, this.x, this.y);
