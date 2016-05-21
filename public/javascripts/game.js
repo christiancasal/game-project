@@ -1,9 +1,7 @@
 $(document).ready(function(){
-	var queryUrl = '/api/' + $('#host').text();
-	console.log('***************** This is queryURL: ', queryUrl)
 	$.ajax({
 	    dataType: 'json',
-	    url: queryUrl,
+	    url: 'api/game',
 	    method: 'GET'})
 	    .done(function(response) {
 	    	console.log(response)
