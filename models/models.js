@@ -26,6 +26,10 @@ var Characters = sequelizeConnection.define('characters', {
 		type: Sequelize.INTEGER,
 		allowNull: false
 	},
+	defense_power: {
+		type: Sequelize.INTEGER,
+		allowNull: false	
+	}
 });
 
 //creates a Users table
@@ -57,6 +61,10 @@ var Users = sequelizeConnection.define('users', {
 		allowNull: false
 	},
 	high_score: {
+		type: Sequelize.INTEGER,
+		allowNull: false
+	},
+	administrator: {
 		type: Sequelize.INTEGER,
 		allowNull: false
 	}
