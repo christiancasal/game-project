@@ -471,7 +471,7 @@ function startMinigame(_player, _enemy){
       $('#roll').show();
       if (k==1){
       	console.log('in here with k')
-     	 updater.allStats(_player.attack, _player.health, _player.defense, _player.position);
+     	 updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position);
   	}
   }
     

@@ -180,7 +180,7 @@ function main(turn, player){
     	};									  //+
 
     	if ((playerOne && playerOneTurn) || (!playerOne && !playerOneTurn)) { //This condition checks if it's either players turn. it's either player one's turn or player two's turn.
-			$('#roll').show();
+			$('#roll').removeClass('myhidden');
 
 			
 			function diceRoll(min, max) {
@@ -205,7 +205,6 @@ function main(turn, player){
 			$('#roll-click').on('click', function(){
 				console.log('clicked on roll')
 				diceRoll();
-				$('#roll-click').off();
 			});
 
 			$('.roll-choice').on('click', function(){
@@ -233,7 +232,7 @@ function main(turn, player){
 				if($('.player-one[data="'+nextPos+'"]').hasClass('defense')){
 					$('#roll-click').off();
 					$('.roll-choice').off();
-					$('#roll').html('<span id="rollWait">Player<br>Two\'s turn</span>');
+					$('#roll').addClass('myhidden');
 					defenseItem();
 				};
 
@@ -302,11 +301,13 @@ function main(turn, player){
 				$('#roll-click').off();
 				$('.roll-choice').off();
 				$(document).off('click', '#select-consume');
+				$(document).off('click', '#select-smash');
 				var health =  $('#player-health').html();
 				health = (parseInt(health) + 20);
 				$('#player-health').html(health);
 				$('.defense-option').remove();
-
+				console.log(health)
+				console.log(playerRef)
 				updater.allStats(playerRef.attack, health, playerRef.defense, playerRef.position);
 			});
 
@@ -315,6 +316,7 @@ function main(turn, player){
 				$('#roll-click').off();
 				$('.roll-choice').off();
 				$(document).off('click', '#select-smash');
+				$(document).off('click', '#select-consume');
 				var health =  $('#player-health').html();
 				health = (parseInt(health) + 5);
 				var defense = $('#player-defense').html();
@@ -326,12 +328,15 @@ function main(turn, player){
 				$('#player-defense').html(defense);
 				$('#player-attack').html(attack);
 				$('.defense-option').remove();
-
+				console.log(health)
+				console.log(playerRef.position)
+				console.log(attack)
+				console.log(defense)
 				updater.allStats(attack, health, defense, playerRef.position);
 			});
 
     	} else if ((playerOne && !playerOneTurn) || (!playerOne && playerOneTurn)) { //this condition handles the wait until the enemy turn is over.
-    		$('#roll').html('<span id="rollWait">Player<br>Two\'s turn</span>');
+    		$('#roll').addClass('myhidden');
     		waitAndCheck(turn);	
     	}
 	})
@@ -344,6 +349,7 @@ function waitAndCheck(prevTurn) {
     .done(function(response) {
     	console.log('waiting...')
     	if (response.currentMove != prevTurn) {
+    		$('#action-view').empty();
     		update(false);
     	} else {
     		$('.defense-option').empty();

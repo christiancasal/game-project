@@ -78,7 +78,7 @@ var gamesObject = {
 		}
 	],
 	newGame : function(player, char, img, hth, atk, def){
-		var ID = Math.floor(Math.random() * 1000) + 1;
+		var ID = Math.floor(Math.random() * 5000) + 1;
 		newBoardTwo = [];
 		while(newBoardTwo.length < 4) {
 		    var random_number = Math.round(Math.random()*(9 - 1) + 1);
@@ -101,7 +101,7 @@ var gamesObject = {
 					health: hth,
 					attack: atk,
 					defense: def,
-					board : newBoardTwo,
+					board : newBoardTwo.sort(),
 					position: 0
 				}
 			}
@@ -127,7 +127,7 @@ var gamesObject = {
 					health: hth,
 					attack: atk,
 					defense: def,
-					board : newBoardOne,
+					board : newBoardOne.sort(),
 					position: 0
 				}
 			}
