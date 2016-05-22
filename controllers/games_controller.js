@@ -15,7 +15,6 @@ router.get('/game', function(req, res){
 		playerOne : req.session.playerOne,
 		active : req.session.activeGame
 	};
-	console.log("activie game" + req.session.activeGame)
 	if (!req.session.logged_in) {
 		res.render('login.hbs', { hbsObject });
 	} else if (!req.session.chosen && req.session.logged_in) {
@@ -25,7 +24,7 @@ router.get('/game', function(req, res){
 			res.render('chose-character.hbs', { hbsObject });
 		});
 	} else if (req.session.start) {
-		res.render('game', { hbsObject });
+		res.render('testgame', { hbsObject });
 	} else if (req.session.lobby) {
 		res.render('lobby', { hbsObject });
 	}

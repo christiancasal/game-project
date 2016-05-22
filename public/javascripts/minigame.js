@@ -1,5 +1,4 @@
 var init;
-
 var enemyInitialHealthString = $('#enemy-health').html();
 var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
 

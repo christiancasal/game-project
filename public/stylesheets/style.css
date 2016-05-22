@@ -276,6 +276,7 @@ margin-top: 30px;
 
 #action-view {
 	vertical-align: top;
+	position: relative;
 	display: inline-block;
 	text-align: center;
 	width: 800px;
@@ -305,6 +306,13 @@ margin-top: 30px;
 	position: relative;
 }
 
+.defense-option {
+	position: absolute;
+	left: 145px;
+	width: 500px;
+	color: white;
+}
+
 /*Lobby View*/
 /*================================================*/
 #available {
@@ -327,4 +335,32 @@ margin-top: 30px;
 	padding: 10px;
 	text-align: center;
 	font-size: 1.2em;
+}
+
+#loading_mask {
+	position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,1);
+    transition: background-color 3s;
+}
+
+#loading_mask img {
+	position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 700px;
+   height: 500px;
+   margin-top: -250px;
+   margin-left: -350px;
+   opacity: .5;"
+}
+
+.myhidden {
+	z-index: -9;
+	box-shadow: 0px 0px 50px 10px black inset;
+	background-color: rgba(0,0,0,.5);
 }
