@@ -285,3 +285,48 @@ input[type="radio"]:checked + img {
 	box-shadow: 0px 0px 50px 10px black inset;
 	background-color: rgba(0,0,0,.5);
 }
+
+/*Admin Page*/
+/*================================================*/
+.Acontainer {
+	width: 800px;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+.charContainer {
+	width: 700px;
+	display: inline-block;
+}
+.charContainer img {
+	width: 180px;
+	display: inline-block;
+}
+
+.charContainer form {
+	float: right;
+	width: 450px;
+}
+
+#newCharacter form {
+	width: 325px;
+	float: left;
+}
+
+#newCharacter form input{
+	width: 100%;
+	float: left;
+}
+#newCharacter img {
+	width: 300px;
+	float: right;
+}
+
+#delete .charContainer {
+	width: 250px;
+	display: inline-block;
+}
+
+#delete .charContainer form{
+	float: none;
+}

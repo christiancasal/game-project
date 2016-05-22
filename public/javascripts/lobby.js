@@ -48,7 +48,7 @@ $(document).ready(function(){
 });
 
 // delegate all clicks on "a" tag (links)
-$(document).on("click", "a", function () {
+$(document).on("click", "a[href*='join']", function () {
 
     // get the href attribute
     var newUrl = $(this).attr("href");
