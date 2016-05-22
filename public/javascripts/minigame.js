@@ -1,11 +1,9 @@
 var init;
-<<<<<<< HEAD
-=======
+
 var enemyInitialHealthString = $('#enemy-health').html();
 var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
 
->>>>>>> 8f38898e41c159776769bf7a6f132cc4f58e2213
-function startMinigame(){
+function startMinigame() {
 
   var playerHealthString = $('#player-health').html();
   var playerHealthInt = parseInt(playerHealthString);
