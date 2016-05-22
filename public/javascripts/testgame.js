@@ -12,7 +12,8 @@ $(document).ready(function(){
 		update(true);
 	}
 });
-
+var empty = [];
+var dots = '.';
 function update(initial){ //updates health attack defense and board.
 $.ajax({
     dataType: 'json',
@@ -30,8 +31,14 @@ $.ajax({
     		enemyRef = initRes.playerOne;
     	}
     	console.log(playerRef)
-
+    	console.log(currentMove)
+    	console.log(playerOne)
     	//=========================================
+    	for (var i=0; i < 10; i++) {
+    		if (playerRef.board.indexOf(i) == -1) {
+    			empty.push(i);
+    		}
+    	}
 		$('#player-health').html(playerRef.health);
 		$('#player-defense').html(playerRef.defense);
 		$('#player-attack').html(playerRef.attack);
@@ -49,8 +56,12 @@ $.ajax({
 	    		'background-image' : 'url('+enemyRef.image+')',
 	    		'background-size' : '50px 50px'
 	    	});
+		
+		}
+			$('#action-view').css({
+				'background-image' : 'url(images/background'+initRes.map+'.png)'
+			});
 
-		} 
 	    	$('#player-image').attr('src', playerRef.image).css({
 				'width' : '173px',
 				'margin-top' : '5px'
@@ -169,8 +180,9 @@ function main(turn, player){
     	};									  //+
 
     	if ((playerOne && playerOneTurn) || (!playerOne && !playerOneTurn)) { //This condition checks if it's either players turn. it's either player one's turn or player two's turn.
-			$('#roll').show();
+			$('#roll').removeClass('myhidden');
 
+			
 			function diceRoll(min, max) {
 				for(i=1;i<=3;i++){
 					var min = 1;
@@ -181,6 +193,8 @@ function main(turn, player){
 			};
 
 			function defenseItem(){
+				console.log('defense called!')
+				$('#action-view').empty();
 				$('#action-view').append($('<div class="defense-option">'));
 				$('.defense-option').append($('<h1 class="defense-announcement">').html('Select CONSUME or SMASH!'));
 				$('.defense-option').append($('<p class="defense-announcement">').html('Consuming adds 20pts to this items specialty, smashing adds 5 to all attributes'));
@@ -189,15 +203,12 @@ function main(turn, player){
 			};
 
 			$('#roll-click').on('click', function(){
+				console.log('clicked on roll')
 				diceRoll();
-				$('#roll-click').off();
 			});
 
 			$('.roll-choice').on('click', function(){
-				$('#roll-click').on('click', function(){
-					diceRoll();
-					$('#roll-click').off();
-				});
+				console.log('clicked on choice')
 
 				var num = $(this).html();
 				var roll = parseInt(num);
@@ -210,9 +221,24 @@ function main(turn, player){
 				console.log('started at ' + player.position);
 
 				var nextPos = playerPos + roll;
+				player.position = nextPos;
 				console.log('now at ' + nextPos);
+			
+				for (var i = 0; i < empty.length; i++) {
+					if (empty.indexOf(nextPos) == 1) {
+
+					}
+				}
+				if($('.player-one[data="'+nextPos+'"]').hasClass('defense')){
+					$('#roll-click').off();
+					$('.roll-choice').off();
+					$('#roll').addClass('myhidden');
+					defenseItem();
+				};
+
 				if((playerPos + roll) == 10){
 					$('.roll-choice').off();
+					$('#action-view').empty();
 					$('#action-view').append($('<div class="defense-option">'));
 					$('.defense-option').append($('<h1 class="defense-announcement">').html('Final Battle Good Luck!'));
 				}
@@ -222,18 +248,13 @@ function main(turn, player){
 					return
 				}
 
-				if($('.player-one[data="'+nextPos+'"]').hasClass('defense')){
-					$('#roll-click').off();
-					$('.roll-choice').off();
-					$('#roll').hide();
-					defenseItem();
-				}
-
 				if($('.player-one[data="'+nextPos+'"]').hasClass('boss')){
 					$('#roll-click').off();
 					$('.roll-choice').off();
-					startMinigame(nextPos);
-					return;
+					$(document).off('click', '#select-consume');
+					$(document).off('click', '#select-smash');
+					startMinigame(playerRef);
+					console.log('im back in here =]')
 				}
 
 				if(playerPos == 0){ //Opening move
@@ -276,17 +297,26 @@ function main(turn, player){
 			});
 
 			$(document).on('click', '#select-consume', function(){
+				console.log('consume clicked!')
+				$('#roll-click').off();
+				$('.roll-choice').off();
 				$(document).off('click', '#select-consume');
+				$(document).off('click', '#select-smash');
 				var health =  $('#player-health').html();
 				health = (parseInt(health) + 20);
 				$('#player-health').html(health);
 				$('.defense-option').remove();
-
+				console.log(health)
+				console.log(playerRef)
 				updater.allStats(playerRef.attack, health, playerRef.defense, playerRef.position);
 			});
 
 			$(document).on('click', '#select-smash', function(){
+				console.log('smash clicked')
+				$('#roll-click').off();
+				$('.roll-choice').off();
 				$(document).off('click', '#select-smash');
+				$(document).off('click', '#select-consume');
 				var health =  $('#player-health').html();
 				health = (parseInt(health) + 5);
 				var defense = $('#player-defense').html();
@@ -298,13 +328,16 @@ function main(turn, player){
 				$('#player-defense').html(defense);
 				$('#player-attack').html(attack);
 				$('.defense-option').remove();
-
+				console.log(health)
+				console.log(playerRef.position)
+				console.log(attack)
+				console.log(defense)
 				updater.allStats(attack, health, defense, playerRef.position);
 			});
 
     	} else if ((playerOne && !playerOneTurn) || (!playerOne && playerOneTurn)) { //this condition handles the wait until the enemy turn is over.
-    		$('#roll').hide();
-    		waitAndCheck(turn);
+    		$('#roll').addClass('myhidden');
+    		waitAndCheck(turn);	
     	}
 	})
 
@@ -314,9 +347,19 @@ function waitAndCheck(prevTurn) {
     url: '/api/game',
     method: 'GET'})
     .done(function(response) {
+    	console.log('waiting...')
     	if (response.currentMove != prevTurn) {
+    		$('#action-view').empty();
     		update(false);
     	} else {
+    		$('.defense-option').empty();
+    		if (dots.length == 3) {
+    			dots = '.';
+    		} else {
+    			dots += '.'
+    		}
+
+    		$('#action-view').append($('<div class="defense-option">')).append($('.defense-option').append($('<h1 class="defense-announcement">').html('Waiting for player two to finish their turn'+ dots)))
     		setTimeout(waitAndCheck.bind(null, prevTurn), 1000)
     	}
 
@@ -324,11 +367,9 @@ function waitAndCheck(prevTurn) {
 }
 };
 
-
-
-// jQuery(document).ready(function () {
-// 	setTimeout( "jQuery('#loading_mask').hide();", 1000 );
-// });
+jQuery(document).ready(function () {
+	setTimeout( "jQuery('#loading_mask').fadeOut(600);", 1000 );
+});
 
 
 

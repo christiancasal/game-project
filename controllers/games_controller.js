@@ -24,7 +24,7 @@ router.get('/game', function(req, res){
 			res.render('chose-character.hbs', { hbsObject });
 		});
 	} else if (req.session.start) {
-		res.render('game', { hbsObject });
+		res.render('testgame', { hbsObject });
 	} else if (req.session.lobby) {
 		res.render('lobby', { hbsObject });
 	}

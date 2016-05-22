@@ -4,15 +4,16 @@ var gamesObject = {
 			gameId : 5362,
 			available: true,
 			currentMove: 0,
+			map: 3,
 			playerTwo : {
 				name: "night_slayer",
 				character: undefined,
-				image: undefined,
-				health: undefined,
-				attack: undefined,
-				defense: undefined,
-				board: undefined,
-				position: undefined
+				image: 'http://static.comicvine.com/uploads/original/6/62058/2013735-59654_bugs_bunny.jpg',
+				health: 500,
+				attack: 300,
+				defense: 10,
+				board: [1,4,6,7],
+				position: 0
 			},
 			playerOne : {
 				name: undefined,
@@ -77,7 +78,7 @@ var gamesObject = {
 		}
 	],
 	newGame : function(player, char, img, hth, atk, def){
-		var ID = Math.floor(Math.random() * 1000) + 1;
+		var ID = Math.floor(Math.random() * 5000) + 1;
 		newBoardTwo = [];
 		while(newBoardTwo.length < 4) {
 		    var random_number = Math.round(Math.random()*(9 - 1) + 1);
@@ -85,11 +86,14 @@ var gamesObject = {
 		        newBoardTwo.push(random_number);
 		    }
 		}
+		var randomMap = Math.floor(Math.random() * (6 - 1)) + 1;
+
 		this.activeGames.push(
 			{
 				gameId : ID,
 				available: true,
 				currentMove: 0,
+				map: randomMap,
 				playerTwo : {
 					name: player,
 					character: char,
@@ -97,7 +101,7 @@ var gamesObject = {
 					health: hth,
 					attack: atk,
 					defense: def,
-					board : newBoardTwo,
+					board : newBoardTwo.sort(),
 					position: 0
 				}
 			}
@@ -123,7 +127,7 @@ var gamesObject = {
 					health: hth,
 					attack: atk,
 					defense: def,
-					board : newBoardOne,
+					board : newBoardOne.sort(),
 					position: 0
 				}
 			}
