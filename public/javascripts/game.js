@@ -14,8 +14,8 @@ $(document).ready(function(){
 				});
 
 				$('#player-image').attr('src', player_one.image).css({
-					'width' : '173px',
-					'margin-top' : '5px'
+					'width' : '153px',
+					'margin-top' : '15px'
 				});
 				$('#player-health').html(player_one.health);
 				$('#player-defense').html(player_one.defense);
@@ -35,6 +35,16 @@ $(document).ready(function(){
 				$('#action-view').css({
 					'background-image' : 'url(images/background'+roll+'.png)'
 				});
+
+				// $('#game-wrapper').css({
+				// 	'background-image' : 'url(images/az-subtle.png)',
+				// 	'padding-top' : '5px',
+				// 	'background-color' : '#ad1b0c',
+				// 	'background-image' : 'url(/images/az-subtle.png)',
+				// 	'border-color' : '#BBB #777',
+				// 	'border-style' : 'solid',
+				// 	'background' : 'linear-gradient(to bottom right, #FF0000, #420202)'
+				// });
 
 	    });
 });
