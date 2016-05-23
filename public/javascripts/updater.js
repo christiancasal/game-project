@@ -35,14 +35,7 @@ var updater = {
 	    	url: queryUrl,
 	    	method: 'GET'})
 	    .done(function(response) {
-	    	console.log('step two')
-	    	update(false);
+	    	console.log('step two');
 		})
 	},
 };
-
-
-
-
-
-

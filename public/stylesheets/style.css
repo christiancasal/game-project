@@ -1,5 +1,6 @@
 body {
-  background: linear-gradient(#000, #BF0202);
+	background-image: url(/images/dark-matter.png), linear-gradient(#000, #01A1FF);
+  /*background: linear-gradient(#000, #01A1FF);*/
 	min-height: 800px;
 }
 /* Navigation styles */
@@ -64,7 +65,6 @@ body {
 	border: 1px solid black;
 	border-radius: 3px;
 	padding: 5px;
-
 }
 
 #userNav a {
@@ -98,7 +98,7 @@ body {
   border-color: #544032 #4A2826 #4A2826 #2E2833;
   border-style: solid;
   box-shadow: 0px 0px 29px #7EAEDB inset;
-  width: 183px;
+  width: 300px;
   height: 350px;
   margin: 0px auto 10px auto;
   position: relative;
@@ -134,15 +134,32 @@ body {
 	border-color: #A4CEEC;
 }
 
+/* Character Selection Styles */
+/*================================================*/
+
+#new-user .character-selection {
+	width: 800px;
+}
+
 /* Current Character styles */
 /*================================================*/
 #current-char {
-	width: 300px;
-	height: 430px;
-	border: 1px solid black;
-	border-radius: 10px;
-	text-align: center;
-	margin-top: 10px;
+	background-color: #501E14;
+  border-width: 2px;
+  box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
+  width: 300px;
+  height: 430px;
+	border-width: 4px;
+	border-style: solid;
+	border-color: #031723 #021927 #003A5D #021927;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px;
+  width: 300px;
+  height: 430px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 #char-picture > img {
@@ -151,6 +168,7 @@ body {
 	padding: 20px;
 	border-radius: 30px;
 }
+
 .left-float {
 	float: left;
 }
@@ -166,11 +184,27 @@ body {
 }
 
 .form-container {
-	width: 400px;
+	width: 640px;
 	margin: 0 auto;
 }
 
 #character-list {
+	background-color: #501E14;
+  border-width: 2px;
+  box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
+  width: 300px;
+  height: 430px;
+	border-width: 4px;
+	border-style: solid;
+	border-color: #031723 #021927 #003A5D #021927;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px;
+  width: 300px;
+  height: 430px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px;
 	float: right;
 	width: 350px;
 	max-height: 430px;
@@ -178,16 +212,20 @@ body {
 	padding: 20px;
 	margin: 10px 0;
 	border-radius: 10px;
-	border: 1px solid black;
 }
 
 #character-list li {
+	box-shadow: 0px 0px 19px #000;
 	min-width: 100px;
 	min-height: 100px;
 	padding: 0px;
-	margin: 0px;
+	margin: 5px 5px 10px 5px;
 	border-radius: 10px;
 	display: inline-block;
+}
+
+#character-list li label {
+	margin-bottom: 0px;
 }
 #character-list label > input {
 	display: none;
@@ -197,6 +235,23 @@ input[type="radio"]:checked + img {
 	border: 3px solid white;
 	box-shadow: 0px 0px 15px 2px black;
 }
+
+#char-select-submit{
+	border-width: 2px 2px 2px 2px;
+	border-color: #544032;
+	border-style: solid;
+	box-shadow: 0px 0px 30px #1C1450 inset;
+	margin-top: 40px;
+	margin-left: 120px;
+	padding: 15px 5px;
+	background: #FDED7B;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 35px;
+	color: #FF2B00;
+}
+
+
 
 /* Game page styles */
 /*================================================*/
