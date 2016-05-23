@@ -21,7 +21,7 @@ router.get('/game', function(req, res){
 		marvelCharacters.findAll({}).then(function(result){
 				hbsObject.characters = result;
 				hbsObject.message = req.session.message;
-			res.render('chose-character.hbs', { hbsObject });
+			res.render('chose-character', { hbsObject });
 		});
 	} else if (req.session.start) {
 		res.render('game', { hbsObject });
@@ -66,11 +66,16 @@ router.post('/game/login', function(req, res){
 		if (user) {
 			bcrypt.compare(req.body.password, user.password_hash, function(err, result) {
 				if (result == true){
-
+					console.log(user)
 					req.session.logged_in = true;
 					req.session.username = user.username;
 					req.session.message = 'Choose a character, ' + req.session.username;
-					res.redirect('/game');
+					if (user.administrator) {
+						req.session.admin = true;
+						res.redirect('/admin');
+					} else{
+						res.redirect('/game');
+					}
 				} else {
 					req.session.message = 'Password incorrect';
 					res.redirect('/game');
@@ -93,8 +98,9 @@ router.post('/game/chooseCharacter', function(req, res){
 		req.session.img = user.char_img;
 		req.session.health = user.health_level;
 		req.session.attack = user.attack_power;
+		req.session.defense = user.defense_power;
 		req.session.character = user.char_name;
-		req.session.hosted = Games.newGame(req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, 15);
+		req.session.hosted = Games.newGame(req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense);
 		req.session.lobby = true;
 		res.redirect('/game');
 	});
@@ -105,7 +111,7 @@ router.get('/game/join/:gameID', function(req, res){
 		res.redirect('/game');
 	} else {
 		req.session.hosted = req.params.gameID;
-		Games.joinGame(req.params.gameID, req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, 15);
+		Games.joinGame(req.params.gameID, req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense);
 		req.session.playerOne = true;
 		res.redirect('/game/start');
 	}
