@@ -36,13 +36,6 @@ var updater = {
 	    	method: 'GET'})
 	    .done(function(response) {
 	    	console.log('step two')
-	    	updater.newTurn();
 		})
 	},
 };
-
-
-
-
-
-
