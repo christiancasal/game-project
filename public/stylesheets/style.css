@@ -1,12 +1,17 @@
 body {
-	/*background-color: #ad1b0c;
-	background-image: url("http://www.transparenttextures.com/patterns/az-subtle.png");
-  border-color: #BBB #777;
-  border-style: solid;
-  background: linear-gradient(to bottom right, #FF0000, #420202);*/
+/*background-color: black;*/
 }
 /* Navigation styles */
 /*================================================*/
+
+#navigation {
+	background-color: #000;
+	padding-top: 5px;
+	background-image: url(/images/batthern.png);
+	border-color: #BBB #777;
+	border-style: solid;
+}
+
 #navigation .container > li {
 	list-style: none;
 
@@ -19,7 +24,15 @@ body {
 	display: inline-block;
 }
 
+#navigation .container > ul li {
+	margin-top: 20px;
+}
+
 #navigation .container > ul a {
+	text-decoration: none;
+	border-width: 2px;
+	border-style: solid;
+	box-shadow: 0px 0px 8px #008EFF inset;
 	display: inline-block;
 	border: 1px solid black;
 	width: 130px;
@@ -31,19 +44,34 @@ body {
 	border-radius: 3px;
 }
 
+#navigation .container > ul a:hover {
+	box-shadow: 0px 0px 60px #008EFF inset;
+}
+
 #navigation .container {
-	border-bottom: 1px solid black;
 	width:800px;
 	margin: 0px auto;
 }
 
 #userNav {
+	border-width: 2px;
+	border-color: rgba(121, 18, 18, 0.76);
+	border-style: solid;
+	box-shadow: 0px 0px 8px #008EFF inset;
 	float: right;
 	display: inline-block;
 	border: 1px solid black;
 	border-radius: 3px;
 	padding: 5px;
 
+}
+
+#userNav a {
+	text-decoration: none;
+}
+
+#userNav:hover{
+	box-shadow: 0px 0px 30px #008EFF inset;
 }
 
 
@@ -120,7 +148,6 @@ input[type="radio"]:checked + img {
 	background-image: url(/images/dark-matter.png), linear-gradient(to bottom right, #FF0000, #420202);
 	border-color: #BBB #777;
 	border-style: solid;
-	/*background: linear-gradient(to bottom right, #FF0000, #420202) url(/images/az-subtle.png);*/
 }
 
 #map-view-container .map-view .container > ul {
