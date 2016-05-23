@@ -13,7 +13,7 @@
 					<div class="charContainer">
 						<h2>{{this.char_name}}</h2>
 			            <img src="{{this.char_img}}" />
-			            <form action="updateCharacter" method="POST" oninput="x.value=parseInt(attack.value); y.value=parseInt(health.value); z.value=parseInt(defense.value); overall.value = Math.round(parseInt(attack.value)+parseInt(defense.value)+(parseInt(health.value) * .3))">
+			            <form class="updater" oninput="x.value=(parseInt(attack.value)); y.value=parseInt(health.value); z.value=parseInt(defense.value); overall.value = Math.round((parseInt(attack.value) * 1.5) + parseInt(defense.value)+(parseInt(health.value) * .1))">
 			            <input type="hidden" name="id" value="{{this.character_id}}">
 			            Attack:
 			            <input type="range" id="attack" name="attack" min="50" max="100" value="{{this.attack_power}}">
@@ -34,7 +34,7 @@
 		</div>
 		<div id="add" class="tab-pane fade">
 			<div id="newCharacter">
-				<form action="newCharacter" method="post">
+				<form id="add" action="newCharacter" method="post">
 					Name:
 					<input type="text" name="name" minlength="3" maxlength="20"><br>
 					Attack:
@@ -78,5 +78,19 @@
 <script type="text/javascript">
 $("#imgInp").change(function(){
     $('#preview').attr('src', $('#imgInp').val());
+});
+
+$('.updater').submit(function(e) {
+	e.preventDefault(); // avoid to execute the actual submit of the form.
+	// console.log($(this).context.id.value)
+    $.ajax({
+           type: "POST",
+           url: 'updateCharacter',
+           data: $(this).serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+           	alert('Character update!')
+           }
+         });
 });
 </script>
