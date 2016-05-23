@@ -27,7 +27,18 @@ var updater = {
 	    	console.log('step two')
 	    	updater.newTurn();
 		})
-	}
+	},
+	enemyStats : function(atk, hp, def, pos) { //This function updates the players stats in the shared database.
+		var queryUrl = '/api/updateEnemy/' + atk + '/' + hp + '/' + def + '/' + pos;
+		$.ajax({
+	    	dataType: 'json',
+	    	url: queryUrl,
+	    	method: 'GET'})
+	    .done(function(response) {
+	    	console.log('step two')
+	    	updater.newTurn();
+		})
+	},
 };
 
 

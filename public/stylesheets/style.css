@@ -313,6 +313,12 @@ margin-top: 30px;
 	color: white;
 }
 
+#timer {
+	position: absolute;
+	right: 100px;
+	color: white;
+	font-size: 1.2em;
+}
 /*Lobby View*/
 /*================================================*/
 #available {
