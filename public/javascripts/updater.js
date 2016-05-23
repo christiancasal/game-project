@@ -35,7 +35,7 @@ var updater = {
 	    	url: queryUrl,
 	    	method: 'GET'})
 	    .done(function(response) {
-	    	console.log('step two')
+	    	console.log('step two');
 		})
 	},
 };
