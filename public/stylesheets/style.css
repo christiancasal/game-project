@@ -1,5 +1,6 @@
 body {
-/*background-color: black;*/
+  background: linear-gradient(#000, #BF0202);
+	min-height: 800px;
 }
 /* Navigation styles */
 /*================================================*/
@@ -74,7 +75,64 @@ body {
 	box-shadow: 0px 0px 30px #008EFF inset;
 }
 
+#host {
+	display: none;
+}
 
+/* Log-in */
+/*================================================*/
+
+#login-module {
+	margin: 15px;
+	margin-top: 120px;
+}
+
+#login-module form {
+	font-family: 'Oswald', sans-serif;
+  border-radius: 20px;
+  background: linear-gradient(#B7870C, #1B0E0B);
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  border-width: 3px 2px 2px 2px;
+  border-color: #544032 #4A2826 #4A2826 #2E2833;
+  border-style: solid;
+  box-shadow: 0px 0px 29px #7EAEDB inset;
+  width: 183px;
+  height: 350px;
+  margin: 0px auto 10px auto;
+  position: relative;
+}
+
+#login-module form h2 {
+	font-size: 37px;
+  background: -webkit-linear-gradient(#FD0000, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#login-module form input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+#login-module form input[type=submit] {
+	box-shadow: 0px 0px 29px #0084FF;
+	margin-top: 40px;
+	padding: 15px 5px;
+	background: #fff;
+	border: 0 none;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 35px;
+	color: #FF0000;
+}
+
+#login-module form input {
+	text-align: center;
+	border-radius: 3px;
+	margin: 5px;
+	border-color: #A4CEEC;
+}
 
 /* Current Character styles */
 /*================================================*/
@@ -108,7 +166,7 @@ body {
 }
 
 .form-container {
-	width: 665px;
+	width: 400px;
 	margin: 0 auto;
 }
 
@@ -144,10 +202,13 @@ input[type="radio"]:checked + img {
 /*================================================*/
 
 #game-wrapper {
+	min-height: 705px;
+	box-shadow: 0px 0px 20px #000 inset;
 	padding-top: 5px;
-	background-image: url(/images/dark-matter.png), linear-gradient(to bottom right, #FF0000, #420202);
+	background-image: url(/images/dark-matter.png), linear-gradient(to bottom right, #FF0000, #000);
 	border-color: #BBB #777;
 	border-style: solid;
+	border-radius: 3px;
 }
 
 #map-view-container .map-view .container > ul {
