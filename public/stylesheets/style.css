@@ -181,7 +181,7 @@ input[type="radio"]:checked + img {
 	background: url(/images/az-subtle.png), linear-gradient(#999, #000);
   box-shadow: 0px 0px 26px #381F0C inset;
   border-width: 3px;
-  border-color: #614747 #582626 #3E2B2B #483535;
+  border-color: #5F4A4A #582626 #3E2B2B #483535;
   border-style: solid;
   background-color: #999;
   /* padding: 15px; */

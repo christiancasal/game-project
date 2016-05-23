@@ -177,8 +177,6 @@ $('.roll-choice').on('click', function(){
 		return
 	}
 
-
-
 	if($('.player-one[data="'+nextPos+'"]').hasClass('defense')){
 		$('#roll').hide();
 		defenseItem();
