@@ -1,4 +1,5 @@
 var init;
+var shoot;
 var enemyInitialHealthString = $('#enemy-health').html();
 var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
 
@@ -242,9 +243,17 @@ function startMinigame() {
     draw();
   }, 1000/FPS);
 
-  // setInterval(function() {
-  //   drawChar();
-  // }, 1000/FPS);
+  shoot = setInterval(function() {
+    drawShoot();
+  }, 100/FPS);
+
+  function drawShoot() {
+    if(keydown.space) {
+      player.shoot();
+    }
+
+
+  }
 
 
   function drawChar(){
@@ -252,7 +261,6 @@ function startMinigame() {
     canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     if(keydown.space) {
-
       player.drawSpace();
       // console.log('space working');
       // player.sprite = Sprite("Ant-Man-shoot");
@@ -323,9 +331,6 @@ function startMinigame() {
   }
 
   function update() {
-    if(keydown.space) {
-      player.shoot();
-    }
 
     if(keydown.left) {
       player.x -= 5;
@@ -377,11 +382,14 @@ function startMinigame() {
 
     var bulletPosition = this.midpoint();
 
-    playerBullets.push(Bullet({
-      speed: 5,
-      x: bulletPosition.x,
-      y: bulletPosition.y
-    }));
+    if(Math.random() < 0.05) { //how fast the player bullets come
+      playerBullets.push(Bullet({
+        speed: 5,
+        x: bulletPosition.x,
+        y: bulletPosition.y
+      }));
+    }
+
   };
 
   player.midpoint = function() {
@@ -448,6 +456,7 @@ function startMinigame() {
       // }, 2000);
       $('.defense-option').remove();
       $('canvas').remove();
+      clearInterval(init);
     }
 
     playerHealthInt = playerHealthInt - (enemyAttackInt - playerDefenseInt);
@@ -469,6 +478,7 @@ function startMinigame() {
       $('.defense-option').remove();
       $('canvas').remove();
       $('#roll').show();
+      clearInterval(init);
 
     }
 
