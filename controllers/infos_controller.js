@@ -62,9 +62,12 @@ router.get('/admin', function(req, res){
 		res.redirect('/game');
 	} else {
 		marvelCharacters.findAll({}).then(function(result){
-			var hbsObject = {};
-				hbsObject.characters = result;
-				hbsObject.message = req.session.message;
+			var hbsObject = {
+				logged_in : req.session.logged_in,
+				username : req.session.username,
+				characters : result,
+				message : req.session.message
+			}
 			res.render('admin', { hbsObject });
 		});
 	}
@@ -97,6 +100,7 @@ router.post('/newCharacter', function(req, res, next){
     }).then(function (data) {
       console.log(data);
        console.log('Added ' + data.char_name + ' to Database !');
+       res.redirect('/admin')
        });
 })
 

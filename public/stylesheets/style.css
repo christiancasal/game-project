@@ -295,7 +295,7 @@ margin-top: 30px;
 	padding: 5px 0px 5px 0px;
 }
 
-#player-image{
+#player-image, #enemy-image{
 	box-shadow: 0px 0px 25px #000;
   width: 153px !important;
   margin-top: 15px;
@@ -340,6 +340,12 @@ margin-top: 30px;
 	color: white;
 }
 
+#timer {
+	position: absolute;
+	right: 100px;
+	color: white;
+	font-size: 1.2em;
+}
 /*Lobby View*/
 /*================================================*/
 #available {

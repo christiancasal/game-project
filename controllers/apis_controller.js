@@ -51,5 +51,25 @@ router.get('/api/update/:atk/:hp/:def/:pos', function(req, res){
 	}
 });
 
+router.get('/api/updateEnemy/:atk/:hp/:def/:pos', function(req, res){
+	for (var i = 0; i < Games.activeGames.length; i++) {
+		if (Games.activeGames[i].gameId == req.session.hosted) {
+			if (req.session.playerOne) {
+				console.log('in here')
+				Games.activeGames[i].playerTwo.attack = req.params.atk;
+				Games.activeGames[i].playerTwo.health = req.params.hp;
+				Games.activeGames[i].playerTwo.defense = req.params.def;
+				Games.activeGames[i].playerTwo.position = req.params.pos;
+			} else {
+				console.log('in here two')
+				Games.activeGames[i].playerOne.attack = req.params.atk;
+				Games.activeGames[i].playerOne.health = req.params.hp;
+				Games.activeGames[i].playerOne.defense = req.params.def;
+				Games.activeGames[i].playerOne.position = req.params.pos;
+			}
+			res.send({"status" :"success"});
+		}
+	}
+});
 
 module.exports = router;
