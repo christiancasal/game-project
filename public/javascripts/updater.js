@@ -12,13 +12,13 @@ var updater = {
 		    update(false);
 		})
 	},
-	allStats : function(atk, hp, def, pos) { //This function updates the players stats in the shared database.
+	allStats : function(atk, hp, def, pos, rof) { //This function updates the players stats in the shared database.
 		console.log('step one')
 		console.log(atk)
 		console.log(hp)
 		console.log(def)
 		console.log(pos)
-		var queryUrl = '/api/update/' + atk + '/' + hp + '/' + def + '/' + pos;
+		var queryUrl = '/api/update/' + atk + '/' + hp + '/' + def + '/' + pos + '/' + rof;
 		$.ajax({
 	    	dataType: 'json',
 	    	url: queryUrl,
@@ -28,15 +28,13 @@ var updater = {
 	    	updater.newTurn();
 		})
 	},
-	enemyStats : function(atk, hp, def, pos) { //This function updates the players stats in the shared database.
-		var queryUrl = '/api/updateEnemy/' + atk + '/' + hp + '/' + def + '/' + pos;
+	enemyStats : function(atk, hp, def, pos, rof) { //This function updates the players stats in the shared database.
+		var queryUrl = '/api/updateEnemy/' + atk + '/' + hp + '/' + def + '/' + pos + '/' + rof;
 		$.ajax({
 	    	dataType: 'json',
 	    	url: queryUrl,
 	    	method: 'GET'})
 	    .done(function(response) {
-	    	console.log('step two')
-	    	update(false);
 		})
 	},
 };

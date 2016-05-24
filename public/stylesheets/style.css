@@ -399,6 +399,30 @@ margin-top: 30px;
 	left: 145px;
 	width: 500px;
 	color: white;
+	background-color: rgba(0,0,0,.7);
+	padding: 15px;
+	margin-top: 15px;
+	border-radius: 15px;
+}
+
+.defense-option button {
+	padding: 15px;
+	background-color: black;
+	border: none;
+	margin: 0px 10px;
+	border-radius: 10px;
+	width: 120px;
+	height: 120px;
+	vertical-align: top;
+}
+
+.defense-option button h2 {
+	margin-top: 0px;
+	font-size: 1em;
+}
+
+.defense-option button h3 {
+	font-size: 1em;
 }
 
 #timer {

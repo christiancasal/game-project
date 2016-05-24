@@ -13,7 +13,7 @@
 					<div class="charContainer">
 						<h2>{{this.char_name}}</h2>
 			            <img src="{{this.char_img}}" />
-			            <form class="updater" oninput="x.value=(parseInt(attack.value)); y.value=parseInt(health.value); z.value=parseInt(defense.value); overall.value = Math.round((parseInt(attack.value) * 1.5) + parseInt(defense.value)+(parseInt(health.value) * .1))">
+			            <form class="updater" oninput="x.value=(parseInt(attack.value)); y.value=parseInt(health.value); z.value=parseInt(defense.value); r.value=parseInt(rof.value); overall.value = Math.round((parseInt(attack.value) * 1.5) + parseInt(rof.value * 1.5) + parseInt(defense.value)+(parseInt(health.value) * .1))">
 			            <input type="hidden" name="id" value="{{this.character_id}}">
 			            Attack:
 			            <input type="range" id="attack" name="attack" min="50" max="100" value="{{this.attack_power}}">
@@ -24,6 +24,9 @@
 			            Defense:
 			            <input type="range" id="defense" name="defense" min="0" max="50" value="{{this.defense_power}}">
 			            <output name="z" for="defense">{{this.defense_power}}</output>
+			            Rate of Fire:
+			            <input type="range" id="rof" name="rof" min="10" max="50" value="{{this.fire_rate}}">
+			            <output name="r" for="rof">{{this.fire_rate}}</output>
 			            Overall Power:
 			            <output name="overall" for="defense">...</output>
 			            <input type="submit" value="update database">

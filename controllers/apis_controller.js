@@ -30,7 +30,7 @@ router.get('/api/move', function(req, res){
 	}
 });
 
-router.get('/api/update/:atk/:hp/:def/:pos', function(req, res){
+router.get('/api/update/:atk/:hp/:def/:pos/:rof', function(req, res){
 	for (var i = 0; i < Games.activeGames.length; i++) {
 		if (Games.activeGames[i].gameId == req.session.hosted) {
 			if (req.session.playerOne) {
@@ -39,19 +39,21 @@ router.get('/api/update/:atk/:hp/:def/:pos', function(req, res){
 				Games.activeGames[i].playerOne.health = req.params.hp;
 				Games.activeGames[i].playerOne.defense = req.params.def;
 				Games.activeGames[i].playerOne.position = req.params.pos;
+				Games.activeGames[i].playerOne.ROF = req.params.rof;
 			} else {
 				console.log('in here two')
 				Games.activeGames[i].playerTwo.attack = req.params.atk;
 				Games.activeGames[i].playerTwo.health = req.params.hp;
 				Games.activeGames[i].playerTwo.defense = req.params.def;
 				Games.activeGames[i].playerTwo.position = req.params.pos;
+				Games.activeGames[i].playerTwo.ROF = req.params.rof;
 			}
 			res.send({"status" :"success"});
 		}
 	}
 });
 
-router.get('/api/updateEnemy/:atk/:hp/:def/:pos', function(req, res){
+router.get('/api/updateEnemy/:atk/:hp/:def/:pos/:rof', function(req, res){
 	for (var i = 0; i < Games.activeGames.length; i++) {
 		if (Games.activeGames[i].gameId == req.session.hosted) {
 			if (req.session.playerOne) {
@@ -60,12 +62,14 @@ router.get('/api/updateEnemy/:atk/:hp/:def/:pos', function(req, res){
 				Games.activeGames[i].playerTwo.health = req.params.hp;
 				Games.activeGames[i].playerTwo.defense = req.params.def;
 				Games.activeGames[i].playerTwo.position = req.params.pos;
+				Games.activeGames[i].playerTwo.ROF = req.params.rof;
 			} else {
 				console.log('in here two')
 				Games.activeGames[i].playerOne.attack = req.params.atk;
 				Games.activeGames[i].playerOne.health = req.params.hp;
 				Games.activeGames[i].playerOne.defense = req.params.def;
 				Games.activeGames[i].playerOne.position = req.params.pos;
+				Games.activeGames[i].playerOne.ROF = req.params.rof;
 			}
 			res.send({"status" :"success"});
 		}
