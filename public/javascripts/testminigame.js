@@ -1,15 +1,15 @@
 var init;
 var k = 0;
 var gameTime = 30;
-var playerName = playerRef.character;
-console.log('this is playerName: ', playerName);
-var charNoUnderscore = playerName.replace(/\s/g, '_');
-console.log('this is charNoUnderscore: ', charNoUnderscore);
-
-var enemyName = enemyRef.character;
-console.log('this is enemyName: ', enemyName);
-var enemyNoUnderscore = enemyName.replace(/\s/g, '_');
-console.log('this is enemyNoUnderscore: ', enemyNoUnderscore);
+// var playerName = playerRef.character;
+// console.log('this is playerName: ', playerName);
+// var charNoUnderscore = playerName.replace(/\s/g, '_');
+// console.log('this is charNoUnderscore: ', charNoUnderscore);
+//
+// var enemyName = enemyRef.character;
+// console.log('this is enemyName: ', enemyName);
+// var enemyNoUnderscore = enemyName.replace(/\s/g, '_');
+// console.log('this is enemyNoUnderscore: ', enemyNoUnderscore);
 
 function startMinigame(_player, _enemy, battlestate){
 
