@@ -12,6 +12,7 @@ var gamesObject = {
 				health: 500,
 				attack: 300,
 				defense: 10,
+				ROF: 1,
 				board: [1,4,6,7],
 				position: 0
 			},
@@ -22,6 +23,7 @@ var gamesObject = {
 				health: undefined,
 				attack: undefined,
 				defense: undefined,
+				ROF: 1,
 				board: undefined,
 				position: undefined
 			},
@@ -37,6 +39,7 @@ var gamesObject = {
 				health: undefined,
 				attack: undefined,
 				defense: undefined,
+				ROF: 1,
 				board: undefined,
 				position: undefined
 			},
@@ -47,6 +50,7 @@ var gamesObject = {
 				health: undefined,
 				attack: undefined,
 				defense: undefined,
+				ROF: 1,
 				board: undefined,
 				position: undefined
 			}
@@ -62,6 +66,7 @@ var gamesObject = {
 				health: undefined,
 				attack: undefined,
 				defense: undefined,
+				ROF: 1,
 				board: undefined,
 				position: undefined
 			},
@@ -72,12 +77,13 @@ var gamesObject = {
 				health: undefined,
 				attack: undefined,
 				defense: undefined,
+				ROF: 1,
 				board: undefined,
 				position: undefined
 			}
 		}
 	],
-	newGame : function(player, char, img, hth, atk, def){
+	newGame : function(player, char, img, hth, atk, def, rof){
 		var ID = Math.floor(Math.random() * 5000) + 1;
 		newBoardTwo = [];
 		while(newBoardTwo.length < 4) {
@@ -101,6 +107,7 @@ var gamesObject = {
 					health: hth,
 					attack: atk,
 					defense: def,
+					ROF: rof,
 					board : newBoardTwo.sort(),
 					position: 0
 				}
@@ -109,7 +116,7 @@ var gamesObject = {
 		return ID;
 
 	},
-	joinGame : function(ID, player, char, img, hth, atk, def){
+	joinGame : function(ID, player, char, img, hth, atk, def, rof){
 		var newBoardOne = [];
 		while(newBoardOne.length < 4) {
 		    var random_number = Math.round(Math.random()*(9 - 1) + 1);
@@ -127,6 +134,7 @@ var gamesObject = {
 					health: hth,
 					attack: atk,
 					defense: def,
+					ROF: rof,
 					board : newBoardOne.sort(),
 					position: 0
 				}

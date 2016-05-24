@@ -29,6 +29,10 @@ var Characters = sequelizeConnection.define('characters', {
 	defense_power: {
 		type: Sequelize.INTEGER,
 		allowNull: false	
+	},
+	fire_rate: {
+		type: Sequelize.INTEGER,
+		allowNull: false
 	}
 });
 
