@@ -1,53 +1,52 @@
-pixel = require("node-pixel");
-five = require("johnny-five");
+var pixel = require("node-pixel");
+var five = require("johnny-five");
 
-var board = new five.Board();
+var board = new five.Board({
+    repl: false,
+    debug: false
+});
+
 var strip = null;
 
-var sequence = [];
-var current_pos;
-var sequenceInterval;
+var fps = 20;
 
 var stripObj = {
-  red: function(){
-    strip.color("red"); // turns entire strip red using a hex colour
-    strip.show();
-  },
-  off: function(){
-    strip.off();
-    strip.show();
-  }
-}
+    red: function(){
+      strip.color("red"); // turns entire strip red using a hex colour
+      strip.show();
+    },
+    yellow: function(){
+      strip.color("yellow"); // turns entire strip red using a hex colour
+      strip.show();
+    },
+    green: function(){
+      strip.color("green"); // turns entire strip red using a hex colour
+      strip.show();
+    },
+    off: function(){
+      strip.off();
+      strip.show();
+    },
+    init: function(){
+      board.on("ready", function() {
 
-board.on("ready", function() {
-
-    strip = new pixel.Strip({
-        board: this,
-        controller: "FIRMATA",
-        strips: [ {pin: 6, length: 24}, ], // this is preferred form for definition
-    });
-
-    strip.on("ready", function() {
-        // do stuff with the strip here.
-        sequence.push(function() {
-          current_pos = 1;
-          sequenceInterval = setInterval(function() {
-            strip.color("rgb(127, 127, 127)");
-
-            var p = strip.pixel(current_pos);
-            p.color("black");
-            if (current_pos+1 >= strip.stripLength()) { current_pos = 1; }
-            else { current_pos++; }
-
-            strip.show();
+          strip = new pixel.Strip({
+              board: this,
+              controller: "FIRMATA",
+              strips: [ {pin: 6, length: 24}, ], // this is preferred form for definition
           });
-        })        // console.log('the strip is ready');
-    });
 
-    this.repl.inject({
-      strip: stripObj
+          strip.on("ready", function() {
+              // do stuff with the strip here.
+
+              console.log('Strip is ready!');
+
+          });
+
       });
-});
-console.log(stripObj);
+    }
+
+}
+stripObj.init();
 
 module.exports = stripObj;
