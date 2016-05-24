@@ -1,20 +1,28 @@
-var five = require("johnny-five");
-var myBoard, myLed;
+pixel = require("node-pixel");
+five = require("johnny-five");
 
-myBoard = new five.Board();
+var board = new five.Board();
+var strip = null;
 
-myBoard.on("ready", function() {
+board.on("ready", function() {
 
-  myLed = new five.Led(8);
+    strip = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: 8, length: 1}, ], // this is preferred form for definition
+    });
 
-  myLed.strobe( 1000 );
+    strip.on("ready", function() {
+        // do stuff with the strip here.
+        // strip.color("#ff0000"); // turns entire strip red using a hex colour
+        // strip.show();
+        strip.off();
+        strip.show();
+        // console.log('the strip is ready');
+    });
 
-  // make myLED available as "led" in REPL
+    this.repl.inject({
+      strip: strip,
 
-  this.repl.inject({
-    led: myLed
-  });
-
-
-  // try "on", "off", "toggle", "strobe", "stop" (stops strobing)
+    });
 });
