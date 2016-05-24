@@ -204,14 +204,14 @@ function main(turn, player, enemy){
 
 
 
-		if (enemy.position == 98) {
+		if (enemy.position == 99) {
 			$('#action-view').append($('<div class="defense-option">'));
 			$('.defense-option').append($('<h1 class="defense-announcement">').html('Player Two was defeated in combat! You win!'));
 			setTimeout(function(){
 				location.href = "/game/stats"
 				updater.allStats(player.attack, player.health, player.defense, 99, player.ROF);
 			}, 3000)
-		}
+		}	
 
 		if (player.position == 10 && enemy.position == 10) {
 			$('#roll-click').off();

@@ -14,6 +14,9 @@ router.get('/api', function(req, response){
 
 router.get('/api/game', function(req, res){
 	for (var i = 0; i < Games.activeGames.length; i++) {
+		if (Games.activeGames[i].playerOne.position > 98 || Games.activeGames[i].playerTwo.position > 98) {
+			req.session.gameover = true;
+		}
 		if (Games.activeGames[i].gameId == req.session.hosted) {
 			req.session.activeGame = true;
 			res.send(Games.activeGames[i]);
