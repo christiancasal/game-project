@@ -97,13 +97,13 @@ function update(initial){ //updates health attack defense and board.
 
 
 	$('.player-one[data="'+playerRef.board[1]+'"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+enemyRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-one[data="'+playerRef.board[1]+'"]').addClass('boss');
 
 	$('.player-one[data="10"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+enemyRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-one[data="10"]').addClass('boss');
@@ -129,13 +129,13 @@ function update(initial){ //updates health attack defense and board.
 
 
 	$('.player-two[data="'+enemyRef.board[1]+'"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+playerRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-two[data="'+enemyRef.board[1]+'"]').addClass('boss');
 
 	$('.player-two[data="10"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+playerRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-two[data="10"]').addClass('boss');
