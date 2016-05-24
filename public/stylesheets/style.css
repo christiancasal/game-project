@@ -27,6 +27,7 @@ body {
 }
 
 #navigation .container > ul li {
+	font-family: 'Oswald', sans-serif;
 	margin-top: 20px;
 }
 
@@ -141,17 +142,22 @@ body {
 	width: 800px;
 }
 
-/* Current Character styles */
-/*================================================*/
+#message h2 {
+	color: #008DFF;
+  font-family: 'Oswald', sans-serif;
+  text-shadow: 5px 5px 10px #007FE0;
+}
+
 #current-char {
+	color: #92C8F7;
 	background-color: #501E14;
   border-width: 2px;
   box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
   width: 300px;
   height: 430px;
-	border-width: 4px;
+	border-width: 6px;
 	border-style: solid;
-	border-color: #031723 #021927 #003A5D #021927;
+  border-color: #2F2A1B #524022 #F3EAA2 #524022;
   border-radius: 10px;
   text-align: center;
   margin-top: 10px;
@@ -194,9 +200,9 @@ body {
   box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
   width: 300px;
   height: 430px;
-	border-width: 4px;
+	border-width: 6px;
 	border-style: solid;
-	border-color: #031723 #021927 #003A5D #021927;
+	border-color: #2F2A1B #524022 #F3EAA2 #524022;
   border-radius: 10px;
   text-align: center;
   margin-top: 10px;
@@ -237,18 +243,19 @@ input[type="radio"]:checked + img {
 }
 
 #char-select-submit{
-	border-width: 2px 2px 2px 2px;
-	border-color: #544032;
-	border-style: solid;
-	box-shadow: 0px 0px 30px #1C1450 inset;
-	margin-top: 40px;
-	margin-left: 120px;
-	padding: 15px 5px;
-	background: #FDED7B;
-	cursor: pointer;
-	-webkit-border-radius: 5px;
-	border-radius: 35px;
-	color: #FF2B00;
+	font-family: 'Oswald', sans-serif;
+  background: linear-gradient(#821B04, #AD0C0C, #3A1D17);
+  border-width: 3px;
+  border-color: #E00000;
+  border-style: solid;
+  box-shadow: 0px 0px 16px #F10000;
+  margin-top: 30px;
+  margin-left: 105px;
+  padding: 15px 20px;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  /* border-radius: 35px; */
+  color: #009CF8;
 }
 
 
