@@ -483,6 +483,7 @@ player.explode = function() {
     console.log(_player.health);
     _player.health = _player.health - (_enemy.attack - _player.defense);
     if(_player.health < 0){
+      console.log(k)
         isGameOver = true;
         k++;
       _player.health = 0;
@@ -500,7 +501,6 @@ player.explode = function() {
         }
       $('canvas').remove();
   }
-
   $('#player-health').html(_player.health);
 
   this.active = false;
