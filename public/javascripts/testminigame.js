@@ -1,18 +1,18 @@
 var init;
 var k = 0;
 var gameTime = 30;
-// var playerName = playerRef.character;
-// console.log('this is playerName: ', playerName);
-// var charNoUnderscore = playerName.replace(/\s/g, '_');
-// console.log('this is charNoUnderscore: ', charNoUnderscore);
-//
-// var enemyName = enemyRef.character;
-// console.log('this is enemyName: ', enemyName);
-// var enemyNoUnderscore = enemyName.replace(/\s/g, '_');
-// console.log('this is enemyNoUnderscore: ', enemyNoUnderscore);
 
 function startMinigame(_player, _enemy, battlestate){
 
+    var playerName = _player.character;
+    console.log('this is playerName: ', playerName);
+    var charNoUnderscore = playerName.replace(/\s/g, '_');
+    console.log('this is charNoUnderscore: ', charNoUnderscore);
+
+    var enemyName = _enemy.character;
+    console.log('this is enemyName: ', enemyName);
+    var enemyNoUnderscore = enemyName.replace(/\s/g, '_');
+    console.log('this is enemyNoUnderscore: ', enemyNoUnderscore);
     var enemyInitialHealthString = $('#enemy-health').html();
     var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
     var isGameOver = false;
@@ -493,7 +493,7 @@ player.explode = function() {
       setTimeout(function(){
         k=0;
         $('.defense-option').remove();
-        updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), 98, _player.ROF);
+        updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), 99, _player.ROF);
         updater.enemyStats(Math.round(_enemy.attack), Math.round(_enemy.health), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
         location.href = "/game/stats"
     }, 3000);
@@ -524,7 +524,7 @@ Boss.explode = function() {
             _player.health += enemyInitialHealthInt / 4;
             setTimeout(function(){
                   if (battlestate == 2) {
-                    player.position = 98;
+                    player.position = 99;
                   }
                   console.log('in here with k')
                   updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position, _player.ROF);
