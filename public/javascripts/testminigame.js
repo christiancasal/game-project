@@ -3,6 +3,17 @@ var k = 0;
 var gameTime = 30;
 
 function startMinigame(_player, _enemy, battlestate){
+    var playerName = playerRef.character;
+    console.log('this is playerName: ', playerName);
+    var charNoUnderscore = playerName.replace(/\s/g, '_');
+    console.log('this is charNoUnderscore: ', charNoUnderscore);
+
+    var enemyName = enemyRef.character;
+    console.log('this is enemyName: ', enemyName);
+    var enemyNoUnderscore = enemyName.replace(/\s/g, '_');
+    console.log('this is enemyNoUnderscore: ', enemyNoUnderscore);
+
+
     var enemyInitialHealthString = $('#enemy-health').html();
     var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
     var isGameOver = false;
@@ -37,44 +48,44 @@ draw: function() {
 },
 drawUp: function() {
   player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite("Ant-Man-up");
+  player.sprite = Sprite(charNoUnderscore+"-up");
 
   canvas.fillStyle = this.sprite;
   canvas.rect(this.x, this.y, this.width, this.height);
 },
 drawDown: function() {
   player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite("Ant-Man-down");
+  player.sprite = Sprite(charNoUnderscore+"-down");
   canvas.fillStyle = this.sprite;
   canvas.rect(this.x, this.y, this.width, this.height);
 },
 drawLeft: function() {
   player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite("Ant-Man-left");
+  player.sprite = Sprite(charNoUnderscore+"-left");
   canvas.fillStyle = this.sprite;
   canvas.rect(this.x, this.y, this.width, this.height);
 },
 drawRight: function() {
   player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite("Ant-Man-right");
+  player.sprite = Sprite(charNoUnderscore+"-right");
   canvas.fillStyle = this.sprite;
   canvas.rect(this.x, this.y, this.width, this.height);
 },
 drawSpace: function() {
   player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite("Ant-Man-shoot");
+  player.sprite = Sprite(charNoUnderscore+"-shoot");
   canvas.fillStyle = this.sprite;
   canvas.rect(this.x, this.y, this.width, this.height);
 },
 drawStand: function() {
   player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite("Ant-Man-stand");
+  player.sprite = Sprite(charNoUnderscore+"-stand");
   canvas.fillStyle = this.sprite;
   canvas.rect(this.x, this.y, this.width, this.height);
 },
 };
 
-player.sprite = Sprite("Ant-Man-stand");
+player.sprite = Sprite(charNoUnderscore+"-stand");
 
 // player.drawStand = function() {
 //   this.sprite.draw(canvas, this.x, this.y);
@@ -103,7 +114,7 @@ function Boss(I) {
       I.y >= 0 && I.y <= CANVAS_HEIGHT;
   };
 
-  I.sprite = Sprite("boss");
+  I.sprite = Sprite(enemyNoUnderscore+"-boss");
 
   I.draw = function() {
       this.sprite.draw(canvas, this.x, this.y);
@@ -145,7 +156,7 @@ function Bullet(I) {
     I.width = 50;
     I.height =50;
     I.color = "blue";
-    I.sprite = Sprite("Ant-Man-bullet");
+    I.sprite = Sprite(charNoUnderscore+"-bullet");
 
     I.inBounds = function() {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
@@ -206,7 +217,7 @@ function Enemybullet(I) {
       I.y >= 0 && I.y <= CANVAS_HEIGHT;
   };
 
-  I.sprite = Sprite("enemybullet");
+  I.sprite = Sprite(enemyNoUnderscore+"-boss-bullet");
 
   I.draw = function() {
       this.sprite.draw(canvas, this.x, this.y);
@@ -257,7 +268,7 @@ function drawChar(){
 
       player.drawSpace();
       console.log('space working');
-  // player.sprite = Sprite("Ant-Man-shoot");
+  // player.sprite = Sprite(charNoUnderscore+"-shoot");
   // player.drawSpace = function() {
   //   this.sprite.draw(canvas, this.x, this.y);
   //   console.log('"this" at space: ', this);
@@ -266,7 +277,7 @@ function drawChar(){
 } else if(keydown.left) {
 
   player.drawLeft();
-  // player.sprite = Sprite("Ant-Man-left");
+  // player.sprite = Sprite(charNoUnderscore+"-left");
   // player.drawLeft = function() {
   //   this.sprite.draw(canvas, this.x, this.y);
   //   console.log('"this" at left: ', this);
@@ -277,7 +288,7 @@ function drawChar(){
 
   player.drawDown();
   // console.log('down working');
-  // player.sprite = Sprite("Ant-Man-down");
+  // player.sprite = Sprite(charNoUnderscore+"-down");
   // player.drawDown = function() {
   //   this.sprite.draw(canvas, this.x, this.y);
   //   console.log('"this" at down: ', this);
@@ -287,7 +298,7 @@ function drawChar(){
 
   player.drawUp();
   // console.log('up working');
-  // player.sprite = Sprite("Ant-Man-up");
+  // player.sprite = Sprite(charNoUnderscore+"-up");
   // player.drawUp = function() {
   //   this.sprite.draw(canvas, this.x, this.y);
   //   console.log('"this" at up: ', this);
@@ -296,7 +307,7 @@ function drawChar(){
 } else if (keydown.right) {
 
   player.drawRight();
-  // player.sprite = Sprite("Ant-Man-right");
+  // player.sprite = Sprite(charNoUnderscore+"-right");
   // player.drawRight = function() {
   //   this.sprite.draw(canvas, this.x, this.y);
   //   alert('right working');
@@ -311,7 +322,7 @@ function drawChar(){
 
   player.drawStand();
   // console.log('stand working');
-  // player.sprite = Sprite("Ant-Man-stand");
+  // player.sprite = Sprite(charNoUnderscore+"-stand");
   // player.drawStand = function() {
   //   this.sprite.drawStand(canvas, this.x, this.y);
   //   console.log('"this" at stand: ', this);
@@ -343,7 +354,7 @@ function update() {
   if(keydown.left) {
       if (player.x <= 0) {
         player.x = 0;
-    } else { 
+    } else {
         player.x -= 5;
     }
 }
@@ -519,7 +530,7 @@ Boss.explode = function() {
                   console.log('in here with k')
                   updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position, _player.ROF);
                   updater.enemyStats(Math.round(_enemy.attack), Math.round(enemyInitialHealthInt / 3), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
-              
+
               $('.defense-option').remove();
               $('#timer').remove();
           }, 3000);
@@ -527,7 +538,7 @@ Boss.explode = function() {
             $('canvas').remove();
             $('#roll').show();
         }
-    } else {  
+    } else {
        this.active = false;
     }
 };
@@ -557,4 +568,3 @@ var pause = function(){
     clearInterval(init);
     clearInterval(timer);
 }
-
