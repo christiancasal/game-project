@@ -89,21 +89,43 @@ body {
 	margin-top: 120px;
 }
 
-#login-module form {
+#sign-up{
+	border-top-left-radius: 100px;
+	border-bottom-left-radius: 400px;
 	font-family: 'Oswald', sans-serif;
-  border-radius: 20px;
-  background: linear-gradient(#B7870C, #1B0E0B);
-  vertical-align: top;
-  display: inline-block;
-  text-align: center;
-  border-width: 3px 2px 2px 2px;
-  border-color: #544032 #4A2826 #4A2826 #2E2833;
-  border-style: solid;
-  box-shadow: 0px 0px 29px #7EAEDB inset;
-  width: 300px;
-  height: 350px;
-  margin: 0px auto 10px auto;
-  position: relative;
+	/*border-radius: 20px;*/
+	background: linear-gradient(#B7870C, #1B0E0B);
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	border-width: 3px 2px 2px 2px;
+	border-color: #544032 #4A2826 #4A2826 #2E2833;
+	border-style: solid;
+	box-shadow: 0px 0px 29px #7EAEDB inset;
+	width: 300px;
+	height: 350px;
+	margin: 0px auto 10px auto;
+	position: relative;
+}
+
+#login {
+	border-top-right-radius: 100px;
+	border-bottom-right-radius: 400px;
+	font-family: 'Oswald', sans-serif;
+	/*border-radius: 20px;*/
+	background: linear-gradient(#B7870C, #1B0E0B);
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	border-width: 3px 2px 2px 2px;
+	border-color: #544032 #4A2826 #4A2826 #2E2833;
+	border-style: solid;
+	box-shadow: 0px 0px 29px #7EAEDB inset;
+	width: 300px;
+	height: 350px;
+	margin: 0px auto 10px auto;
+	position: relative;
+
 }
 
 #login-module form h2 {
