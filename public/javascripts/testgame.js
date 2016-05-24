@@ -14,6 +14,10 @@ $(document).ready(function(){
 });
 var empty = [];
 var dots = '.';
+var playerName;
+var charNoUnderscore;
+var enemyName;
+var enemyNoUnderscore;
 function update(initial){ //updates health attack defense and board.
 	$.ajax({
 		dataType: 'json',
@@ -50,6 +54,18 @@ function update(initial){ //updates health attack defense and board.
 	$('#enemy-defense').html(enemyRef.defense);
 	$('#enemy-attack').html(enemyRef.attack);
 	$('#enemy-rof').html(enemyRef.ROF);
+
+	playerName = playerRef.character;
+	console.log('this is playerName: ', playerName);
+	charNoUnderscore = playerName.replace(/\s/g, '_');
+	console.log('this is charNoUnderscore: ', charNoUnderscore);
+
+	enemyName = enemyRef.character;
+	console.log('this is enemyName: ', enemyName);
+	enemyNoUnderscore = enemyName.replace(/\s/g, '_');
+	console.log('this is enemyNoUnderscore: ', enemyNoUnderscore);
+
+
 	if (initial) {
 		$('.player-one[data="0"]').css({
 			'background-image' : 'url('+playerRef.image+')',
