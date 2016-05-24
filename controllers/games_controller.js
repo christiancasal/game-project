@@ -121,6 +121,14 @@ router.get('/game/join/:gameID', function(req, res){
 router.get('/game/start', function(req, res){
 	req.session.start = true;
 	res.redirect('/game');
-})
+});
+
+router.get('/game/stats', function(req, res){
+	if (req.session.gameover) {
+		res.render('stats');
+	} else {
+		res.redirect('/game');
+	}
+});
 
 module.exports = router;
