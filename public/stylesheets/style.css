@@ -9,7 +9,7 @@ body {
 #navigation {
 	background-color: #000;
 	padding-top: 5px;
-	background-image: url(/images/batthern.png);
+	/*background-image: url(/images/squares.png);*/
 	border-color: #BBB #777;
 	border-style: solid;
 }
@@ -24,6 +24,7 @@ body {
 	vertical-align: top
 	max-width: 600px;
 	display: inline-block;
+	margin-top: 5px;
 }
 
 #navigation .container > ul li {
@@ -149,6 +150,7 @@ body {
 }
 
 #current-char {
+	background-image: url(/images/carbon-fibre.png);
 	color: #92C8F7;
 	background-color: #501E14;
   border-width: 2px;
@@ -195,6 +197,7 @@ body {
 }
 
 #character-list {
+	background-image: url(/images/carbon-fibre.png);
 	background-color: #501E14;
   border-width: 2px;
   box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
@@ -454,6 +457,14 @@ margin-top: 30px;
 	height: 350px;
 	margin: 0px auto 10px auto;
 	position: relative;
+}
+
+#enemy-stats ul {
+margin-top: 30px;
+}
+
+#enemy-stats ul li {
+	padding: 5px 0px 5px 0px;
 }
 
 .defense-option {

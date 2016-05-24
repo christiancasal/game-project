@@ -7,7 +7,7 @@ $(document).ready(function(){
 		playerOne = false;
 	};
 	if ($('#activeGame').text() == "true") {
-		update(false);		
+		update(false);
 	} else {
 		update(true);
 	}
@@ -30,9 +30,10 @@ function update(initial){ //updates health attack defense and board.
 		playerRef = initRes.playerTwo;
 		enemyRef = initRes.playerOne;
 	}
-	console.log(playerRef)
-	console.log(currentMove)
-	console.log(playerOne)
+	console.log(playerRef);
+	console.log(currentMove);
+	console.log(playerOne);
+	console.log(enemyRef);
 	//=========================================
 	for (var i=0; i < 10; i++) {
 		if (playerRef.board.indexOf(i) == -1) {
@@ -234,7 +235,7 @@ function main(turn, player, enemy){
 			}
 				$('.defense-option').append($('<button id="select-smash">').html('<h2>SMASH</h2><h3>attack +15 defense +15</h3>'));
 				$('.defense-option').append($('<button id="select-fire">').html('<h2>FIRE</h2><h3>Fire rate +10</h3>'));
-		
+
 		};
 
 		$('#roll-click').on('click', function(){
@@ -403,7 +404,7 @@ function main(turn, player, enemy){
 		});
 	} else if ((playerOne && !playerOneTurn) || (!playerOne && playerOneTurn)) { //this condition handles the wait until the enemy turn is over.
 		$('#roll').addClass('myhidden');
-		waitAndCheck(turn);	
+		waitAndCheck(turn);
 	}
 	});
 };
