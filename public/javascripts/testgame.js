@@ -7,13 +7,17 @@ $(document).ready(function(){
 		playerOne = false;
 	};
 	if ($('#activeGame').text() == "true") {
-		update(false);		
+		update(false);
 	} else {
 		update(true);
 	}
 });
 var empty = [];
 var dots = '.';
+var playerName;
+var charNoUnderscore;
+var enemyName;
+var enemyNoUnderscore;
 function update(initial){ //updates health attack defense and board.
 	$.ajax({
 		dataType: 'json',
@@ -30,9 +34,10 @@ function update(initial){ //updates health attack defense and board.
 		playerRef = initRes.playerTwo;
 		enemyRef = initRes.playerOne;
 	}
-	console.log(playerRef)
-	console.log(currentMove)
-	console.log(playerOne)
+	console.log(playerRef);
+	console.log(currentMove);
+	console.log(playerOne);
+	console.log(enemyRef);
 	//=========================================
 	for (var i=0; i < 10; i++) {
 		if (playerRef.board.indexOf(i) == -1) {
@@ -49,6 +54,18 @@ function update(initial){ //updates health attack defense and board.
 	$('#enemy-defense').html(enemyRef.defense);
 	$('#enemy-attack').html(enemyRef.attack);
 	$('#enemy-rof').html(enemyRef.ROF);
+
+	playerName = playerRef.character;
+	console.log('this is playerName: ', playerName);
+	charNoUnderscore = playerName.replace(/\s/g, '_');
+	console.log('this is charNoUnderscore: ', charNoUnderscore);
+
+	enemyName = enemyRef.character;
+	console.log('this is enemyName: ', enemyName);
+	enemyNoUnderscore = enemyName.replace(/\s/g, '_');
+	console.log('this is enemyNoUnderscore: ', enemyNoUnderscore);
+
+
 	if (initial) {
 		$('.player-one[data="0"]').css({
 			'background-image' : 'url('+playerRef.image+')',
@@ -96,13 +113,13 @@ function update(initial){ //updates health attack defense and board.
 
 
 	$('.player-one[data="'+playerRef.board[1]+'"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+enemyRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-one[data="'+playerRef.board[1]+'"]').addClass('boss');
 
 	$('.player-one[data="10"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+enemyRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-one[data="10"]').addClass('boss');
@@ -128,13 +145,13 @@ function update(initial){ //updates health attack defense and board.
 
 
 	$('.player-two[data="'+enemyRef.board[1]+'"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+playerRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-two[data="'+enemyRef.board[1]+'"]').addClass('boss');
 
 	$('.player-two[data="10"]').css({
-		'background-image' : 'url(images/apocalypse.png)',
+		'background-image' : 'url('+playerRef.image+')',
 		'background-size' : '50px 50px'
 	});
 	$('.player-two[data="10"]').addClass('boss');
@@ -187,14 +204,14 @@ function main(turn, player, enemy){
 
 
 
-		if (enemy.position == 98) {
+		if (enemy.position == 99) {
 			$('#action-view').append($('<div class="defense-option">'));
 			$('.defense-option').append($('<h1 class="defense-announcement">').html('Player Two was defeated in combat! You win!'));
 			setTimeout(function(){
 				location.href = "/game/stats"
 				updater.allStats(player.attack, player.health, player.defense, 99, player.ROF);
 			}, 3000)
-		}
+		}	
 
 		if (player.position == 10 && enemy.position == 10) {
 			$('#roll-click').off();
@@ -234,7 +251,7 @@ function main(turn, player, enemy){
 			}
 				$('.defense-option').append($('<button id="select-smash">').html('<h2>SMASH</h2><h3>attack +15 defense +15</h3>'));
 				$('.defense-option').append($('<button id="select-fire">').html('<h2>FIRE</h2><h3>Fire rate +10</h3>'));
-		
+
 		};
 
 		$('#roll-click').on('click', function(){
@@ -403,7 +420,7 @@ function main(turn, player, enemy){
 		});
 	} else if ((playerOne && !playerOneTurn) || (!playerOne && playerOneTurn)) { //this condition handles the wait until the enemy turn is over.
 		$('#roll').addClass('myhidden');
-		waitAndCheck(turn);	
+		waitAndCheck(turn);
 	}
 	});
 };

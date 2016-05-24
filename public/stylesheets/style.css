@@ -9,7 +9,7 @@ body {
 #navigation {
 	background-color: #000;
 	padding-top: 5px;
-	background-image: url(/images/batthern.png);
+	/*background-image: url(/images/squares.png);*/
 	border-color: #BBB #777;
 	border-style: solid;
 }
@@ -24,9 +24,11 @@ body {
 	vertical-align: top
 	max-width: 600px;
 	display: inline-block;
+	margin-top: 5px;
 }
 
 #navigation .container > ul li {
+	font-family: 'Oswald', sans-serif;
 	margin-top: 20px;
 }
 
@@ -87,21 +89,43 @@ body {
 	margin-top: 120px;
 }
 
-#login-module form {
+#sign-up{
+	border-top-left-radius: 100px;
+	border-bottom-left-radius: 400px;
 	font-family: 'Oswald', sans-serif;
-  border-radius: 20px;
-  background: linear-gradient(#B7870C, #1B0E0B);
-  vertical-align: top;
-  display: inline-block;
-  text-align: center;
-  border-width: 3px 2px 2px 2px;
-  border-color: #544032 #4A2826 #4A2826 #2E2833;
-  border-style: solid;
-  box-shadow: 0px 0px 29px #7EAEDB inset;
-  width: 300px;
-  height: 350px;
-  margin: 0px auto 10px auto;
-  position: relative;
+	/*border-radius: 20px;*/
+	background: linear-gradient(#B7870C, #1B0E0B);
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	border-width: 3px 2px 2px 2px;
+	border-color: #544032 #4A2826 #4A2826 #2E2833;
+	border-style: solid;
+	box-shadow: 0px 0px 29px #7EAEDB inset;
+	width: 300px;
+	height: 350px;
+	margin: 0px auto 10px auto;
+	position: relative;
+}
+
+#login {
+	border-top-right-radius: 100px;
+	border-bottom-right-radius: 400px;
+	font-family: 'Oswald', sans-serif;
+	/*border-radius: 20px;*/
+	background: linear-gradient(#B7870C, #1B0E0B);
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	border-width: 3px 2px 2px 2px;
+	border-color: #544032 #4A2826 #4A2826 #2E2833;
+	border-style: solid;
+	box-shadow: 0px 0px 29px #7EAEDB inset;
+	width: 300px;
+	height: 350px;
+	margin: 0px auto 10px auto;
+	position: relative;
+
 }
 
 #login-module form h2 {
@@ -141,17 +165,24 @@ body {
 	width: 800px;
 }
 
-/* Current Character styles */
-/*================================================*/
+#message h2 {
+	color: #008DFF;
+  font-family: 'Oswald', sans-serif;
+  text-shadow: 5px 5px 10px #007FE0;
+}
+
 #current-char {
+	text-shadow: 0px 5px 2px #797366;
+	background-image: url(/images/carbon-fibre.png);
+	color: #92C8F7;
 	background-color: #501E14;
   border-width: 2px;
   box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
   width: 300px;
   height: 430px;
-	border-width: 4px;
+	border-width: 6px;
 	border-style: solid;
-	border-color: #031723 #021927 #003A5D #021927;
+  border-color: #2F2A1B #524022 #F3EAA2 #524022;
   border-radius: 10px;
   text-align: center;
   margin-top: 10px;
@@ -181,6 +212,14 @@ body {
 	max-height: 100px;
 	cursor: pointer;
 	border-radius: 10px;
+	opacity: 0.5;
+}
+
+.character:hover{
+	opacity: 1;
+	border-width: 3px 2px 2px 2px;
+	border-color: #F3EAA2;
+	border-style: solid;
 }
 
 .form-container {
@@ -189,14 +228,15 @@ body {
 }
 
 #character-list {
+	background-image: url(/images/carbon-fibre.png);
 	background-color: #501E14;
   border-width: 2px;
   box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
   width: 300px;
   height: 430px;
-	border-width: 4px;
+	border-width: 6px;
 	border-style: solid;
-	border-color: #031723 #021927 #003A5D #021927;
+	border-color: #2F2A1B #524022 #F3EAA2 #524022;
   border-radius: 10px;
   text-align: center;
   margin-top: 10px;
@@ -237,18 +277,19 @@ input[type="radio"]:checked + img {
 }
 
 #char-select-submit{
-	border-width: 2px 2px 2px 2px;
-	border-color: #544032;
-	border-style: solid;
-	box-shadow: 0px 0px 30px #1C1450 inset;
-	margin-top: 40px;
-	margin-left: 120px;
-	padding: 15px 5px;
-	background: #FDED7B;
-	cursor: pointer;
-	-webkit-border-radius: 5px;
-	border-radius: 35px;
-	color: #FF2B00;
+	font-family: 'Oswald', sans-serif;
+  background: linear-gradient(#821B04, #AD0C0C, #3A1D17);
+  border-width: 3px;
+  border-color: #E00000;
+  border-style: solid;
+  box-shadow: 0px 0px 16px #F10000;
+  margin-top: 30px;
+  margin-left: 105px;
+  padding: 15px 20px;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  /* border-radius: 35px; */
+  color: #009CF8;
 }
 
 
@@ -447,6 +488,14 @@ margin-top: 30px;
 	height: 350px;
 	margin: 0px auto 10px auto;
 	position: relative;
+}
+
+#enemy-stats ul {
+margin-top: 30px;
+}
+
+#enemy-stats ul li {
+	padding: 5px 0px 5px 0px;
 }
 
 .defense-option {
