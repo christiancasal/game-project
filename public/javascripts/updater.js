@@ -35,12 +35,7 @@ var updater = {
 	    	url: queryUrl,
 	    	method: 'GET'})
 	    .done(function(response) {
+
 		})
 	},
 };
-
-
-
-
-
-
