@@ -100,7 +100,8 @@ router.post('/game/chooseCharacter', function(req, res){
 		req.session.attack = user.attack_power;
 		req.session.defense = user.defense_power;
 		req.session.character = user.char_name;
-		req.session.hosted = Games.newGame(req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense);
+		req.session.ROF = user.fire_rate;
+		req.session.hosted = Games.newGame(req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense, req.session.ROF);
 		req.session.lobby = true;
 		res.redirect('/game');
 	});
@@ -111,7 +112,7 @@ router.get('/game/join/:gameID', function(req, res){
 		res.redirect('/game');
 	} else {
 		req.session.hosted = req.params.gameID;
-		Games.joinGame(req.params.gameID, req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense);
+		Games.joinGame(req.params.gameID, req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense, req.session.ROF);
 		req.session.playerOne = true;
 		res.redirect('/game/start');
 	}

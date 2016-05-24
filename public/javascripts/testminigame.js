@@ -1,10 +1,10 @@
 var init;
 var k = 0;
-var enemyInitialHealthString = $('#enemy-health').html();
-var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
 var gameTime = 30;
 
-function startMinigame(_player, _enemy){
+function startMinigame(_player, _enemy, battlestate){
+    var enemyInitialHealthString = $('#enemy-health').html();
+    var enemyInitialHealthInt = parseInt(enemyInitialHealthString); //THIS NEEDS TO BE UPDATED WHEN DB IS UPDATED WITH ALL ENEMY STATS
     var isGameOver = false;
     timer = setInterval(function(){
         gameTime--;
@@ -12,10 +12,12 @@ function startMinigame(_player, _enemy){
     _player.health = parseInt(_player.health);
     _player.defense = parseInt(_player.defense);
     _player.attack = parseInt(_player.attack);
+    _player.ROF = parseInt(_player.ROF);
 
     _enemy.health = parseInt(_enemy.health);
     _enemy.defense = parseInt(_enemy.defense);
     _enemy.attack = parseInt(_enemy.attack);
+    _enemy.ROF = parseInt(_enemy.ROF);
 
 var CANVAS_WIDTH = 800; //1200
 var CANVAS_HEIGHT = 350;
@@ -193,7 +195,7 @@ function Enemybullet(I) {
     I.x = xAxis;
     I.y = yAxis;
 
-    I.xVelocity = 3.2;
+    I.xVelocity = .5 + (1 * (_enemy.ROF / 25));
     I.yVelocity = 0;
 
     I.width = 32;
@@ -326,10 +328,14 @@ function update() {
     $('#timer').empty();
     $('#timer').text(gameTime)
 
-    if (gameTime <= 0 ) {
-      GameTimedOut();
+    if (gameTime <= 0) {
+        k++
+        if (k==1) {
+            k==0;
+         GameTimedOut();
+        }
   }
-  if(keydown.space && !isGameOver && Date.now() - lastFire > 200) {
+  if(keydown.space && !isGameOver && Date.now() - lastFire > (250 - (_player.ROF * 2))) {
       player.shoot();
       lastFire = Date.now();
   }
@@ -386,7 +392,7 @@ enemies = enemies.filter(function(enemy) {
 
 handleCollisions();
 
-if(Math.random() < 0.12) { //how fast the enemy bullets come
+if(Math.random() < (0.1 + (_enemy.ROF / 900))) { //how fast the enemy bullets come
   enemies.push(Enemybullet());
 }
 
@@ -455,8 +461,10 @@ function handleCollisions() {
 
     enemies.forEach(function(enemy) {
       if(collides(enemy, player)) {
-        enemy.explode();
-        player.explode();
+        if (!isGameOver) {
+            enemy.explode();
+            player.explode();
+        }
     }
 });
 }
@@ -465,19 +473,21 @@ player.explode = function() {
     console.log(_player.health);
     _player.health = _player.health - (_enemy.attack - _player.defense);
     if(_player.health < 0){
+        isGameOver = true;
         k++;
       _player.health = 0;
       pause();
       $('#action-view').append($('<div class="defense-option">'));
       $('.defense-option').append($('<h1 class="defense-announcement">').html('Game Over! You LOSE!'));
       if (k==1) {
-        k=0;
       setTimeout(function(){
+        k=0;
         $('.defense-option').remove();
-        updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position);
-        updater.enemyStats(Math.round(_enemy.attack), Math.round(_enemy.health), Math.round(_enemy.defense), _enemy.position);
-    }, 2000);
-    }
+        updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), 98, _player.ROF);
+        updater.enemyStats(Math.round(_enemy.attack), Math.round(_enemy.health), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
+        location.href = "/game/stats"
+    }, 3000);
+        }
       $('canvas').remove();
   }
 
@@ -495,26 +505,30 @@ Boss.explode = function() {
         k++;
         Boss.explode = null;
         pause();
-        $('#action-view').append($('<div class="defense-option">'));
-        $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
-        $('#enemy-health').html('0');
-        _enemy.health = 0;
-        setTimeout(function(){
             if (k==1){
-              k=0;
-              console.log('in here with k')
-              updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position);
-              updater.enemyStats(Math.round(_enemy.attack), Math.round(_enemy.health), Math.round(_enemy.defense), _enemy.position);
-          }
-          $('.defense-option').remove();
-          $('#timer').remove();
-      }, 3000);
-        _player.health += enemyInitialHealthInt / 4;
+            $('#action-view').append($('<div class="defense-option">'));
+            $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
+            $('#enemy-health').html('0');
+            k=0;
+            _enemy.health = 0;
+            _player.health += enemyInitialHealthInt / 4;
+            setTimeout(function(){
+                  if (battlestate == 2) {
+                    player.position = 98;
+                  }
+                  console.log('in here with k')
+                  updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position, _player.ROF);
+                  updater.enemyStats(Math.round(_enemy.attack), Math.round(enemyInitialHealthInt / 3), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
+              
+              $('.defense-option').remove();
+              $('#timer').remove();
+          }, 3000);
 
-        $('canvas').remove();
-        $('#roll').show();
+            $('canvas').remove();
+            $('#roll').show();
+        }
     } else {  
-        this.active = false;
+       this.active = false;
     }
 };
 
@@ -522,11 +536,14 @@ function GameTimedOut(){
     pause();
     $('#action-view').append($('<div class="defense-option">'));
     $('.defense-option').append($('<h1 class="defense-announcement">').html('Time Up!'));
+    if (_enemy.health < (enemyInitialHealthInt / 2)) {
+        _enemy.health = (enemyInitialHealthInt / 2);
+    }
     setTimeout(function(){
       $('.defense-option').remove();
       $('#timer').remove();
-      updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position);
-      updater.enemyStats(Math.round(_enemy.attack), Math.round(_enemy.health), Math.round(_enemy.defense), _enemy.position);
+      updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position, _player.ROF);
+      updater.enemyStats(Math.round(_enemy.attack), Math.round(_enemy.health), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
   }, 3000);
     $('canvas').remove();
     $('#roll').show();
