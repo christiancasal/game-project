@@ -483,6 +483,7 @@ player.explode = function() {
     console.log(_player.health);
     _player.health = _player.health - (_enemy.attack - _player.defense);
     if(_player.health < 0){
+      console.log(k)
         isGameOver = true;
         k++;
       _player.health = 0;
@@ -493,14 +494,13 @@ player.explode = function() {
       setTimeout(function(){
         k=0;
         $('.defense-option').remove();
-        updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), 99, _player.ROF);
+        updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), 98, _player.ROF);
         updater.enemyStats(Math.round(_enemy.attack), Math.round(_enemy.health), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
-        location.href = "/game/stats"
+        location.href = "/stats"
     }, 3000);
         }
       $('canvas').remove();
   }
-
   $('#player-health').html(_player.health);
 
   this.active = false;
