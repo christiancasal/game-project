@@ -233,15 +233,12 @@ body {
 	background-color: #501E14;
   border-width: 2px;
   box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
-  width: 300px;
-  height: 430px;
 	border-width: 6px;
 	border-style: solid;
 	border-color: #2F2A1B #524022 #F3EAA2 #524022;
   border-radius: 10px;
   text-align: center;
   margin-top: 10px;
-  width: 300px;
   height: 430px;
   border-radius: 10px;
   text-align: center;
@@ -542,19 +539,25 @@ margin-top: 30px;
 	text-align: center;
 }
 #lobby-container{
+	box-shadow: 0px 15px 50px #000 inset;
 	padding: 20px;
-	width: 915px;
+	width: 920px;
 	margin: 0 auto;
-	border: 1px solid black;
 	border-radius: 10px;
+	background-color: rgba(1, 20, 31, 0.36);
 }
 #available {
+  color: #FF0000;
+  background: linear-gradient(to bottom right, #331919, #610A0A);
+  border-width: 2px;
+  box-shadow: 0px 15px 50px #007DA2 inset, 0px -10px 20px #01212B inset;
+  border-style: solid;
+  border-color: #00C3FF;
 	overflow: scroll;
 	display: inline-block;
 	height: 325px;
 	width: 425px;
-	border: 1px solid black;
-	border-radius: 10px;
+	border-radius: 100px;
 	margin: 5px;
 	padding: 10px;
 	text-align: center;
@@ -562,13 +565,17 @@ margin-top: 30px;
 }
 
 #unavailable {
-	float: right;
+	color: #FF0000;
+  background:linear-gradient(to bottom right, #9E0B0B, #250000);
+  border-width: 2px;
+  box-shadow: 0px 15px 50px #007DA2 inset, 0px -10px 20px #01212B inset;
+  border-style: solid;
+  border-color: #00C3FF;
 	overflow: scroll;
 	display: inline-block;
 	height: 325px;
 	width: 425px;
-	border: 1px solid black;
-	border-radius: 10px;
+	border-radius: 100px;
 	margin: 5px;
 	padding: 10px;
 	text-align: center;
@@ -581,16 +588,20 @@ margin-top: 30px;
 }
 
 #messageBoard{
+	background-color: #9C0000;
+  border-width: 2px;
+  box-shadow: 0px 5px 20px #182E48;
+  border-style: solid;
+  border-color: #00C3FF;
   margin: 0 auto;
   width: 375px;
-  border: 1px solid black;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
   font-size: 1.2em;
   width: 100%;
   height: 175px;
-	margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 #chat form {
