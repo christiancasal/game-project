@@ -1,12 +1,30 @@
 <div id="loading_mask"><img src="images/marvel_logo.png"></div>
-<div class="form-container">
-<p>Link for others to join your game! localhost:8000/game/join/<span id="host">{{hbsObject.hostedGameId}}</span></p>
+<p id="link">Link for others to join your game! localhost:8000/game/join/<span id="host">{{hbsObject.hostedGameId}}</span></p>
+<div id="lobby-container">
 	<div id="available">
-		
+
 	</div>
 	<div id="unavailable">
 
 	</div>
-</div>
 
+	<div id="chat">
+			<div id="messageBoard">
+			</div>
+			<form name="message" action="">
+				<span id="userName">User Name: </span> <input name="usermsg" type="text" id="usermsg" size="63" />
+				<input name="submitmsg" type="submit"  id="submitmsg"  />
+				<span id="timeStamp">Timestamp: </span>
+					<script>
+						$('#submitmsg').on('click', function(){
+							var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+							$('#timeStamp').html(currentTime);
+						});
+					</script>
+			</form>
+	</div>
+</div>
 <script type="text/javascript" src="javascripts/lobby.js"></script>
+<script type="text/javascript" src="javascripts/moment.js">
+
+</script>

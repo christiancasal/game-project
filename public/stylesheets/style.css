@@ -1,7 +1,8 @@
 body {
 	background-image: url(/images/dark-matter.png), linear-gradient(#000, #01A1FF);
   /*background: linear-gradient(#000, #01A1FF);*/
-	min-height: 800px;
+	/*min-height: 800px;*/
+	min-height: 730px;
 }
 /* Navigation styles */
 /*================================================*/
@@ -212,7 +213,7 @@ body {
 	max-height: 100px;
 	cursor: pointer;
 	border-radius: 10px;
-	opacity: 0.5;
+	opacity: 0.7;
 }
 
 .character:hover{
@@ -537,9 +538,21 @@ margin-top: 30px;
 }
 /*Lobby View*/
 /*================================================*/
+#link {
+	text-align: center;
+}
+#lobby-container{
+	padding: 20px;
+	width: 915px;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-radius: 10px;
+}
 #available {
-	float: left;
-	width: 300px;
+	overflow: scroll;
+	display: inline-block;
+	height: 325px;
+	width: 425px;
 	border: 1px solid black;
 	border-radius: 10px;
 	margin: 5px;
@@ -550,13 +563,40 @@ margin-top: 30px;
 
 #unavailable {
 	float: right;
-	width: 300px;
+	overflow: scroll;
+	display: inline-block;
+	height: 325px;
+	width: 425px;
 	border: 1px solid black;
 	border-radius: 10px;
 	margin: 5px;
 	padding: 10px;
 	text-align: center;
 	font-size: 1.2em;
+}
+
+#chat{
+	background-color: rgba(248, 248, 248, 0);
+	border: none;
+}
+
+#messageBoard{
+  margin: 0 auto;
+  width: 375px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  width: 100%;
+  height: 175px;
+	margin-bottom: 10px
+}
+
+#chat form {
+	text-align: center;
+	margin-top: 10px;
+	margin: 0 auto;
 }
 
 #loading_mask {
