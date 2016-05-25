@@ -1,7 +1,23 @@
+@font-face {
+  font-family: marvel;
+  src: url(/fonts/AmericanCaptain.otf);
+}
+
+@font-face {
+	font-family: clash;
+	src: url(/fonts/clash.otf);
+}
+
+@font-face {
+	font-family: avengers;
+	src: url(/fonts/avengers.otf);
+}
+
 body {
 	background-image: url(/images/dark-matter.png), linear-gradient(#000, #01A1FF);
   /*background: linear-gradient(#000, #01A1FF);*/
-	min-height: 800px;
+	/*min-height: 800px;*/
+	min-height: 730px;
 }
 /* Navigation styles */
 /*================================================*/
@@ -28,7 +44,7 @@ body {
 }
 
 #navigation .container > ul li {
-	font-family: 'Oswald', sans-serif;
+	font-family: marvel;
 	margin-top: 20px;
 }
 
@@ -58,6 +74,7 @@ body {
 }
 
 #userNav {
+	font-family: marvel;
 	border-width: 2px;
 	border-color: rgba(121, 18, 18, 0.76);
 	border-style: solid;
@@ -84,9 +101,40 @@ body {
 /* Log-in */
 /*================================================*/
 
+#logo {
+	margin-top: 30px;
+	text-align: center;
+}
+
+
+#marvel{
+	text-shadow: 0px 0px 30px #A00707;
+  font-family: marvel;
+  font-size: 80pt;
+  color: #FF0000;
+  margin-right: 35px;
+}
+
+#clash {
+	text-shadow: 0px 0px 60px #00C2FF;
+  font-family: clash;
+  font-size: 60pt;
+  color: #00A9FF;
+}
+
+
 #login-module {
-	margin: 15px;
-	margin-top: 120px;
+	background: linear-gradient(rgba(2, 163, 255, 0), rgb(4, 30, 45));
+  border-radius: 85px;
+  padding: 0px 30px 30px 30px;
+  box-shadow: 0px -20px 50px #000 inset;
+  margin: 15px;
+  margin-top: 60px;
+}
+
+#login-module h2 {
+	color: #B90000;
+	text-align: center;
 }
 
 #sign-up{
@@ -167,7 +215,7 @@ body {
 
 #message h2 {
 	color: #008DFF;
-  font-family: 'Oswald', sans-serif;
+  font-family: AmericanCaptain;
   text-shadow: 5px 5px 10px #007FE0;
 }
 
@@ -212,7 +260,7 @@ body {
 	max-height: 100px;
 	cursor: pointer;
 	border-radius: 10px;
-	opacity: 0.5;
+	opacity: 0.7;
 }
 
 .character:hover{
@@ -223,7 +271,7 @@ body {
 }
 
 .form-container {
-	width: 640px;
+	width: 695px;
 	margin: 0 auto;
 }
 
@@ -232,15 +280,12 @@ body {
 	background-color: #501E14;
   border-width: 2px;
   box-shadow: 0px 15px 50px #013158 inset, 0px -20px 40px #000 inset;
-  width: 300px;
-  height: 430px;
 	border-width: 6px;
 	border-style: solid;
 	border-color: #2F2A1B #524022 #F3EAA2 #524022;
   border-radius: 10px;
   text-align: center;
   margin-top: 10px;
-  width: 300px;
   height: 430px;
   border-radius: 10px;
   text-align: center;
@@ -277,14 +322,14 @@ input[type="radio"]:checked + img {
 }
 
 #char-select-submit{
-	font-family: 'Oswald', sans-serif;
+	font-family: AmericanCaptain;
   background: linear-gradient(#821B04, #AD0C0C, #3A1D17);
   border-width: 3px;
   border-color: #E00000;
   border-style: solid;
   box-shadow: 0px 0px 16px #F10000;
   margin-top: 30px;
-  margin-left: 105px;
+  margin-left: 110px;
   padding: 15px 20px;
   cursor: pointer;
   -webkit-border-radius: 5px;
@@ -298,10 +343,10 @@ input[type="radio"]:checked + img {
 /*================================================*/
 
 #game-wrapper {
-	min-height: 705px;
+	min-height: 730px;
 	box-shadow: 0px 0px 20px #000 inset;
 	padding-top: 5px;
-	background-image: url(/images/dark-matter.png), linear-gradient(to bottom right, #FF0000, #000);
+	background-image: linear-gradient(to bottom right, rgba(245, 216, 4, 0.21), rgb(236, 26, 5));
 	border-color: #BBB #777;
 	border-style: solid;
 	border-radius: 3px;
@@ -310,9 +355,6 @@ input[type="radio"]:checked + img {
 #map-view-container .map-view .container > ul {
 	list-style: none;
 	min-width: 680px;
-	/*max-width: 700px;*/
-	margin: 15px auto 0px auto;
-	padding-bottom: 20px;
 	display: inline-block;
 }
 
@@ -351,27 +393,23 @@ input[type="radio"]:checked + img {
 #map-view-container .map-view .container {
 	width: 840px;
   display: inline-block;
-	margin-top: 14px;
+	margin-top: 5px;
 	height: 180px;
 }
 
 #map-view-container {
-   width: 100%;
-   text-align: center;
+	margin: 0 auto;
+	padding-left: 10px;
+  padding-top: 5px;
+  height: 145px;
+  width: 1020px;
+  text-align: center;
+	}
 }
 
 .map-view {
-	border-radius: 20px;
-	background: url(/images/az-subtle.png), linear-gradient(#999, #000);
-  box-shadow: 0px 0px 26px #381F0C inset;
-  border-width: 3px;
-  border-color: #5F4A4A #582626 #3E2B2B #483535;
-  border-style: solid;
-  background-color: #999;
-  /* padding: 15px; */
+  border-radius: 20px;
   width: 1175px;
-  height: 195px;
-  /* border: 1px solid black; */
   margin: 10px auto;
   position: relative;
 }
@@ -382,11 +420,10 @@ input[type="radio"]:checked + img {
   border-color: #8C8673 #8E825A #6F84CA #8E825A;
   border-style: solid;
   background-color: #000;
-  height: 160px;
-  margin: 15px;
+  height: 125px;
   float: left;
   display: inline-block;
-  width: 200px;
+  width: 165px;
   border-radius: 30px;
 }
 
@@ -397,52 +434,67 @@ input[type="radio"]:checked + img {
 	border-width: 2px;
 	border-color: #5E421A #8E825A;
 	border-style: solid;
-	width: 38px;
-	height: 38px;
+	width: 30px;
+	height: 30px;
 	text-align: center;
-	padding-top: 10px;
-	font-size: .8em;
-	margin: 0px 10px;
+	padding-top: 5px;
+	font-size: 0.7em;
+	 margin: 0px 10px;
 	border-radius: 3px;
 }
 
 #roll-click {
 	font-family: 'Oswald', sans-serif;
-	box-shadow: 0px 0px 8px #05294E inset;
+  box-shadow: 0px 0px 8px #05294E inset;
   background-color: #0C4F92;
   color: #fff;
-  padding-top: 20px;
+  padding-top: 14px;
   font-size: 18pt;
   display: inline-block;
   border-width: 2px;
   border-color: #2D5170 #2D5170;
   border-style: solid;
-  border-radius: 70px;
-  height: 70px;
-  width: 70px;
+  border-radius: 60px;
+  height: 60px;
+  width: 60px;
+  margin-top: 5px;
 }
 
 #action-container {
-	width: 1175px;
+	box-shadow: 0px -20px 50px #000 inset;
+	padding: 10px;
+	width: 1200px;
 	margin: 0 auto;
+	margin-bottom: 10px;
 }
 
 #player-stats {
 	font-family: 'Oswald', sans-serif;
 	border-radius: 20px;
-	background: linear-gradient(#EEE, #999);
+	background: linear-gradient(to bottom right, rgba(199, 139, 139, 0.71), #4E4D4D);
 	vertical-align: top;
 	display: inline-block;
 	text-align: center;
-	border-width: 2px;
-	border-color: rgba(121, 18, 18, 0.76);
 	border-style: solid;
-	box-shadow: 0px 0px 8px #008EFF inset;
 	width: 183px;
 	height: 350px;
-	margin: 0px auto 10px auto;
+	margin: 0px auto 0px auto;
 	position: relative;
 }
+
+#player-health{
+	color: #44A50C;
+}
+#player-defense{
+	color: #0000FF;
+}
+#player-attack{
+	color: #C3C320;
+}
+#player-rof{
+	color: #CA3E2D;
+}
+
 
 #player-stats ul {
 margin-top: 30px;
@@ -459,35 +511,43 @@ margin-top: 30px;
 }
 
 #action-view {
-	vertical-align: top;
-	position: relative;
-	display: inline-block;
-	text-align: center;
-	width: 800px;
-	height: 350px;
-	border-width: 2px;
-	border-color: rgba(121, 18, 18, 0.76);
-	border-style: solid;
-	box-shadow: 0px 0px 8px #008EFF inset;
-	margin: 0px auto 10px auto;
-	position: relative;
+	box-shadow: 0px -20px 50px #000;
+  vertical-align: top;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 800px;
+  height: 350px;
+  border-width: 2px;
+  border-color: rgba(121, 18, 18, 0.76);
+  margin: 0px auto 0px auto;
+  position: relative;
 }
 
 #enemy-stats {
 	font-family: 'Oswald', sans-serif;
 	border-radius: 20px;
-	background: linear-gradient(#999, #444);
+	background: linear-gradient(to bottom right, rgba(199, 139, 139, 0.71), #4E4D4D);
 	vertical-align: top;
 	display: inline-block;
 	text-align: center;
-	border-width: 2px;
-	border-color: rgba(121, 18, 18, 0.76);
 	border-style: solid;
-	box-shadow: 0px 0px 8px #008EFF inset;
 	width: 183px;
 	height: 350px;
-	margin: 0px auto 10px auto;
+	margin: 0px auto 0px auto;
 	position: relative;
+}
+#enemy-health{
+	color: #33B914;
+}
+#enemy-defense{
+	color: #00F;
+}
+#enemy-attack{
+	color: #DADA00;
+}
+#enemy-rof{
+	color: #CE2B02;
 }
 
 #enemy-stats ul {
@@ -496,6 +556,34 @@ margin-top: 30px;
 
 #enemy-stats ul li {
 	padding: 5px 0px 5px 0px;
+}
+
+#chat-game{
+	background-color: rgba(248, 248, 248, 0);
+	border: none;
+}
+
+#messageBoard-game{
+	background-color: #400202;
+	border-width: 2px;
+	box-shadow: 0px 5px 20px #182E48;
+	border-style: solid;
+	border-color: #462C2C;
+	margin: 0 auto;
+	width: 375px;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: center;
+	font-size: 1.2em;
+	width: 1200px;
+	height: 155px;
+	margin-bottom: 10px;
+}
+
+#chat-game form {
+	text-align: center;
+	margin-top: 10px;
+	margin: 0 auto;
 }
 
 .defense-option {
@@ -537,11 +625,30 @@ margin-top: 30px;
 }
 /*Lobby View*/
 /*================================================*/
-#available {
-	float: left;
-	width: 300px;
-	border: 1px solid black;
+#link {
+	text-align: center;
+}
+#lobby-container{
+	box-shadow: 0px 15px 50px #000 inset;
+	padding: 20px;
+	width: 920px;
+	margin: 0 auto;
 	border-radius: 10px;
+	background-color: rgba(1, 20, 31, 0.36);
+}
+#available {
+	font-family: AmericanCaptain;
+  color: #00FF00;
+  background: linear-gradient(to bottom right, #331919, #610A0A);
+  border-width: 2px;
+  box-shadow: 0px 15px 50px #007DA2 inset, 0px -10px 20px #01212B inset;
+  border-style: solid;
+  border-color: #00C3FF;
+	overflow: scroll;
+	display: inline-block;
+	height: 325px;
+	width: 425px;
+	border-radius: 100px;
 	margin: 5px;
 	padding: 10px;
 	text-align: center;
@@ -549,14 +656,50 @@ margin-top: 30px;
 }
 
 #unavailable {
-	float: right;
-	width: 300px;
-	border: 1px solid black;
-	border-radius: 10px;
+	font-family: AmericanCaptain;
+	color: #FF0000;
+  background:linear-gradient(to bottom right, #9E0B0B, #250000);
+  border-width: 2px;
+  box-shadow: 0px 15px 50px #007DA2 inset, 0px -10px 20px #01212B inset;
+  border-style: solid;
+  border-color: #00C3FF;
+	overflow: scroll;
+	display: inline-block;
+	height: 325px;
+	width: 425px;
+	border-radius: 100px;
 	margin: 5px;
 	padding: 10px;
 	text-align: center;
 	font-size: 1.2em;
+}
+
+#chat-lobby{
+	background-color: rgba(248, 248, 248, 0);
+	border: none;
+}
+
+#messageBoard-lobby{
+	background-color: #9C0000;
+  border-width: 2px;
+  box-shadow: 0px 5px 20px #182E48;
+  border-style: solid;
+  border-color: #00C3FF;
+  margin: 0 auto;
+  width: 375px;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  width: 100%;
+  height: 175px;
+  margin-bottom: 10px;
+}
+
+#chat-lobby form {
+	text-align: center;
+	margin-top: 10px;
+	margin: 0 auto;
 }
 
 #loading_mask {
