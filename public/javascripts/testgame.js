@@ -204,11 +204,11 @@ function main(turn, player, enemy){
 
 
 
-		if (enemy.position == 99) {
+		if (enemy.position == 98) {
 			$('#action-view').append($('<div class="defense-option">'));
 			$('.defense-option').append($('<h1 class="defense-announcement">').html('Player Two was defeated in combat! You win!'));
 			setTimeout(function(){
-				location.href = "/game/stats"
+				location.href = "/stats"
 				updater.allStats(player.attack, player.health, player.defense, 99, player.ROF);
 			}, 3000)
 		}	
@@ -220,7 +220,7 @@ function main(turn, player, enemy){
 			$('#action-view').append($('<div class="defense-option">'));
 			$('.defense-option').append($('<h1 class="defense-announcement">').html('<h2>Game is Over!</h2>'));
 			setTimeout(function(){
-				location.href = "/game/stats"
+				location.href = "/stats"
 				updater.allStats(player.attack, player.health, player.defense, 99, player.ROF);
 			}, 3000)
 		}
@@ -432,12 +432,12 @@ function waitAndCheck(prevTurn) {
 		method: 'GET'})
 	.done(function(response) {
 		console.log('waiting...')
-		if (response.playerOne.position == 99 || response.playerTwo.position == 99) {
+		if (response.playerOne.position == 99 || response.playerTwo.position == 99 ) {
 			$('#action-view').empty();
 			$('#action-view').append($('<div class="defense-option">'));
 			$('.defense-option').append($('<h1 class="defense-announcement">').html('<h2>Game is Over!</h2>'));
 			setTimeout(function(){
-				location.href = "/game/stats"
+				location.href = "/stats"
 			}, 3000)
 		}
 		if (response.currentMove != prevTurn) {

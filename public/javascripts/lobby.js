@@ -32,7 +32,7 @@ $(document).ready(function(){
     				if ($('#' + response[i].gameId).length =! 0) {
     					$('#' + response[i].gameId).remove();
     				}
-    				var active = $('<p class="game" id="' + response[i].gameId + '">User ' + response[i].playerTwo.name + ' VS ' + response[i].playerTwo.name + '</p>');
+    				var active = $('<p class="game" id="' + response[i].gameId + '">User ' + response[i].playerTwo.name + ' VS ' + response[i].playerOne.name + '</p>');
     				$('#unavailable').append(active);
     			}
     		};
