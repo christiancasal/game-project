@@ -46,22 +46,6 @@
       </div>
     </div>
   </div>
-  <!-- <button id="start" type="button" name="button">Start Game</button>
-  <button id="stop"type="button" name="button">Stop Game</button>
-  <button id="reset"type="button" name="button">reset player</button> -->
-  <div id="action-container">
-    <!-- <div id="player-stats">
-      <img id="player-image" src="" alt="PLAYER ONE" />
-      <ul>
-        <li>Player Health: <span id="player-health">1234</span></li>
-        <li>Player Defense: <span id="player-defense">5678</span></li>
-        <li>Player Attack: <span id="player-attack">1357</span></li>
-      </ul>
-
-    </div> -->
-    <!-- <div id="action-view">
-    </div> -->
-  </div>
   <div id="action-container">
     <div id="player-stats">
       <img id="player-image" src="" alt="PLAYER ONE" />
@@ -82,6 +66,22 @@
       </ul>
     </div>
   </div>
+  <div id="chat-game">
+    <div id="messageBoard-game">
+    </div>
+    <form name="message" action="">
+      <span id="userName">User Name: </span> <input name="usermsg" type="text" id="usermsg" size="63" />
+      <input name="submitmsg" type="submit"  id="submitmsg"  />
+      <span id="timeStamp">Timestamp: </span>
+        <script>
+          $('#submitmsg').on('click', function(){
+            var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+            $('#timeStamp').html(currentTime);
+          });
+        </script>
+    </form>
+  </div>
 </div>
+<script type="text/javascript" src="javascripts/moment.js"></script>
 <script type="text/javascript" src="javascripts/game.js"></script>
 <script type="text/javascript" src="javascripts/minigame.js"></script>
