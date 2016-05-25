@@ -1,3 +1,18 @@
+@font-face {
+  font-family: marvel;
+  src: url(/fonts/AmericanCaptain.otf);
+}
+
+@font-face {
+	font-family: clash;
+	src: url(/fonts/clash.otf);
+}
+
+@font-face {
+	font-family: avengers;
+	src: url(/fonts/avengers.otf);
+}
+
 body {
 	background-image: url(/images/dark-matter.png), linear-gradient(#000, #01A1FF);
   /*background: linear-gradient(#000, #01A1FF);*/
@@ -29,7 +44,7 @@ body {
 }
 
 #navigation .container > ul li {
-	font-family: 'Oswald', sans-serif;
+	font-family: marvel;
 	margin-top: 20px;
 }
 
@@ -59,6 +74,7 @@ body {
 }
 
 #userNav {
+	font-family: marvel;
 	border-width: 2px;
 	border-color: rgba(121, 18, 18, 0.76);
 	border-style: solid;
@@ -85,9 +101,35 @@ body {
 /* Log-in */
 /*================================================*/
 
+#logo {
+	margin-top: 30px;
+	text-align: center;
+}
+
+
+#marvel{
+	text-shadow: 0px 0px 30px #A00707;
+  font-family: marvel;
+  font-size: 80pt;
+  color: #FF0000;
+  margin-right: 35px;
+}
+
+#clash {
+	text-shadow: 0px 0px 60px #00C2FF;
+  font-family: clash;
+  font-size: 60pt;
+  color: #00A9FF;
+}
+
+
 #login-module {
-	margin: 15px;
-	margin-top: 120px;
+	background: linear-gradient(rgba(2, 163, 255, 0), rgb(4, 30, 45));
+  border-radius: 85px;
+  padding: 0px 30px 30px 30px;
+  box-shadow: 0px -20px 50px #000 inset;
+  margin: 15px;
+  margin-top: 60px;
 }
 
 #sign-up{
@@ -168,7 +210,7 @@ body {
 
 #message h2 {
 	color: #008DFF;
-  font-family: 'Oswald', sans-serif;
+  font-family: AmericanCaptain;
   text-shadow: 5px 5px 10px #007FE0;
 }
 
@@ -224,7 +266,7 @@ body {
 }
 
 .form-container {
-	width: 640px;
+	width: 695px;
 	margin: 0 auto;
 }
 
@@ -275,14 +317,14 @@ input[type="radio"]:checked + img {
 }
 
 #char-select-submit{
-	font-family: 'Oswald', sans-serif;
+	font-family: AmericanCaptain;
   background: linear-gradient(#821B04, #AD0C0C, #3A1D17);
   border-width: 3px;
   border-color: #E00000;
   border-style: solid;
   box-shadow: 0px 0px 16px #F10000;
   margin-top: 30px;
-  margin-left: 105px;
+  margin-left: 110px;
   padding: 15px 20px;
   cursor: pointer;
   -webkit-border-radius: 5px;
@@ -547,7 +589,8 @@ margin-top: 30px;
 	background-color: rgba(1, 20, 31, 0.36);
 }
 #available {
-  color: #FF0000;
+	font-family: AmericanCaptain;
+  color: #00FF00;
   background: linear-gradient(to bottom right, #331919, #610A0A);
   border-width: 2px;
   box-shadow: 0px 15px 50px #007DA2 inset, 0px -10px 20px #01212B inset;
@@ -565,6 +608,7 @@ margin-top: 30px;
 }
 
 #unavailable {
+	font-family: AmericanCaptain;
 	color: #FF0000;
   background:linear-gradient(to bottom right, #9E0B0B, #250000);
   border-width: 2px;
