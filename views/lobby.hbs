@@ -9,19 +9,19 @@
 	</div>
 
 	<div id="chat">
-			<div id="messageBoard">
-			</div>
-			<form name="message" action="">
-				<span id="userName">User Name: </span> <input name="usermsg" type="text" id="usermsg" size="63" />
-				<input name="submitmsg" type="submit"  id="submitmsg"  />
-				<span id="timeStamp">Timestamp: </span>
-					<script>
-						$('#submitmsg').on('click', function(){
-							var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-							$('#timeStamp').html(currentTime);
-						});
-					</script>
-			</form>
+		<div id="messageBoard">
+		</div>
+		<form name="message" action="">
+			<span id="userName">User Name: </span> <input name="usermsg" type="text" id="usermsg" size="63" />
+			<input name="submitmsg" type="submit"  id="submitmsg"  />
+			<span id="timeStamp">Timestamp: </span>
+				<script>
+					$('#submitmsg').on('click', function(){
+						var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+						$('#timeStamp').html(currentTime);
+					});
+				</script>
+		</form>
 	</div>
 </div>
 <script type="text/javascript" src="javascripts/lobby.js"></script>
