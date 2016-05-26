@@ -2,6 +2,7 @@ var init;
 var k = 0;
 var gameTime = 30;
 
+
 function startMinigame(_player, _enemy, battlestate){
 
     var playerName = _player.character;

@@ -4,9 +4,16 @@ var bcrypt = require('bcrypt');
 
 var marvelCharacters = require('../models/models.js')[0];
 var User = require('../models/models.js')[1];
+var flora;
+
 var Games = require('../models/gameContainer.js');
 
+
 router.get('/game', function(req, res){
+	flora = require('../arduino/flora.js');
+	console.log("this is games controller game route");
+	console.log(flora);
+	// flora.hello();
 	var hbsObject = {
 		message : req.session.message,
 		hostedGameId : req.session.hosted,
@@ -24,11 +31,13 @@ router.get('/game', function(req, res){
 			res.render('chose-character', { hbsObject });
 		});
 	} else if (req.session.start) {
+
 		if (req.session.allDone) {
 			res.redirect('stats');
 		} else{
 			res.render('testgame', { hbsObject });
 		}
+
 	} else if (req.session.lobby) {
 			res.render('lobby', { hbsObject });
 	}
@@ -47,7 +56,8 @@ router.post('/game/signup', function(req, res){
 						wins: 0,
 						loses: 0,
 						streak: 0,
-						high_score:0
+						high_score:0,
+						administrator: 0
 					}).then(function(user){
 						req.session.logged_in = true;
 						req.session.username = user.username;
@@ -94,6 +104,9 @@ router.post('/game/login', function(req, res){
 })
 
 router.post('/game/chooseCharacter', function(req, res){
+	console.log("this is choose character");
+	console.log(flora);
+
 	req.session.logged_in = true;
 	req.session.chosen = true;
 	req.session.characterId = req.body.character;
@@ -152,11 +165,11 @@ router.get('/stats', function(req, res){
 				}
 
 				User.findOne({
-				where: 
+				where:
 					{username : req.session.username}
 				}).then(function(resOne){
 					User.findOne({
-					where: 
+					where:
 						{username : enemy}
 					}).then(function(resTwo){
 						console.log(resOne.username);
@@ -187,7 +200,7 @@ router.get('/stats', function(req, res){
 					}
 				}
 			}, 1000)
-		} 
+		}
 		if (req.session.playerOne && !req.session.allDone) {
 			for (var i = 0; i < Games.activeGames.length; i++) {
 				if (Games.activeGames[i].gameId == req.session.hosted) {

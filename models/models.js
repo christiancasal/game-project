@@ -2,6 +2,7 @@ var Sequelize = require("sequelize");
 
 var sequelizeConnection = require("../config/connection.js");
 
+
 //creates a characters table
 var Characters = sequelizeConnection.define('characters', {
 	character_id: {
@@ -28,13 +29,33 @@ var Characters = sequelizeConnection.define('characters', {
 	},
 	defense_power: {
 		type: Sequelize.INTEGER,
-		allowNull: false	
+		allowNull: false
 	},
 	fire_rate: {
 		type: Sequelize.INTEGER,
 		allowNull: false
 	}
-});
+	// ,
+	// created_at: {
+	// 	type: Sequelize.DATE,
+	// 	allowNull: false
+	// },
+	// updated_at: {
+	// 	type: Sequelize.DATE,
+	// 	allowNull: false
+	// }
+
+}
+// , {
+//
+//   timestamps: true,
+//
+//   created_at: true,
+//
+//   updated_at: 'updateTimestamp'
+//
+// }
+);
 
 //creates a Users table
 var Users = sequelizeConnection.define('users', {
