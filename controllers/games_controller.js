@@ -4,19 +4,17 @@ var bcrypt = require('bcrypt');
 
 var marvelCharacters = require('../models/models.js')[0];
 var User = require('../models/models.js')[1];
-
-var flora = require('../arduino/flora.js');
-console.log("this is games controller");
-console.log(flora);
+var flora;
 
 var Games = require('../models/gameContainer.js');
 
 
 router.get('/game', function(req, res){
-	var flora = require('../arduino/flora.js');
+	flora = require('../arduino/flora.js');
 	console.log("this is games controller game route");
 	console.log(flora);
-	flora.red();
+	// flora.hello();
+
 	var hbsObject = {
 		message : req.session.message,
 		hostedGameId : req.session.hosted,
