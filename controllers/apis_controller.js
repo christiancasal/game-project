@@ -4,13 +4,26 @@ var bcrypt = require('bcrypt');
 
 var Games = require('../models/gameContainer.js');
 
-router.get('/api', function(req, response){
+router.get('/api', function(req, res){
 	var allGames = Games.activeGames
 	for (var i = 0; i < allGames.length; i++) {
 
 	}
-	response.send(allGames);
+	res.send(allGames);
 });
+
+router.get('/api/lobbychat', function(req, res){
+	res.send(Games.lobbyChat);
+});
+
+router.post('/api/lobbypost', function(req, res){
+	msgObj = {
+		username : req.body.user,
+		message : req.body.usermsg,
+		time : req._startTime
+	}
+	Games.lobbyChat.push(msgObj)
+})
 
 router.get('/api/game', function(req, res){
 	for (var i = 0; i < Games.activeGames.length; i++) {
@@ -23,6 +36,22 @@ router.get('/api/game', function(req, res){
 		}
 	}
 });
+
+router.post('/api/available', function(req, res){
+	for (var i = 0; i < Games.activeGames.length; i++) {
+		if (Games.activeGames[i].gameId == req.session.hosted) {
+			console.log('here 0')
+			if (JSON.parse(req.body.availability)) {
+				console.log('here 1')
+				Games.activeGames[i].available = true;
+			} else {
+				console.log('here 2')
+				Games.activeGames[i].available = false;
+			}
+			res.end();
+		}
+	}
+})
 
 router.get('/api/move', function(req, res){
 	for (var i = 0; i < Games.activeGames.length; i++) {

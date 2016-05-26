@@ -90,7 +90,13 @@ var gamesObject = {
 			}
 		}
 	],
-	lobbyChat : [],
+	lobbyChat : [
+		{
+			username: 'Ricky',
+			message: 'Hi guys',
+			time : 'Wed May 25 2016 23:00:41 GMT-0400 (EDT)'
+		}
+	],
 	newGame : function(player, char, img, hth, atk, def, rof, userID){
 		var ID = Math.floor(Math.random() * 5000) + 1;
 		newBoardTwo = [];
@@ -105,7 +111,7 @@ var gamesObject = {
 		this.activeGames.push(
 			{
 				gameId : ID,
-				available: true,
+				available: false,
 				currentMove: 0,
 				map: randomMap,
 				playerTwo : {
@@ -134,7 +140,7 @@ var gamesObject = {
 		    }
 		}
 		for (var i = 0; i < this.activeGames.length; i++) {
-			if (this.activeGames[i].gameId == ID && this.activeGames[i].available == true) {
+			if (this.activeGames[i].gameId == ID && this.activeGames[i].playerOne == undefined) {
 				this.activeGames[i].available = false;
 				this.activeGames[i].playerOne = {
 					id : userID,

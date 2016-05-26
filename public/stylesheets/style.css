@@ -94,10 +94,6 @@ body {
 	box-shadow: 0px 0px 30px #008EFF inset;
 }
 
-#host {
-	display: none;
-}
-
 /* Log-in */
 /*================================================*/
 
@@ -625,9 +621,46 @@ margin-top: 30px;
 }
 /*Lobby View*/
 /*================================================*/
+._username {
+	float: left;
+	width: 150px;
+	border: 1px solid black;
+}
+
+._message {
+	float: left;
+	width: 480px;
+	border: 1px solid black;
+	text-align: left;
+}
+
+._timestamp {
+	float: right;
+}
+
 #link {
 	text-align: center;
+	color: white;
 }
+
+#availableForm {
+	width: 500px;
+	margin: 0 auto;
+	color: white;
+}
+
+#availableForm img {
+	width: 50px;
+}
+
+#availableForm label {
+	margin: 10px 15px;
+}
+
+#availableForm label > input {
+	display: none;
+}
+
 #lobby-container{
 	box-shadow: 0px 15px 50px #000 inset;
 	padding: 20px;
@@ -636,6 +669,7 @@ margin-top: 30px;
 	border-radius: 10px;
 	background-color: rgba(1, 20, 31, 0.36);
 }
+
 #available {
 	font-family: AmericanCaptain;
   color: #00FF00;
@@ -681,6 +715,7 @@ margin-top: 30px;
 
 #messageBoard-lobby{
 	background-color: #9C0000;
+	overflow-y: scroll;
   border-width: 2px;
   box-shadow: 0px 5px 20px #182E48;
   border-style: solid;
