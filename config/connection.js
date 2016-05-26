@@ -3,13 +3,14 @@
 // *********************************************************************************
 
 // Dependencies
-var Sequelize = require("sequelize"), connection;
+var Sequelize = require("sequelize"), sequelize;
 var flora = require('../arduino/flora.js');
 // console.log('this is connection.js');
 // console.log(flora);
 
 if(process.env.JAWSDB_URL) {
-  connection = new Sequelize(process.env.JAWSDB_URL);
+  var sequelize = new Sequelize(process.env.JAWSDB_URL);
+
 } else {
   // Lists out connection options
   var source = {
@@ -39,6 +40,7 @@ if(process.env.JAWSDB_URL) {
 
   });
 
-  // Exports the connection for other files to use
-  module.exports = sequelize;
 }
+
+// Exports the connection for other files to use
+module.exports = sequelize;
