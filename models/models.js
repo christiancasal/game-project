@@ -44,6 +44,19 @@ var Characters = sequelizeConnection.define('characters', {
 		allowNull: false
 	}
 
+}, {
+  // don't forget to enable timestamps!
+  timestamps: true,
+
+  // I don't want createdAt
+  createdAt: false,
+
+  // I want updatedAt to actually be called updateTimestamp
+  updatedAt: 'updateTimestamp'
+
+  // And deletedAt to be called destroyTime (remember to enable paranoid for this to work)
+  deletedAt: 'destroyTime',
+  paranoid: true
 });
 
 //creates a Users table
