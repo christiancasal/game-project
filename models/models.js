@@ -54,9 +54,6 @@ var Characters = sequelizeConnection.define('characters', {
   // I want updatedAt to actually be called updateTimestamp
   updatedAt: 'updateTimestamp'
 
-  // And deletedAt to be called destroyTime (remember to enable paranoid for this to work)
-  deletedAt: 'destroyTime',
-  paranoid: true
 });
 
 //creates a Users table
