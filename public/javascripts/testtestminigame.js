@@ -254,84 +254,37 @@ init = setInterval(function() {
     draw();
 }, 1000/FPS);
 
-// setInterval(function() {
-//   drawChar();
-// }, 1000/FPS);
-
-
 function drawChar(){
 
-    canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    if(keydown.space) {
+  if(keydown.space) {
 
-      player.drawSpace();
-      console.log('space working');
-  // player.sprite = Sprite(charNoUnderscore+"-shoot");
-  // player.drawSpace = function() {
-  //   this.sprite.draw(canvas, this.x, this.y);
-  //   console.log('"this" at space: ', this);
-  //   console.log("space sprite: ", this.sprite);
-  // };
-} else if(keydown.left) {
+    player.drawSpace();
+    console.log('space working');
 
-  player.drawLeft();
-  // player.sprite = Sprite(charNoUnderscore+"-left");
-  // player.drawLeft = function() {
-  //   this.sprite.draw(canvas, this.x, this.y);
-  //   console.log('"this" at left: ', this);
-  //   console.log("left sprite: ", this.sprite);
-  // };
+	} else if(keydown.left) {
 
-} else if (keydown.down) {
+	  player.drawLeft();
 
-  player.drawDown();
-  // console.log('down working');
-  // player.sprite = Sprite(charNoUnderscore+"-down");
-  // player.drawDown = function() {
-  //   this.sprite.draw(canvas, this.x, this.y);
-  //   console.log('"this" at down: ', this);
-  //   console.log("down sprite: ", this.sprite);
-  // };
-} else if (keydown.up) {
+	} else if (keydown.down) {
 
-  player.drawUp();
-  // console.log('up working');
-  // player.sprite = Sprite(charNoUnderscore+"-up");
-  // player.drawUp = function() {
-  //   this.sprite.draw(canvas, this.x, this.y);
-  //   console.log('"this" at up: ', this);
-  //   console.log("up sprite: ", this.sprite);
-  // };
-} else if (keydown.right) {
+	  player.drawDown();
 
-  player.drawRight();
-  // player.sprite = Sprite(charNoUnderscore+"-right");
-  // player.drawRight = function() {
-  //   this.sprite.draw(canvas, this.x, this.y);
-  //   alert('right working');
-  //   console.log('"this" at right: ', this);
-  //   console.log("left sprite: ", this.sprite);
-  // };
+	} else if (keydown.up) {
 
-  // player.draw();
+	  player.drawUp();
 
+	} else if (keydown.right) {
 
-} else {
+	  player.drawRight();
 
-  player.drawStand();
-  // console.log('stand working');
-  // player.sprite = Sprite(charNoUnderscore+"-stand");
-  // player.drawStand = function() {
-  //   this.sprite.drawStand(canvas, this.x, this.y);
-  //   console.log('"this" at stand: ', this);
-  //   console.log("stand sprite: ", this.sprite);
-  // };
-}
+	} else {
 
-// if (player.spriteSpace){
-//   debugger;
-// }
+	  player.drawStand();
+
+	}
+
 }
 
 function update() {
@@ -345,6 +298,7 @@ function update() {
          GameTimedOut();
         }
   }
+
   if(keydown.space && !isGameOver && Date.now() - lastFire > (250 - (_player.ROF * 2))) {
       player.shoot();
       lastFire = Date.now();
@@ -356,71 +310,70 @@ function update() {
     } else {
         player.x -= 5;
     }
-}
+	}
 
-if(keydown.right) {
-    if (player.x >= CANVAS_WIDTH * .6) {
-        player.x = CANVAS_WIDTH * .6;
-    } else {
-        player.x += 5;
-    }
-}
+	if(keydown.right) {
+	    if (player.x >= CANVAS_WIDTH * .6) {
+	        player.x = CANVAS_WIDTH * .6;
+	    } else {
+	        player.x += 5;
+	    }
+	}
 
-if(keydown.up) {
-    if (player.y <= 0) {
-        player.y = 0
-    } else {
-        player.y -= 5;
-    }
-}
+	if(keydown.up) {
+	    if (player.y <= 0) {
+	        player.y = 0
+	    } else {
+	        player.y -= 5;
+	    }
+	}
 
-if(keydown.down) {
-    if (player.y + player.height >= CANVAS_HEIGHT) {
-        player.y = CANVAS_HEIGHT - player.height
-    } else {
-        player.y += 5;
-    }
-}
+	if(keydown.down) {
+	    if (player.y + player.height >= CANVAS_HEIGHT) {
+	        player.y = CANVAS_HEIGHT - player.height
+	    } else {
+	        player.y += 5;
+	    }
+	}
 
-player.x = player.x.clamp(0, CANVAS_WIDTH - player.width);
+	player.x = player.x.clamp(0, CANVAS_WIDTH - player.width);
 
-playerBullets.forEach(function(bullet) {
-    bullet.update();
-});
+	playerBullets.forEach(function(bullet) {
+	    bullet.update();
+	});
 
-playerBullets = playerBullets.filter(function(bullet) {
-    return bullet.active;
-});
+	playerBullets = playerBullets.filter(function(bullet) {
+	    return bullet.active;
+	});
 
-enemies.forEach(function(enemy) {
-    enemy.update();
-});
+	enemies.forEach(function(enemy) {
+	    enemy.update();
+	});
 
-enemies = enemies.filter(function(enemy) {
-    return enemy.active;
-});
+	enemies = enemies.filter(function(enemy) {
+	    return enemy.active;
+	});
 
-handleCollisions();
+	handleCollisions();
 
-if(Math.random() < (0.1 + (_enemy.ROF / 900))) { //how fast the enemy bullets come
-  enemies.push(Enemybullet());
-}
+	if(Math.random() < (0.1 + (_enemy.ROF / 900))) { //how fast the enemy bullets come
+	  enemies.push(Enemybullet());
+	}
 
-bossContainer.forEach(function(boss){
-  boss.update();
-});
+	bossContainer.forEach(function(boss){
+	  boss.update();
+	});
 }
 
 player.shoot = function() {
-// Sound.play("shoot");
 
-var bulletPosition = this.midpoint();
+	var bulletPosition = this.midpoint();
 
-playerBullets.push(Bullet({
-  speed: 5,
-  x: bulletPosition.x,
-  y: bulletPosition.y
-}));
+	playerBullets.push(Bullet({
+	  speed: 5,
+	  x: bulletPosition.x,
+	  y: bulletPosition.y
+	}));
 };
 
 player.midpoint = function() {
@@ -454,29 +407,30 @@ function collides(a, b) {
 }
 
 function handleCollisions() {
-    playerBullets.forEach(function(bullet) {
+  playerBullets.forEach(function(bullet) {
       enemies.forEach(function(enemy) {
         if(collides(bullet, enemy)) {
           enemy.explode();
           bullet.active = false;
       }
-  });
-      bossContainer.forEach(function(boss){
-        if(collides(bullet, boss)) {
-          Boss.explode();
-          bullet.active = false;
-      }
-  });
-  });
+  	});
 
-    enemies.forEach(function(enemy) {
-      if(collides(enemy, player)) {
-        if (!isGameOver) {
-            enemy.explode();
-            player.explode();
-        }
+	  bossContainer.forEach(function(boss){
+	    if(collides(bullet, boss)) {
+	      Boss.explode();
+	      bullet.active = false;
+	    }
+	  });
+	});
+
+  enemies.forEach(function(enemy) {
+    if(collides(enemy, player)) {
+      if (!isGameOver) {
+          enemy.explode();
+          player.explode();
+      }
     }
-});
+	});
 }
 
 player.explode = function() {
@@ -507,39 +461,39 @@ player.explode = function() {
 };
 
 Boss.explode = function() {
-    console.log(_enemy.health)
-    _enemy.health = _enemy.health - (_player.attack - _enemy.defense);
-    $('#enemy-health').html(_enemy.health);
-    if(_enemy.health <= 0){
-        isGameOver = true;
-        k++;
-        Boss.explode = null;
-        pause();
-            if (k==1){
-            $('#action-view').append($('<div class="defense-option">'));
-            $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
-            $('#enemy-health').html('0');
-            k=0;
-            _enemy.health = 0;
-            _player.health += enemyInitialHealthInt / 4;
-            setTimeout(function(){
-                  if (battlestate == 2) {
-                    player.position = 99;
-                  }
-                  console.log('in here with k')
-                  updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position, _player.ROF);
-                  updater.enemyStats(Math.round(_enemy.attack), Math.round(enemyInitialHealthInt / 3), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
+  console.log(_enemy.health)
+  _enemy.health = _enemy.health - (_player.attack - _enemy.defense);
+  $('#enemy-health').html(_enemy.health);
+  if(_enemy.health <= 0){
+      isGameOver = true;
+      k++;
+      Boss.explode = null;
+      pause();
+          if (k==1){
+          $('#action-view').append($('<div class="defense-option">'));
+          $('.defense-option').append($('<h1 class="defense-announcement">').html('You Won! Good Job!'));
+          $('#enemy-health').html('0');
+          k=0;
+          _enemy.health = 0;
+          _player.health += enemyInitialHealthInt / 4;
+          setTimeout(function(){
+                if (battlestate == 2) {
+                  player.position = 99;
+                }
+                console.log('in here with k')
+                updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position, _player.ROF);
+                updater.enemyStats(Math.round(_enemy.attack), Math.round(enemyInitialHealthInt / 3), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
 
-              $('.defense-option').remove();
-              $('#timer').remove();
-          }, 3000);
+            $('.defense-option').remove();
+            $('#timer').remove();
+        }, 3000);
 
-            $('canvas').remove();
-            $('#roll').show();
-        }
-    } else {
-       this.active = false;
-    }
+          $('canvas').remove();
+          $('#roll').show();
+      }
+  } else {
+     this.active = false;
+  }
 };
 
 function GameTimedOut(){
