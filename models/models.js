@@ -2,6 +2,7 @@ var Sequelize = require("sequelize");
 
 var sequelizeConnection = require("../config/connection.js");
 
+
 //creates a characters table
 var Characters = sequelizeConnection.define('characters', {
 	character_id: {
@@ -28,7 +29,7 @@ var Characters = sequelizeConnection.define('characters', {
 	},
 	defense_power: {
 		type: Sequelize.INTEGER,
-		allowNull: false	
+		allowNull: false
 	},
 	fire_rate: {
 		type: Sequelize.INTEGER,

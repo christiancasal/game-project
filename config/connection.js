@@ -1,9 +1,12 @@
 // *********************************************************************************
-// CONNECTION.JS - THIS FILE INITIATES THE CONNECTION TO MYSQL
+// CONNECTION.JS - THIS FILE INITIATES THE CONNECTION TO MYSQL / FLORA
 // *********************************************************************************
 
 // Dependencies
 var Sequelize = require("sequelize");
+var flora = require('../arduino/flora.js');
+// console.log('this is connection.js');
+// console.log(flora);
 
 // Lists out connection options
 var source = {

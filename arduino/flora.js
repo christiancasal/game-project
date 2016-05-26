@@ -8,15 +8,9 @@ var board = new five.Board({
 
 var strip = null;
 
-var fps = 20;
-
 var stripObj = {
     red: function(){
       strip.color("red"); // turns entire strip red using a hex colour
-      strip.show();
-    },
-    yellow: function(){
-      strip.color("yellow"); // turns entire strip red using a hex colour
       strip.show();
     },
     green: function(){
@@ -26,27 +20,31 @@ var stripObj = {
     off: function(){
       strip.off();
       strip.show();
-    },
-    init: function(){
-      board.on("ready", function() {
-
-          strip = new pixel.Strip({
-              board: this,
-              controller: "FIRMATA",
-              strips: [ {pin: 6, length: 24}, ], // this is preferred form for definition
-          });
-
-          strip.on("ready", function() {
-              // do stuff with the strip here.
-
-              console.log('Strip is ready!');
-
-          });
-
-      });
     }
-
 }
-stripObj.init();
 
-module.exports = stripObj;
+var fps = 20;
+
+board.on("ready", function() {
+
+    strip = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: 6, length: 24}, ], // this is preferred form for definition
+    });
+
+    strip.on("ready", function() {
+        // do stuff with the strip here.
+
+        console.log('Strip is ready!');
+        stripObj.off();
+        sendStrip();
+    });
+});
+
+
+function sendStrip() {
+  console.log('object sent this is flora.js');
+  console.log(strip);
+  module.exports = stripObj;
+}
