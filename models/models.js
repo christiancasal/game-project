@@ -45,15 +45,17 @@ var Characters = sequelizeConnection.define('characters', {
 	// 	allowNull: false
 	// }
 
-}, {
-
-  timestamps: true,
-
-  created_at: true,
-
-  updated_at: 'updateTimestamp'
-
-});
+}
+// , {
+//
+//   timestamps: true,
+//
+//   created_at: true,
+//
+//   updated_at: 'updateTimestamp'
+//
+// }
+);
 
 //creates a Users table
 var Users = sequelizeConnection.define('users', {
