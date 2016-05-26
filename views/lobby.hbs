@@ -1,4 +1,15 @@
 <div id="loading_mask"><img src="images/marvel_logo.png"></div>
+<form id="availableForm">
+	<label>
+		<input type="radio" name="availability" value="true"> Public: Anyone can join!
+		<img src="/images/unlock.png">
+	</label>
+	<label>
+		<input type="radio" name="availability" value="false" checked>
+		<img src="/images/lock.png">
+		Private: Invite a friend!
+	</label>
+</form>
 <p id="link">Link for others to join your game! localhost:8000/game/join/<span id="host">{{hbsObject.hostedGameId}}</span></p>
 <div id="lobby-container">
 	<div id="available">
@@ -11,18 +22,51 @@
 	<div id="chat-lobby">
 		<div id="messageBoard-lobby">
 		</div>
-		<form name="message" action="">
-			<span id="userName">User Name: </span> <input name="usermsg" type="text" id="usermsg" size="63" />
-			<input name="submitmsg" type="submit"  id="submitmsg"  />
+		<form id="newmsg">
+			<span id="userName">{{hbsObject.username}}</span>
+			<input type="hidden" name="user" value="{{hbsObject.username}}" >
+			<input name="usermsg" type="text" id="usermsg" size="63" />
+			<input type="time" name="timestamp" step="1">
+			<input type="submit">
 			<span id="timeStamp">Timestamp: </span>
-				<script>
-					$('#submitmsg').on('click', function(){
-						var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-						$('#timeStamp').html(currentTime);
-					});
-				</script>
 		</form>
 	</div>
 </div>
 <script type="text/javascript" src="javascripts/lobby.js"></script>
 <script type="text/javascript" src="javascripts/moment.js"></script>
+<script type="text/javascript">
+$('input[name=availability]').on('change', function(){
+	console.log('boner')
+	$('#availableForm').submit();
+})
+
+$('#availableForm').submit(function(e){
+	e.preventDefault();
+	$.ajax({
+		type: "POST",
+		url: '/api/available',
+		data: $(this).serialize(), // serializes the form's elements.
+		success: function(data)
+		{
+			console.log('success')
+		}
+	});
+})
+
+$('#newmsg').submit(function(e){
+	e.preventDefault();
+
+	$.ajax({
+		type: "POST",
+		url: '/api/lobbypost',
+		data: $(this).serialize(), // serializes the form's elements.
+		success: function(data)
+		{
+			console.log('success')
+		}
+	});
+});
+			
+
+
+</script>
