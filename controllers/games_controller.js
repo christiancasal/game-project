@@ -14,7 +14,6 @@ router.get('/game', function(req, res){
 	console.log("this is games controller game route");
 	console.log(flora);
 	// flora.hello();
-
 	var hbsObject = {
 		message : req.session.message,
 		hostedGameId : req.session.hosted,

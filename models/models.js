@@ -35,7 +35,27 @@ var Characters = sequelizeConnection.define('characters', {
 		type: Sequelize.INTEGER,
 		allowNull: false
 	}
-});
+	// ,
+	// created_at: {
+	// 	type: Sequelize.DATE,
+	// 	allowNull: false
+	// },
+	// updated_at: {
+	// 	type: Sequelize.DATE,
+	// 	allowNull: false
+	// }
+
+}
+// , {
+//
+//   timestamps: true,
+//
+//   created_at: true,
+//
+//   updated_at: 'updateTimestamp'
+//
+// }
+);
 
 //creates a Users table
 var Users = sequelizeConnection.define('users', {
@@ -79,7 +99,9 @@ var Users = sequelizeConnection.define('users', {
 });
 
 Characters.sync();
-Users.sync();
+Users.sync({
+    force: true
+});
 
 // Makes the Cat Model available for other files (will also create a table)
 module.exports = [Characters, Users];
