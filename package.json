@@ -14,9 +14,11 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
     "hbs": "~3.1.0",
+    "johnny-five": "^0.9.50",
     "marvel": "^1.0.2",
     "morgan": "~1.6.1",
     "mysql": "^2.10.2",
+    "node-pixel": "^0.6.1",
     "sequelize": "^3.23.2"
   }
 }
