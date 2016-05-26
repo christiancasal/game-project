@@ -2,6 +2,9 @@ var init;
 var k = 0;
 var gameTime = 30;
 
+console.log("this is mini-game");
+console.log(flora);
+
 function startMinigame(_player, _enemy, battlestate){
 
     var playerName = _player.character;
@@ -480,12 +483,14 @@ function handleCollisions() {
 }
 
 player.explode = function() {
+    flora.red();
     console.log(_player.health);
     _player.health = _player.health - (_enemy.attack - _player.defense);
     if(_player.health < 0){
       console.log(k)
         isGameOver = true;
         k++;
+        flora.off();
       _player.health = 0;
       pause();
       $('#action-view').append($('<div class="defense-option">'));
@@ -507,10 +512,12 @@ player.explode = function() {
 };
 
 Boss.explode = function() {
+    flora.green();
     console.log(_enemy.health)
     _enemy.health = _enemy.health - (_player.attack - _enemy.defense);
     $('#enemy-health').html(_enemy.health);
     if(_enemy.health <= 0){
+        flora.off();
         isGameOver = true;
         k++;
         Boss.explode = null;
@@ -567,3 +574,5 @@ var pause = function(){
     clearInterval(init);
     clearInterval(timer);
 }
+
+module.exports = flora
