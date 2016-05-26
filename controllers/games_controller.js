@@ -34,10 +34,15 @@ router.get('/game', function(req, res){
 			res.render('chose-character', { hbsObject });
 		});
 	} else if (req.session.start) {
-		//uses testminigame
-		res.render('testgame', { hbsObject });
+
+		if (req.session.allDone) {
+			res.redirect('stats');
+		} else{
+			res.render('testgame', { hbsObject });
+		}
+
 	} else if (req.session.lobby) {
-		res.render('lobby', { hbsObject });
+			res.render('lobby', { hbsObject });
 	}
 });
 
@@ -79,6 +84,7 @@ router.post('/game/login', function(req, res){
 			bcrypt.compare(req.body.password, user.password_hash, function(err, result) {
 				if (result == true){
 					console.log(user)
+					req.session.userID = user.user_id;
 					req.session.logged_in = true;
 					req.session.username = user.username;
 					req.session.message = 'Choose a character, ' + req.session.username;
@@ -116,7 +122,7 @@ router.post('/game/chooseCharacter', function(req, res){
 		req.session.defense = user.defense_power;
 		req.session.character = user.char_name;
 		req.session.ROF = user.fire_rate;
-		req.session.hosted = Games.newGame(req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense, req.session.ROF);
+		req.session.hosted = Games.newGame(req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense, req.session.ROF, req.session.userID);
 		req.session.lobby = true;
 		res.redirect('/game');
 	});
@@ -126,8 +132,9 @@ router.get('/game/join/:gameID', function(req, res){
 	if (!req.session.logged_in || !req.session.chosen) {
 		res.redirect('/game');
 	} else {
+		Games.endGame(req.session.hosted);
 		req.session.hosted = req.params.gameID;
-		Games.joinGame(req.params.gameID, req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense, req.session.ROF);
+		Games.joinGame(req.params.gameID, req.session.username, req.session.character, req.session.img, req.session.health, req.session.attack, req.session.defense, req.session.ROF, req.session.userID);
 		req.session.playerOne = true;
 		res.redirect('/game/start');
 	}
@@ -138,9 +145,101 @@ router.get('/game/start', function(req, res){
 	res.redirect('/game');
 });
 
-router.get('/game/stats', function(req, res){
+router.get('/stats', function(req, res){
+	console.log('step one here')
 	if (req.session.gameover) {
-		res.render('stats');
+		if (req.session.allDone) {
+			for (var i = 0; i < Games.activeGames.length; i++) {
+				if (Games.activeGames[i].gameId == req.session.hosted) {
+				Games.activeGames[i].currentMove = 'done';
+				if (Games.activeGames[i].playerOne.health > Games.activeGames[i].playerTwo.health) {
+					winner = Games.activeGames[i].playerOne;
+				} else {
+					winner = Games.activeGames[i].playerTwo;
+				}
+				if (req.session.playerOne) {
+					enemy = Games.activeGames[i].playerTwo.name;
+					pStats = Games.activeGames[i].playerOne;
+					eStats = Games.activeGames[i].playerTwo;
+				} else {
+					enemy = Games.activeGames[i].playerOne.name;
+					pStats = Games.activeGames[i].playerTwo;
+					eStats = Games.activeGames[i].playerOne;
+				}
+
+				User.findOne({
+				where:
+					{username : req.session.username}
+				}).then(function(resOne){
+					User.findOne({
+					where:
+						{username : enemy}
+					}).then(function(resTwo){
+						console.log(resOne.username);
+						console.log(resTwo.username);
+						var hbsObject = {
+							user : resOne,
+							enemy : resTwo,
+							userStats : pStats,
+							enemyStats : eStats,
+							gameWinner : winner
+						};
+
+						res.render('stats', { hbsObject })
+					})
+				})
+				}
+			}
+		}
+		if (!req.session.playerOne && !req.session.allDone) {
+			var check = setInterval(function(){
+				for (var i = 0; i < Games.activeGames.length; i++) {
+					if (Games.activeGames[i].gameId == req.session.hosted) {
+						if (Games.activeGames[i].currentMove == 'done') {
+							clearInterval(check);
+							req.session.allDone = true;
+							res.redirect('stats')
+						}
+					}
+				}
+			}, 1000)
+		}
+		if (req.session.playerOne && !req.session.allDone) {
+			for (var i = 0; i < Games.activeGames.length; i++) {
+				if (Games.activeGames[i].gameId == req.session.hosted) {
+					if (Games.activeGames[i].playerOne.health > Games.activeGames[i].playerTwo.health) {
+						winnerID = Games.activeGames[i].playerOne.id;
+						loserID = Games.activeGames[i].playerTwo.id;
+					} else {
+						winnerID = Games.activeGames[i].playerTwo.id;
+						loserID = Games.activeGames[i].playerOne.id;
+					}
+					User.findById(Number(winnerID)).then(function(user){
+						return user.increment({
+						    'wins':    1,
+						    'streak': 1
+						  })
+					}).then(function(){
+						User.findById(Number(loserID)).then(function(user){
+							return user.increment({
+								'loses': 1
+							})
+						}).then(function(){
+							User.update({
+							  'streak': 0
+							},{
+							  where: {
+							    user_id: loserID
+							  }
+							}).then(function(){
+								req.session.allDone = true;
+								res.redirect('stats')
+							})
+						})
+					})
+				}
+			}
+		}
 	} else {
 		res.redirect('/game');
 	}

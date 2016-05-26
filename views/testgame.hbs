@@ -81,12 +81,22 @@
     </ul>
   </div>
 </div>
+<div id="chat-game">
+  <div id="messageBoard-game">
+  </div>
+  <form name="message" action="">
+    <span id="userName">User Name: </span> <input name="usermsg" type="text" id="usermsg" size="63" />
+    <input name="submitmsg" type="submit"  id="submitmsg"  />
+    <span id="timeStamp">Timestamp: </span>
+      <script>
+        $('#submitmsg').on('click', function(){
+          var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+          $('#timeStamp').html(currentTime);
+        });
+      </script>
+  </form>
+</div>
 </div>
 <script type="text/javascript" src="javascripts/updater.js"></script>
-<<<<<<< HEAD
-<script type="text/javascript" src="javascripts/testtestminigame.js"></script>
-<script type="text/javascript" src="javascripts/testgame.js"></script>
-=======
 <script type="text/javascript" src="javascripts/testminigame.js"></script>
 <script type="text/javascript" src="javascripts/testgame.js"></script>
->>>>>>> b39e04a9e2402ac867df176bb12c5d6fc424731d
