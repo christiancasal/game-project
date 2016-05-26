@@ -49,7 +49,7 @@ var Characters = sequelizeConnection.define('characters', {
 
   timestamps: true,
 
-  createdAt: false,
+  createdAt: true,
 
   updatedAt: 'updateTimestamp'
 
