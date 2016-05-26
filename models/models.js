@@ -34,7 +34,16 @@ var Characters = sequelizeConnection.define('characters', {
 	fire_rate: {
 		type: Sequelize.INTEGER,
 		allowNull: false
+	},
+	created_at: {
+		type: Sequelize.DATE,
+		allowNull: false
+	},
+	updated_at: {
+		type: Sequelize.DATE,
+		allowNull: false
 	}
+
 });
 
 //creates a Users table
