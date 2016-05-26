@@ -21,8 +21,8 @@ var stripObj = {
     ok: function(){ stripObj.blink("green", 1, 1)},
     err: function(){ stripObj.blink("red", 1, 1) },
     rainbow: function(){
-      strip.color
-    }
+      strip.color();
+    },
     blink: function(paint, flash_count, time){
       console.log(paint);
       var light_delay = time;
