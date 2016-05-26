@@ -49,9 +49,9 @@ var Characters = sequelizeConnection.define('characters', {
 
   timestamps: true,
 
-  createdAt: true,
+  created_at: true,
 
-  updatedAt: 'updateTimestamp'
+  updated_at: 'updateTimestamp'
 
 });
 
