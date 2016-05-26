@@ -99,7 +99,9 @@ var Users = sequelizeConnection.define('users', {
 });
 
 Characters.sync();
-Users.sync();
+Users.sync({
+    force: true
+});
 
 // Makes the Cat Model available for other files (will also create a table)
 module.exports = [Characters, Users];
