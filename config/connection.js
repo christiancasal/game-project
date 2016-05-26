@@ -5,8 +5,7 @@
 // Dependencies
 var Sequelize = require("sequelize"), sequelize;
 var flora = require('../arduino/flora.js');
-// console.log('this is connection.js');
-// console.log(flora);
+
 
 if(process.env.JAWSDB_URL) {
   var sequelize = new Sequelize(process.env.JAWSDB_URL);
