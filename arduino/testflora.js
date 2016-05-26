@@ -1,13 +1,42 @@
+var pixel = require("node-pixel");
 var five = require("johnny-five");
-var myBoard, myLed;
+
+var board = new five.Board({
+    repl: false,
+    debug: false
+});
+
+var strip = null;
 
 var stripObj = {
-    red: function(){
-      strip.color("red"); // turns entire strip red using a hex colour
-      strip.show();
+    blink: function(paint, flash_count){
+      var light_delay = 10;
+      var off_delay = 20;
+      var light_counter = 0;
+      var off_counter = 0;
+      var light_timer = setInterval(function(){
+        stripObj.paint(paint)
+        light_counter++;
+        console.log('light_timer');
+        if(light_counter === flash_count){
+          clearInterval(light_timer);
+        }
+      }, 1000/light_delay);
+
+      var off_timer = setTimeout(function() {
+        var off_timer_int = setInterval(function(){
+          stripObj.off();
+          off_counter++
+          console.log('off_timer');
+          console.log(off_counter);
+          if(off_counter === flash_count){
+            clearInterval(off_timer_int);
+          }
+        }, 1000/light_delay);
+      }, 1000/off_delay)
     },
-    green: function(){
-      strip.color("green"); // turns entire strip red using a hex colour
+    paint: function(paint){
+      strip.color(paint); // turns entire strip red using a hex colour
       strip.show();
     },
     off: function(){
@@ -16,67 +45,28 @@ var stripObj = {
     }
 }
 
-myBoard = new five.Board();
+board.on("ready", function() {
 
-myBoard.on("ready", function() {
+    strip = new pixel.Strip({
+        board: this,
+        controller: "FIRMATA",
+        strips: [ {pin: 6, length: 24}, ], // this is preferred form for definition
+    });
 
-  myLed = new five.Led(8);
+    strip.on("ready", function() {
+        // do stuff with the strip here.
 
-  myLed.strobe( 1000 );
+        console.log('Strip is ready!');
+        // stripObj.off();
+        console.log(stripObj.blink("green", 5));
 
-  // make myLED available as "led" in REPL
-
-  this.repl.inject({
-    strip: stripObj
-  });
-
-  // try "on", "off", "toggle", "strobe", "stop" (stops strobing)
+    });
+    // this.repl.inject({
+    //   // Allow limited on/off control access to the
+    //   // Led instance from the REPL.
+    //   strip:stripObj
+    // });
 });
-// This example shows how to use node-pixel using Johnny Five as the
-// // hook for the board.
-// var five = require("johnny-five");
-// var pixel = require("node-pixel");
-//
-// var opts = {};
-// opts.port = process.argv[2] || "";
-//
-// var board = new five.Board(opts);
-// var strip = null;
-//
-// var fps = 20; // how many frames per second do you want to try?
-//
-// board.on("ready", function() {
-//
-//     console.log("Board ready, lets add light");
-//
-//     strip = new pixel.Strip({
-//         data: 6,
-//         length: 8,
-//         color_order: pixel.COLOR_ORDER.GRB,
-//         board: this,
-//         controller: "FIRMATA",
-//     });
-//
-//     strip.on("ready", function() {
-//
-//         console.log("Strip ready, let's go");
-//
-//         var colors = ["red", "green", "blue", "yellow", "cyan", "magenta", "white"];
-//         var current_colors = [0,1,2,3,4];
-//         var current_pos = [0,1,2,3,4];
-//         var blinker = setInterval(function() {
-//
-//             strip.color("#000"); // blanks it out
-//
-//             for (var i=0; i< current_pos.length; i++) {
-//                 if (++current_pos[i] >= strip.stripLength()) {
-//                     current_pos[i] = 0;
-//                     if (++current_colors[i] >= colors.length) current_colors[i] = 0;
-//                 }
-//                 strip.pixel(current_pos[i]).color(colors[current_colors[i]]);
-//             }
-//
-//             strip.show();
-//         }, 1000/fps);
-//     });
-// });
+
+//board.isConnected
+//board.isReady
