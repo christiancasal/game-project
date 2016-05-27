@@ -21,8 +21,8 @@ var stripObj = {
     ok: function(){ stripObj.blink("green", 1, 1)},
     err: function(){ stripObj.blink("red", 1, 1) },
     rainbow: function(){
-      strip.color
-    }
+      strip.color()
+    },
     blink: function(paint, flash_count, time){
       console.log(paint);
       var light_delay = time;
@@ -70,6 +70,7 @@ var stripObj = {
     }
 }
 
+
 board.on("ready", function() {
 
     strip = new pixel.Strip({
@@ -92,5 +93,5 @@ board.on("ready", function() {
 function sendStrip() {
   console.log('object sent this is flora.js');
   console.log(strip);
-  module.exports = stripObj;
+  module.exports = [stripObj , board];
 }
