@@ -31,7 +31,29 @@ var updater = {
 	    	url: queryUrl,
 	    	method: 'GET'})
 	    .done(function(response) {
-	    	
+
 		})
 	},
+	user_hit: function(){
+		var queryUrl = '/api/blink_bad';
+
+		$.ajax({
+				dataType: 'json',
+				url: queryUrl,
+				method: 'GET'})
+			.done(function(response) {
+
+		})
+	}
+	boss_hit: function(){
+		var queryUrl = '/api/blink_good';
+
+		$.ajax({
+				dataType: 'json',
+				url: queryUrl,
+				method: 'GET'})
+			.done(function(response) {
+
+		})
+	}
 };

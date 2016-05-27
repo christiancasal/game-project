@@ -5,16 +5,20 @@ var bcrypt = require('bcrypt');
 var marvelCharacters = require('../models/models.js')[0];
 var User = require('../models/models.js')[1];
 var flora;
+var board;
 
 var Games = require('../models/gameContainer.js');
 
 
 router.get('/game', function(req, res){
-	//flora
-	flora = require('../arduino/flora.js');
-	//console.log("this is games_controller game route");
-	flora.hello();
-
+	//check if board is connected
+	board = require('../arduino/flora.js')[1];
+	console.log(board);
+	if(board){
+		flora = require('../arduino/flora.js')[0];
+		//console.log("this is games_controller game route");
+		flora.hello();
+	}
 	var hbsObject = {
 		message : req.session.message,
 		hostedGameId : req.session.hosted,
@@ -26,8 +30,10 @@ router.get('/game', function(req, res){
 	if (!req.session.logged_in) {
 		res.render('login.hbs', { hbsObject });
 	} else if (!req.session.chosen && req.session.logged_in) {
-		flora.blink("red", 10, 10);
-		flora.blink("blue", 5, 10);
+		if(board){
+			flora.blink("red", 10, 10);
+			flora.blink("blue", 5, 10)
+		}
 		marvelCharacters.findAll({}).then(function(result){
 				hbsObject.characters = result;
 				hbsObject.message = req.session.message;
@@ -47,6 +53,12 @@ router.get('/game', function(req, res){
 });
 
 router.post('/game/signup', function(req, res){
+	board = require('../arduino/flora.js')[1];
+
+	if(board){
+		flora = require('../arduino/flora.js')[0];
+		//console.log("this is games_controller game route");
+	}
 	User.findOne({
 		where: {username : req.body.username}
 	}).then(function(user){
@@ -65,20 +77,31 @@ router.post('/game/signup', function(req, res){
 						req.session.logged_in = true;
 						req.session.username = user.username;
 						req.session.message = 'Choose a character, ' + req.session.username;
-						flora.ok();
+						if(board){
+							flora.ok();
+						}
 						res.redirect('/game')
 					});
 				});
 			});
 		} else {
 			req.session.message = 'That username already exists';
-			flora.err();
+			if(board){
+				flora.err();
+			}
 			res.redirect('/game')
 		}
 	})
 })
 
 router.post('/game/login', function(req, res){
+	board = require('../arduino/flora.js')[1];
+
+	if(board){
+		flora = require('../arduino/flora.js')[0];
+		//console.log("this is games_controller game route");
+	}
+
 	User.findOne({
 		where: { username: req.body.username}
 	}).then(function(user) {
@@ -90,7 +113,9 @@ router.post('/game/login', function(req, res){
 					req.session.logged_in = true;
 					req.session.username = user.username;
 					req.session.message = 'Choose a character, ' + req.session.username;
-					flora.ok();
+					if(board){
+						flora.ok();
+					}
 					if (user.administrator) {
 						req.session.admin = true;
 						res.redirect('/admin');
@@ -99,22 +124,23 @@ router.post('/game/login', function(req, res){
 					}
 				} else {
 					req.session.message = 'Password incorrect';
-					flora.err();
+					if(board){
+						flora.err();
+					}
 					res.redirect('/game');
 				}
 			});
 		} else {
 			req.session.message = 'Username not found';
-			flora.err();
+			if(board){
+				flora.err();
+			}
 			res.redirect('/game');
 		}
 	})
 })
 
 router.post('/game/chooseCharacter', function(req, res){
-	console.log("this is choose character");
-	console.log(flora);
-
 	req.session.logged_in = true;
 	req.session.chosen = true;
 	req.session.characterId = req.body.character;

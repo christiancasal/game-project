@@ -70,6 +70,7 @@ var stripObj = {
     }
 }
 
+
 board.on("ready", function() {
 
     strip = new pixel.Strip({
@@ -92,5 +93,5 @@ board.on("ready", function() {
 function sendStrip() {
   console.log('object sent this is flora.js');
   console.log(strip);
-  module.exports = stripObj;
+  module.exports = [stripObj , board];
 }

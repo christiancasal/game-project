@@ -483,6 +483,7 @@ function handleCollisions() {
 player.explode = function() {
     console.log(_player.health);
     _player.health = _player.health - (_enemy.attack - _player.defense);
+    updater.user_hit();
     if(_player.health < 0){
       console.log(k)
         isGameOver = true;
@@ -510,6 +511,7 @@ player.explode = function() {
 Boss.explode = function() {
     console.log(_enemy.health)
     _enemy.health = _enemy.health - (_player.attack - _enemy.defense);
+    updater.boss_hit();
     $('#enemy-health').html(_enemy.health);
     if(_enemy.health <= 0){
         isGameOver = true;
