@@ -22,8 +22,7 @@ router.get('/game', function(req, res){
 	if(board){
 		flora = require('../arduino/flora.js')[0];
 		//console.log("this is games_controller game route");
-		flora.hello();
-
+		// flora.hello();
 	}
 	var hbsObject = {
 		message : req.session.message,
@@ -35,6 +34,9 @@ router.get('/game', function(req, res){
 	};
 	if (!req.session.logged_in) {
 		res.render('login.hbs', { hbsObject });
+		if(board){
+			flora.hello();
+		}
 	} else if (!req.session.chosen && req.session.logged_in) {
 		if(board){
 			flora.blink("red", 10, 10);
@@ -138,9 +140,7 @@ router.post('/game/login', function(req, res){
 			});
 		} else {
 			req.session.message = 'Username not found';
-			if(board){
-				flora.err();
-			}
+
 			res.redirect('/game');
 		}
 	})

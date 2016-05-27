@@ -2,8 +2,8 @@ var pixel = require("node-pixel");
 var five = require("johnny-five");
 
 var board = new five.Board({
-    repl: false,
-    debug: false
+    repl: true,
+    debug: true
 });
 
 var strip = null;
@@ -61,11 +61,11 @@ board.on("ready", function() {
         console.log(stripObj.blink("green", 5));
 
     });
-    // this.repl.inject({
-    //   // Allow limited on/off control access to the
-    //   // Led instance from the REPL.
-    //   strip:stripObj
-    // });
+    this.repl.inject({
+      // Allow limited on/off control access to the
+      // Led instance from the REPL.
+      strip:stripObj
+    });
 });
 
 //board.isConnected

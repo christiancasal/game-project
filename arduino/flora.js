@@ -13,10 +13,8 @@ var fps = 15;
 var stripObj = {
     //takes in a color, desired amount of flashes and the desired delay
     hello: function(){
-        stripObj.blink("red",4,2);
-        stripObj.blink("blue",3,2);
-        stripObj.blink("yellow",2,2);
-        stripObj.blink("green",1,2);
+        stripObj.blink("red",2,2);
+        stripObj.blink("blue",1,2);
     },
     ok: function(){ stripObj.blink("green", 1, 1)},
     err: function(){ stripObj.blink("red", 1, 1) },
@@ -76,15 +74,17 @@ board.on("ready", function() {
     strip = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
-        strips: [ {pin: 6, length: 24}, ], // this is preferred form for definition
+        strips: [{pin: 6, length: 24}, ], // this is preferred form for definition
     });
 
     strip.on("ready", function() {
         // do stuff with the strip here.
 
-        console.log('Strip is ready!');
+        console.log('Strip is ready!')
         // stripObj.off();
         //stripObj.blink("blue", 1, fps);
+        console.log(strip);
+
         sendStrip();
     });
 });
@@ -92,6 +92,5 @@ board.on("ready", function() {
 
 function sendStrip() {
   console.log('object sent this is flora.js');
-  console.log(strip);
   module.exports = [stripObj , board];
 }
