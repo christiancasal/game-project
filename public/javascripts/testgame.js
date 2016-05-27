@@ -10,7 +10,7 @@ $(document).ready(function(){
 	        method: 'GET'})
 	        .done(function(response) {
 	        for (var i = 0; i < response.length; i++) {
-	            console.log(response)
+	            // console.log(response)
 	            identifier = String(moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + response[i].username);
 	            identifier = identifier.replace(/[,:\s]+/g, '');
 
@@ -232,7 +232,7 @@ function main(turn, player, enemy){
 				location.href = "/stats"
 				updater.allStats(player.attack, player.health, player.defense, 99, player.ROF);
 			}, 3000)
-		}	
+		}
 
 		if (player.position == 10 && enemy.position == 10) {
 			$('#roll-click').off();
