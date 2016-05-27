@@ -623,21 +623,26 @@ margin-top: 30px;
 }
 /*Lobby View*/
 /*================================================*/
+._msgblock{
+	border-bottom: 1px solid #00C3FF;
+}
 ._username {
-	float: left;
+	color: red;
+	display: inline-block;
 	width: 150px;
 	border: 1px solid black;
 }
 
 ._message {
-	float: left;
+	color: #00C3FF;
+	display: inline-block;
 	width: 480px;
 	border: 1px solid black;
 	text-align: left;
 }
 
 ._timestamp {
-	float: right;
+	display: inline-block;
 }
 
 ._Gusername {
