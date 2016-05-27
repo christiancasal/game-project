@@ -624,6 +624,7 @@ margin-top: 30px;
 /*Lobby View*/
 /*================================================*/
 ._msgblock{
+	background-color: #820000;
 	border-bottom: 1px solid #00C3FF;
 }
 ._username {
@@ -644,19 +645,20 @@ margin-top: 30px;
 }
 
 ._Gusername {
-	float: left;
+	color: red;
+	display: inline-block;
 	width: 150px;
 }
 
 ._Gmessage {
-	float: left;
-	width: 780px;
-	border: 1px solid black;
+	color: #00C3FF;
+	display: inline-block;
+	width: 480px;
 	text-align: left;
 }
 
 ._Gtimestamp {
-	float: right;
+	display: inline-block;
 }
 
 #link {
