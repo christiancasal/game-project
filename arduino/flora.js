@@ -83,7 +83,7 @@ board.on("ready", function() {
         console.log('Strip is ready!')
         // stripObj.off();
         //stripObj.blink("blue", 1, fps);
-        console.log(strip.strips);
+        console.log(strip);
 
         sendStrip();
     });
@@ -92,6 +92,5 @@ board.on("ready", function() {
 
 function sendStrip() {
   console.log('object sent this is flora.js');
-  console.log(strip);
   module.exports = [stripObj , board];
 }
