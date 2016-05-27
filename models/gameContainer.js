@@ -1,5 +1,5 @@
 var gamesObject = {
-	activeGames: [ 
+	activeGames: [
 		{
 			gameId : 5362,
 			available: true,

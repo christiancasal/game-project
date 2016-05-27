@@ -74,15 +74,17 @@ board.on("ready", function() {
     strip = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
-        strips: [ {pin: 6, length: 24}, ], // this is preferred form for definition
+        strips: [{pin: 6, length: 24}, ], // this is preferred form for definition
     });
 
     strip.on("ready", function() {
         // do stuff with the strip here.
 
-        console.log('Strip is ready!');
+        console.log('Strip is ready!')
         // stripObj.off();
         //stripObj.blink("blue", 1, fps);
+        console.log(strip.strips);
+
         sendStrip();
     });
 });
