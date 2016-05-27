@@ -37,52 +37,52 @@ var lastFire = Date.now();
 $('#action-view').append('<h3 id="timer">' + gameTime + '</h3>')
 
 var player = {
-// color: "#00A",
-x: 120,
-y: 160,
-width: 50,
-height: 80,
-draw: function() {
-  // canvas.fillStyle = this.color;
-  // canvas.fillRect(this.x, this.y, this.width, this.height);
-},
-drawUp: function() {
-  player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite(charNoUnderscore+"-up");
+	// color: "#00A",
+	x: 120,
+	y: 160,
+	width: 50,
+	height: 80,
+	draw: function() {
+	  // canvas.fillStyle = this.color;
+	  // canvas.fillRect(this.x, this.y, this.width, this.height);
+	},
+	drawUp: function() {
+	  player.sprite.draw(canvas, this.x, this.y);
+	  player.sprite = Sprite(charNoUnderscore+"-up");
 
-  canvas.fillStyle = this.sprite;
-  canvas.rect(this.x, this.y, this.width, this.height);
-},
-drawDown: function() {
-  player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite(charNoUnderscore+"-down");
-  canvas.fillStyle = this.sprite;
-  canvas.rect(this.x, this.y, this.width, this.height);
-},
-drawLeft: function() {
-  player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite(charNoUnderscore+"-left");
-  canvas.fillStyle = this.sprite;
-  canvas.rect(this.x, this.y, this.width, this.height);
-},
-drawRight: function() {
-  player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite(charNoUnderscore+"-right");
-  canvas.fillStyle = this.sprite;
-  canvas.rect(this.x, this.y, this.width, this.height);
-},
-drawSpace: function() {
-  player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite(charNoUnderscore+"-shoot");
-  canvas.fillStyle = this.sprite;
-  canvas.rect(this.x, this.y, this.width, this.height);
-},
-drawStand: function() {
-  player.sprite.draw(canvas, this.x, this.y);
-  player.sprite = Sprite(charNoUnderscore+"-stand");
-  canvas.fillStyle = this.sprite;
-  canvas.rect(this.x, this.y, this.width, this.height);
-},
+	  canvas.fillStyle = this.sprite;
+	  canvas.rect(this.x, this.y, this.width, this.height);
+	},
+	drawDown: function() {
+	  player.sprite.draw(canvas, this.x, this.y);
+	  player.sprite = Sprite(charNoUnderscore+"-down");
+	  canvas.fillStyle = this.sprite;
+	  canvas.rect(this.x, this.y, this.width, this.height);
+	},
+	drawLeft: function() {
+	  player.sprite.draw(canvas, this.x, this.y);
+	  player.sprite = Sprite(charNoUnderscore+"-left");
+	  canvas.fillStyle = this.sprite;
+	  canvas.rect(this.x, this.y, this.width, this.height);
+	},
+	drawRight: function() {
+	  player.sprite.draw(canvas, this.x, this.y);
+	  player.sprite = Sprite(charNoUnderscore+"-right");
+	  canvas.fillStyle = this.sprite;
+	  canvas.rect(this.x, this.y, this.width, this.height);
+	},
+	drawSpace: function() {
+	  player.sprite.draw(canvas, this.x, this.y);
+	  player.sprite = Sprite(charNoUnderscore+"-shoot");
+	  canvas.fillStyle = this.sprite;
+	  canvas.rect(this.x, this.y, this.width, this.height);
+	},
+	drawStand: function() {
+	  player.sprite.draw(canvas, this.x, this.y);
+	  player.sprite = Sprite(charNoUnderscore+"-stand");
+	  canvas.fillStyle = this.sprite;
+	  canvas.rect(this.x, this.y, this.width, this.height);
+	},
 };
 
 player.sprite = Sprite(charNoUnderscore+"-stand");
@@ -98,14 +98,11 @@ function Boss(I) {
 
     I.active = true;
     I.age = Math.floor(Math.random() * 128);
-
     I.color = "#A2B";
-
     I.x = 720
     I.y = 130;
     I.xVelocity = 0
     I.yVelocity = 2;
-
     I.width = 60;
     I.height = 111;
 
@@ -138,7 +135,6 @@ function Boss(I) {
 
   return I;
 }
-
 bossContainer.push(Boss());
 
 
@@ -162,8 +158,6 @@ function Bullet(I) {
       return I.x >= 0 && I.x <= CANVAS_WIDTH &&
       I.y >= 0 && I.y <= CANVAS_HEIGHT;
   };
-
-
 
   I.draw = function() {
       this.sprite.draw(canvas, this.x, this.y);
@@ -258,7 +252,6 @@ init = setInterval(function() {
 function drawChar(){
 
   canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
   if(keydown.space) {
 
     player.drawSpace();
@@ -285,7 +278,6 @@ function drawChar(){
 	  player.drawStand();
 
 	}
-
 }
 
 function update() {
@@ -481,7 +473,7 @@ Boss.explode = function() {
                 if (battlestate == 2) {
                   player.position = 99;
                 }
-                console.log('in here with k')
+                // console.log('in here with k')
                 updater.allStats(Math.round(_player.attack), Math.round(_player.health), Math.round(_player.defense), _player.position, _player.ROF);
                 updater.enemyStats(Math.round(_enemy.attack), Math.round(enemyInitialHealthInt / 3), Math.round(_enemy.defense), _enemy.position, _enemy.ROF);
 
