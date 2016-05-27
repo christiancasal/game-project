@@ -14,6 +14,11 @@ router.get('/game', function(req, res){
 	console.log("this is games controller game route");
 	console.log(flora);
 	// flora.hello();
+	if (req.session.gameover) {
+		req.session.gameover = false;
+		req.session.allDone = false;
+		req.session.lobby = false;
+	}
 	var hbsObject = {
 		message : req.session.message,
 		hostedGameId : req.session.hosted,
@@ -106,7 +111,6 @@ router.post('/game/login', function(req, res){
 router.post('/game/chooseCharacter', function(req, res){
 	console.log("this is choose character");
 	console.log(flora);
-
 	req.session.logged_in = true;
 	req.session.chosen = true;
 	req.session.characterId = req.body.character;
@@ -146,6 +150,9 @@ router.get('/stats', function(req, res){
 	console.log('step one here')
 	if (req.session.gameover) {
 		if (req.session.allDone) {
+			req.session.start = false;
+			req.session.allDone = false;
+			req.session.chosen = false;
 			for (var i = 0; i < Games.activeGames.length; i++) {
 				if (Games.activeGames[i].gameId == req.session.hosted) {
 				Games.activeGames[i].currentMove = 'done';
@@ -162,6 +169,7 @@ router.get('/stats', function(req, res){
 					enemy = Games.activeGames[i].playerOne.name;
 					pStats = Games.activeGames[i].playerTwo;
 					eStats = Games.activeGames[i].playerOne;
+					Games.endGame(req.session.hosted);
 				}
 
 				User.findOne({

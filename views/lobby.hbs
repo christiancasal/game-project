@@ -24,11 +24,9 @@
 		</div>
 		<form id="newmsg">
 			<span id="userName">{{hbsObject.username}}</span>
-			<input type="hidden" name="user" value="{{hbsObject.username}}" >
+			<input type="hidden" name="user" value="{{hbsObject.username}}">
 			<input name="usermsg" type="text" id="usermsg" size="63" />
-			<input type="time" name="timestamp" step="1">
 			<input type="submit">
-			<span id="timeStamp">Timestamp: </span>
 		</form>
 	</div>
 </div>
@@ -36,7 +34,7 @@
 <script type="text/javascript" src="javascripts/moment.js"></script>
 <script type="text/javascript">
 $('input[name=availability]').on('change', function(){
-	console.log('boner')
+
 	$('#availableForm').submit();
 })
 

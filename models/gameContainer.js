@@ -35,6 +35,8 @@ var gamesObject = {
 			gameId : 34521,
 			available: false,
 			currentMove: 0,
+			map: 2,
+			chat: [],
 			playerTwo : {
 				id : undefined,
 				name: "Spider_dude",
@@ -64,6 +66,8 @@ var gamesObject = {
 			gameId : 13413,
 			available: true,
 			currentMove: 0,
+			map: 4,
+			chat: [],
 			playerTwo : {
 				id : undefined,
 				name: "Martin-xXxXx",
@@ -114,6 +118,7 @@ var gamesObject = {
 				available: false,
 				currentMove: 0,
 				map: randomMap,
+				chat: [],
 				playerTwo : {
 					id : userID,
 					name: player,
