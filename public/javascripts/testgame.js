@@ -1,6 +1,27 @@
 //This code block seperates the different players at the start of the game
 //================================================================================
+
 $(document).ready(function(){
+	(function gamechatter(){
+	    $.ajax({
+	        dataType: 'json',
+	        url: '/api/gamechat',
+	        cache: false,
+	        method: 'GET'})
+	        .done(function(response) {
+	        for (var i = 0; i < response.length; i++) {
+	            console.log(response)
+	            identifier = String(moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + response[i].username);
+	            identifier = identifier.replace(/[,:\s]+/g, '');
+
+	            if ($('#'+ identifier).text().length == 0) {
+	                $('#messageBoard-game').append('<div class="_msgblock"><div class="_Gusername" id="'+ identifier +'">' +response[i].username+'</div><div class="_Gmessage">' + response[i].message + '</div><div class="_Gtimestamp">' + moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + '</div></div><div class="clearfix"></div>');
+	            }
+	        }
+	    })
+	    setTimeout(gamechatter, 100);
+	}());
+
 	if ($('#player').text() == "true") {
 		playerOne = true;
 	} else {

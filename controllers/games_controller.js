@@ -11,6 +11,11 @@ var Games = require('../models/gameContainer.js');
 
 
 router.get('/game', function(req, res){
+	if (req.session.gameover) {
+		req.session.gameover = false;
+		req.session.allDone = false;
+		req.session.lobby = false;
+	}
 	//check if board is connected
 	board = require('../arduino/flora.js')[1];
 	console.log(board);
@@ -18,6 +23,7 @@ router.get('/game', function(req, res){
 		flora = require('../arduino/flora.js')[0];
 		//console.log("this is games_controller game route");
 		flora.hello();
+
 	}
 	var hbsObject = {
 		message : req.session.message,
@@ -180,6 +186,9 @@ router.get('/stats', function(req, res){
 	console.log('step one here')
 	if (req.session.gameover) {
 		if (req.session.allDone) {
+			req.session.start = false;
+			req.session.allDone = false;
+			req.session.chosen = false;
 			for (var i = 0; i < Games.activeGames.length; i++) {
 				if (Games.activeGames[i].gameId == req.session.hosted) {
 				Games.activeGames[i].currentMove = 'done';
@@ -196,6 +205,7 @@ router.get('/stats', function(req, res){
 					enemy = Games.activeGames[i].playerOne.name;
 					pStats = Games.activeGames[i].playerTwo;
 					eStats = Games.activeGames[i].playerOne;
+					Games.endGame(req.session.hosted);
 				}
 
 				User.findOne({

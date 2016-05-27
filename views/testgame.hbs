@@ -84,19 +84,32 @@
 <div id="chat-game">
   <div id="messageBoard-game">
   </div>
-  <form name="message" action="">
-    <span id="userName">User Name: </span> <input name="usermsg" type="text" id="usermsg" size="63" />
-    <input name="submitmsg" type="submit"  id="submitmsg"  />
-    <span id="timeStamp">Timestamp: </span>
-      <script>
-        $('#submitmsg').on('click', function(){
-          var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-          $('#timeStamp').html(currentTime);
-        });
-      </script>
+  <form id="gamechat">
+    <span id="userName">{{hbsObject.username}}</span>
+    <input type="hidden" name="user" value="{{hbsObject.username}}">
+    <input name="usermsg" type="text" id="usermsg" size="63" />
+    <input type="submit">
   </form>
 </div>
 </div>
+
+
+<script>
+$('#gamechat').submit(function(e){
+  e.preventDefault();
+
+  $.ajax({
+    type: "POST",
+    url: '/api/gamepost',
+    data: $(this).serialize(), // serializes the form's elements.
+    success: function(data)
+    {
+      console.log('success')
+    }
+  });
+});
+</script>
+<script type="text/javascript" src="javascripts/moment.js"></script>
 <script type="text/javascript" src="javascripts/updater.js"></script>
 <script type="text/javascript" src="javascripts/testminigame.js"></script>
 <script type="text/javascript" src="javascripts/testgame.js"></script>

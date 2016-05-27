@@ -21,6 +21,14 @@ router.get('/api/lobbychat', function(req, res){
 	res.send(Games.lobbyChat);
 });
 
+router.get('/api/gamechat', function(req, res){
+	for (var i = 0; i < Games.activeGames.length; i++) {
+		if (Games.activeGames[i].gameId == req.session.hosted) {
+			res.send(Games.activeGames[i].chat)
+		}
+	}
+});
+
 router.post('/api/lobbypost', function(req, res){
 	msgObj = {
 		username : req.body.user,
@@ -28,6 +36,22 @@ router.post('/api/lobbypost', function(req, res){
 		time : req._startTime
 	}
 	Games.lobbyChat.push(msgObj)
+	res.end();
+})
+
+router.post('/api/gamepost', function(req, res){
+	msgObj = {
+		username : req.body.user,
+		message : req.body.usermsg,
+		time : req._startTime
+	}
+	for (var i = 0; i < Games.activeGames.length; i++) {
+		if (Games.activeGames[i].gameId == req.session.hosted) {
+			Games.activeGames[i].chat.push(msgObj);
+			res.end();
+		}
+	}
+
 })
 
 router.get('/api/game', function(req, res){

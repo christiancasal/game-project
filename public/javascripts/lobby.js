@@ -52,7 +52,7 @@ $(document).ready(function(){
             .done(function(response) {
             for (var i = 0; i < response.length; i++) {
                 console.log(response)
-                identifier = String(response[i].username + moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a'));
+                identifier = String(moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + response[i].username);
                 identifier = identifier.replace(/[,:\s]+/g, '');
 
                 if ($('#'+ identifier).text().length == 0) {
