@@ -160,16 +160,21 @@ router.get('/api/updateEnemy/:atk/:hp/:def/:pos/:rof', function(req, res){
 	}
 });
 
-// router.get('/api/blink_bad', function(req,res){
-// 	board = require('../arduino/flora.js')[1];
-//
-// 	if(board){
-// 		flora = require('../arduino/flora.js')[0];
-// 		console.log("this is api controller game route");
-// 		console.log(flora);
-// 		flora.blink("red", 1, 20);
-// 	}
-// });
+router.get('/api/blink_bad', function(req,res){
+	board = require('../arduino/flora.js')[1];
+
+	if(board){
+		flora = require('../arduino/flora.js')[0];
+		console.log("this is api controller route - blink bad");
+		console.log(flora);
+		flora.blink("red", 1, 20);
+		res.end();
+	}
+	else{
+		res.end();
+	}
+});
+
 // router.get('/api/blink_good', function(req,res){
 // 	board = require('../arduino/flora.js')[1];
 //
@@ -180,6 +185,4 @@ router.get('/api/updateEnemy/:atk/:hp/:def/:pos/:rof', function(req, res){
 // 		flora.blink("green", 1, 20);
 // 	}
 // });
->>>>>>> master
-
 module.exports = router;
