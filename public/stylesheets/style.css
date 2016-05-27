@@ -630,14 +630,12 @@ margin-top: 30px;
 	color: red;
 	display: inline-block;
 	width: 150px;
-	border: 1px solid black;
 }
 
 ._message {
 	color: #00C3FF;
 	display: inline-block;
 	width: 480px;
-	border: 1px solid black;
 	text-align: left;
 }
 
@@ -648,7 +646,6 @@ margin-top: 30px;
 ._Gusername {
 	float: left;
 	width: 150px;
-	border: 1px solid black;
 }
 
 ._Gmessage {
