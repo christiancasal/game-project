@@ -45,6 +45,7 @@ router.post('/api/gamepost', function(req, res){
 		message : req.body.usermsg,
 		time : req._startTime
 	}
+	console.log('****************************** ['+msgObj.message+'] ****************************************');
 	for (var i = 0; i < Games.activeGames.length; i++) {
 		if (Games.activeGames[i].gameId == req.session.hosted) {
 			Games.activeGames[i].chat.push(msgObj);
@@ -159,27 +160,26 @@ router.get('/api/updateEnemy/:atk/:hp/:def/:pos/:rof', function(req, res){
 	}
 });
 
-router.get('/api/blink_bad', function(req,res){
-	board = require('../arduino/flora.js')[1];
-
-	if(board){
-		flora = require('../arduino/flora.js')[0];
-		console.log("this is api controller game route");
-		console.log("you got hit!");
-		console.log(flora);
-		flora.blink("red", 1, 20);
-	}
-});
-router.get('/api/blink_good', function(req,res){
-	board = require('../arduino/flora.js')[1];
-
-	if(board){
-		flora = require('../arduino/flora.js')[0];
-		console.log("this is api controller game route");
-		console.log("you hit them!");
-		console.log(flora);
-		flora.blink("green", 1, 20);
-	}
-});
+// router.get('/api/blink_bad', function(req,res){
+// 	board = require('../arduino/flora.js')[1];
+//
+// 	if(board){
+// 		flora = require('../arduino/flora.js')[0];
+// 		console.log("this is api controller game route");
+// 		console.log(flora);
+// 		flora.blink("red", 1, 20);
+// 	}
+// });
+// router.get('/api/blink_good', function(req,res){
+// 	board = require('../arduino/flora.js')[1];
+//
+// 	if(board){
+// 		flora = require('../arduino/flora.js')[0];
+// 		console.log("this is api controller game route");
+// 		console.log(flora);
+// 		flora.blink("green", 1, 20);
+// 	}
+// });
+>>>>>>> master
 
 module.exports = router;

@@ -44,16 +44,16 @@ var updater = {
 			.done(function(response) {
 
 		})
-	}
+	},
 	boss_hit: function(){
 		var queryUrl = '/api/blink_good';
 
-		$.ajax({
-				dataType: 'json',
-				url: queryUrl,
-				method: 'GET'})
-			.done(function(response) {
-
-		})
+		// $.ajax({
+		// 		dataType: 'json',
+		// 		url: queryUrl,
+		// 		method: 'GET'})
+		// 	.done(function(response) {
+		//
+		// })
 	}
 };
