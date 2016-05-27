@@ -19,7 +19,7 @@ $(document).ready(function(){
 	            }
 	        }
 	    })
-	    setTimeout(gamechatter, 100);
+	    setTimeout(gamechatter, 1000);
 	}());
 
 	if ($('#player').text() == "true") {
