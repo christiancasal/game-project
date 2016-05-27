@@ -77,10 +77,10 @@ router.post('/updateCharacter', function(req, res){
 	marvelCharacters.update({
 		attack_power: req.body.attack,
 		health_level: req.body.health,
-		defense_power: req.body.defense  
+		defense_power: req.body.defense
 	},{
 		where: {
-			character_id: req.body.id 
+			character_id: req.body.id
 		}
 	});
 
