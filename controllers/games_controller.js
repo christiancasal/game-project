@@ -23,7 +23,6 @@ router.get('/game', function(req, res){
 		flora = require('../arduino/flora.js')[0];
 		//console.log("this is games_controller game route");
 		flora.hello();
-
 	}
 	var hbsObject = {
 		message : req.session.message,

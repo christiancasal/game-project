@@ -13,10 +13,8 @@ var fps = 15;
 var stripObj = {
     //takes in a color, desired amount of flashes and the desired delay
     hello: function(){
-        stripObj.blink("red",4,2);
-        stripObj.blink("blue",3,2);
-        stripObj.blink("yellow",2,2);
-        stripObj.blink("green",1,2);
+        stripObj.blink("red",2,2);
+        stripObj.blink("blue",1,2);
     },
     ok: function(){ stripObj.blink("green", 1, 1)},
     err: function(){ stripObj.blink("red", 1, 1) },

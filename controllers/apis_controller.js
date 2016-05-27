@@ -165,6 +165,7 @@ router.get('/api/blink_bad', function(req,res){
 	if(board){
 		flora = require('../arduino/flora.js')[0];
 		console.log("this is api controller game route");
+		console.log("you got hit!");
 		console.log(flora);
 		flora.blink("red", 1, 20);
 	}
@@ -175,6 +176,7 @@ router.get('/api/blink_good', function(req,res){
 	if(board){
 		flora = require('../arduino/flora.js')[0];
 		console.log("this is api controller game route");
+		console.log("you hit them!");
 		console.log(flora);
 		flora.blink("green", 1, 20);
 	}
