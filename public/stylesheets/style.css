@@ -193,7 +193,9 @@ body {
 	-webkit-border-radius: 5px;
 	border-radius: 35px;
 	color: #FF0000;
+	outline: none;
 }
+
 
 #login-module form input {
 	text-align: center;
