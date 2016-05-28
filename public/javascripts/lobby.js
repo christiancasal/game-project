@@ -20,7 +20,7 @@ $(document).ready(function(){
     			}
     			if (response[i].gameId != host && response[i].available) {
     				if ($('#' + response[i].gameId).length == 0) {
-    					var link = $('<p class="game" id="' + response[i].gameId + '">User: ' + response[i].playerTwo.name + '<a href="game/join/' + response[i].gameId + '">Join Game</a></p>');
+    					var link = $('<p class="game" id="' + response[i].gameId + '">' + response[i].playerTwo.name + '<a href="game/join/' + response[i].gameId + '">JOIN GAME</a></p>');
     					$('#available').append(link);
     				}
     			} else if (!response[i].available && response[i].playerOne == undefined) {
@@ -29,7 +29,7 @@ $(document).ready(function(){
     				}
                 } else if (!response[i].available && response[i].playerOne != undefined) {
                     if ($('#' + response[i].gameId).length == 0) {
-    				    var active = $('<p class="game" id="' + response[i].gameId + '">User ' + response[i].playerTwo.name + ' VS ' + response[i].playerOne.name + '</p>');
+    				    var active = $('<p class="nogame" id="' + response[i].gameId + '">' + response[i].playerTwo.name + ' VS ' + response[i].playerOne.name + '</p>');
                         $('#unavailable').append(active);
                     }
     			}
@@ -41,7 +41,7 @@ $(document).ready(function(){
     		})
 
 	    });
-	 setTimeout(ajaxBuild, 100);
+	 setTimeout(ajaxBuild, 5000);
 	}());
     (function chatroom(){
         $.ajax({
@@ -56,11 +56,11 @@ $(document).ready(function(){
                 identifier = identifier.replace(/[,:\s]+/g, '');
 
                 if ($('#'+ identifier).text().length == 0) {
-                    $('#messageBoard-lobby').append('<div class="_msgblock"><div class="_username" id="'+ identifier +'">' +response[i].username+'</div><div class="_message">' + response[i].message + '</div><div class="_timestamp">' + moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + '</div></div><div class="clearfix"></div>');
+                    $('#messageBoard-lobby').append('<div class="_msgblock"><div class="_username" id="'+ identifier +'">' +response[i].username+'</div><div class="_message">' + response[i].message + '</div><div class="_timestamp">' + moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + '</div><div class="clearfix"></div></div>');
                 }
             }
         })
-        setTimeout(chatroom, 100);
+        setTimeout(chatroom, 5000);
     }());  
 });
 

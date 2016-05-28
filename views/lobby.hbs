@@ -13,10 +13,10 @@
 <p id="link">Link for others to join your game! mighty-caverns-99251.herokuapp.com/game/<span id="host">{{hbsObject.hostedGameId}}</span></p>
 <div id="lobby-container">
 	<div id="available">
-
+		<h2 id="availHeader">Public Games</h2>
 	</div>
 	<div id="unavailable">
-
+	<h2 id="availHeader">Active Games</h2>
 	</div>
 
 	<div id="chat-lobby">
@@ -25,7 +25,7 @@
 		<form id="newmsg">
 			<span id="userName">{{hbsObject.username}}</span>
 			<input type="hidden" name="user" value="{{hbsObject.username}}">
-			<input name="usermsg" type="text" id="usermsg" size="63" />
+			<input name="usermsg" type="text" id="usermsg" size="63" autocomplete="off"/>
 			<input type="submit">
 		</form>
 	</div>
@@ -40,6 +40,11 @@ $('input[name=availability]').on('change', function(){
 
 $('#availableForm').submit(function(e){
 	e.preventDefault();
+	if ($('input[name=availability]:checked', '#availableForm').val() == "true") {
+		$('#link').hide();
+	} else {
+		$('#link').show();
+	}
 	$.ajax({
 		type: "POST",
 		url: '/api/available',
@@ -53,13 +58,14 @@ $('#availableForm').submit(function(e){
 
 $('#newmsg').submit(function(e){
 	e.preventDefault();
-
 	$.ajax({
 		type: "POST",
 		url: '/api/lobbypost',
 		data: $(this).serialize(), // serializes the form's elements.
 		success: function(data)
 		{
+			$('#usermsg').val('');
+			$("#messageBoard-lobby").animate({ scrollTop: $('#messageBoard-lobby').prop("scrollHeight")}, 1000);
 			console.log('success')
 		}
 	});

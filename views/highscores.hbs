@@ -1,2 +1,25 @@
 <h1>{{hbsObject.title}}</h1>
 <p>Welcome to {{hbsObject.title}}</p>
+
+<table class="table table-inverse" style="color:white;">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Username</th>
+      <th>Wins</th>
+      <th>Streak</th>
+      <th>Loses</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{{#each hbsObject.scores}}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{this.username}}</td>
+      <td>{{this.wins}}</td>
+      <td>{{this.streak}}</td>
+      <td>{{this.loses}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
