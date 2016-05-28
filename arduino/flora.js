@@ -12,10 +12,37 @@ var fps = 15;
 
 var stripObj = {
     //takes in a color, desired amount of flashes and the desired delay
-    hello: function(){
-        stripObj.blink("red",2,2);
-        stripObj.blink("blue",1,2);
-    },
+      ring_around: function(){
+        var ring_around = setInterval(function(){
+          if(!color_switch){
+            var p = strip.pixel(colorPos[counter % strip_length])
+
+            console.log(counter % strip_length);
+            p.color("red");
+            counter++;
+            console.log(counter);
+            strip.show();
+            if(counter % strip_length === 0){
+              color_switch = true;
+              color_switch_counter++;
+            }
+          }
+          else {
+            var p = strip.pixel(colorPos[counter % strip_length])
+
+            console.log(counter % strip_length);
+            p.color("blue");
+            counter++;
+            console.log(counter);
+            strip.show();
+            if(counter % strip_length === 0){
+              clearInterval(ring_around);
+              color_switch = 0;
+              strip.off();
+              strip.show();
+            }
+        }, 50);
+      },
     ok: function(){ stripObj.blink("green", 1, 1)},
     err: function(){ stripObj.blink("red", 1, 1) },
     rainbow: function(){
