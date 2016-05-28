@@ -39,27 +39,27 @@ var gamesObject = {
 			chat: [],
 			playerTwo : {
 				id : undefined,
-				name: "Spider_dude",
+				name: "night_slayer",
 				character: undefined,
-				image: undefined,
-				health: undefined,
-				attack: undefined,
-				defense: undefined,
+				image: 'http://static.comicvine.com/uploads/original/6/62058/2013735-59654_bugs_bunny.jpg',
+				health: 500,
+				attack: 300,
+				defense: 10,
 				ROF: 1,
-				board: undefined,
-				position: undefined
+				board: [1,4,6,7],
+				position: 0
 			},
 			playerOne : {
-				id :undefined,
-				name: "Funtimezzz123",
+				id : undefined,
+				name: "night_slayer",
 				character: undefined,
-				image: undefined,
-				health: undefined,
-				attack: undefined,
-				defense: undefined,
+				image: 'http://static.comicvine.com/uploads/original/6/62058/2013735-59654_bugs_bunny.jpg',
+				health: 500,
+				attack: 300,
+				defense: 10,
 				ROF: 1,
-				board: undefined,
-				position: undefined
+				board: [1,4,6,7],
+				position: 0
 			}
 		},
 		{

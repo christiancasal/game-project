@@ -413,11 +413,9 @@ function main(turn, player, enemy){
 			defense = (parseInt(defense) + 25);
 			var attack = $('#player-attack').html();
 			attack = (parseInt(attack) + 25);
-			$('#player-health').html(health);
 			$('#player-defense').html(defense);
 			$('#player-attack').html(attack);
 			$('.defense-option').remove();
-			console.log(health)
 			console.log(player.position)
 			console.log(attack)
 			console.log(defense)
