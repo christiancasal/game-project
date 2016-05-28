@@ -58,23 +58,58 @@ board.on("ready", function() {
 
         console.log('Strip is ready!');
         stripObj.off();
-        var colorArr = ['red', 'blue', 'green'];
-        var colorPos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        var counter = 0;
-        var strip_length = 12
 
-        console.log(strip_length);
+        var colorArr = ['red', 'blue'];
+        var color_switch = false;
+        var color_switch_counter = 0;
+
+        var colorPos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        var counter = 0;
+        var strip_length = colorPos.length;
+
+        //
+        // var ring_around_color_switch = setInterval(function(){
+        //   var p = strip.pixel(colorPos[counter % strip_length])
+        //
+        //   console.log(counter % strip_length);
+        //
+        //   p.color(colorArr[counter % colorArr.length]);
+        //   counter++;
+        //   console.log(counter);
+        //   strip.show();
+        // }, 500);
 
         var ring_around = setInterval(function(){
-          var p = strip.pixel(colorPos[counter % strip_length])
+          if(!color_switch){
+            var p = strip.pixel(colorPos[counter % strip_length])
 
+            console.log(counter % strip_length);
+            p.color("red");
+            counter++;
+            console.log(counter);
+            strip.show();
+            if(counter % strip_length === 0){
+              color_switch = true;
+              color_switch_counter++;
+            }
+          }
+          else {
+            var p = strip.pixel(colorPos[counter % strip_length])
 
-          console.log(counter % strip_length);
-          p.color(colorArr[counter % colorArr.length]);
-          counter++;
-          console.log(counter);
-          strip.show()
-        }, 1000)
+            console.log(counter % strip_length);
+            p.color("blue");
+            counter++;
+            console.log(counter);
+            strip.show();
+            if(counter % strip_length === 0){
+              clearInterval(ring_around);
+              color_switch = 0;
+              strip.off();
+            }
+
+          }
+        }, 100);
+
 
         console.log('ring around the rosie?');
     });
