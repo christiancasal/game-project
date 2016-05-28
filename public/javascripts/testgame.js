@@ -9,15 +9,15 @@ $(document).ready(function(){
 	        cache: false,
 	        method: 'GET'})
 	        .done(function(response) {
-		        for (var i = 0; i < response.length; i++) {
-		            // console.log(response)
-		            identifier = String(moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + response[i].username);
-		            identifier = identifier.replace(/[,:\s]+/g, '');
+	        for (var i = 0; i < response.length; i++) {
+	            // console.log(response)
+	            identifier = String(moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + response[i].username);
+	            identifier = identifier.replace(/[,:\s]+/g, '');
 
-		            if ($('#'+ identifier).text().length == 0) {
-		                $('#messageBoard-game').append('<div class="_msgblock"><div class="_Gusername" id="'+ identifier +'">' +response[i].username+'</div><div class="_Gmessage">' + response[i].message + '</div><div class="_Gtimestamp">' + moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + '</div></div><div class="clearfix"></div>');
-		            }
-		        }
+	            if ($('#'+ identifier).text().length == 0) {
+	                $('#messageBoard-game').append('<div class="_msgblock"><div class="_Gusername" id="'+ identifier +'">' +response[i].username+'</div><div class="_Gmessage">' + response[i].message + '</div><div class="_Gtimestamp">' + moment(response[i].time).format('MMMM Do YYYY, h:mm:ss a') + '</div><div class="clearfix"></div></div>');
+	            }
+	        }
 	    })
 	    setTimeout(gamechatter, 1000);
 	}());
@@ -270,7 +270,7 @@ function main(turn, player, enemy){
 				$('.defense-option').append($('<h1 class="defense-announcement">').html('Choose an Upgrade'));
 				$('.defense-option').append($('<button id="select-consume">').html('<h2>CONSUME</h2><h3>Health +500</h3>'));
 			}
-				$('.defense-option').append($('<button id="select-smash">').html('<h2>SMASH</h2><h3>attack +15 defense +15</h3>'));
+				$('.defense-option').append($('<button id="select-smash">').html('<h2>SMASH</h2><h3>attack +25 defense +25</h3>'));
 				$('.defense-option').append($('<button id="select-fire">').html('<h2>FIRE</h2><h3>Fire rate +10</h3>'));
 
 		};
@@ -409,13 +409,10 @@ function main(turn, player, enemy){
 			$(document).off('click', '#select-smash');
 			$(document).off('click', '#select-consume');
 			$(document).off('click', '#select-fire');
-			var health =  $('#player-health').html();
-			health = (parseInt(health) + 5);
 			var defense = $('#player-defense').html();
-			defense = (parseInt(defense) + 5);
+			defense = (parseInt(defense) + 25);
 			var attack = $('#player-attack').html();
-			attack = (parseInt(attack) + 5);
-
+			attack = (parseInt(attack) + 25);
 			$('#player-health').html(health);
 			$('#player-defense').html(defense);
 			$('#player-attack').html(attack);
@@ -424,7 +421,7 @@ function main(turn, player, enemy){
 			console.log(player.position)
 			console.log(attack)
 			console.log(defense)
-			updater.allStats(attack, health, defense, player.position, player.ROF);
+			updater.allStats(attack, player.health, defense, player.position, player.ROF);
 		});
 
 		$(document).on('click', '#select-fire', function(){
@@ -485,7 +482,9 @@ jQuery(document).ready(function () {
 window.addEventListener("keydown", function(e) {
 // space and arrow keys
 if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+
 	console.log('guilty');
+
 	e.preventDefault();
 }
 }, false);

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Games = require('../models/gameContainer.js');
 var marvelCharacters = require('../models/models.js')[0];
-
+var User = require('../models/models.js')[1];
 /* GET home page. */
 router.get('/', function(req, res) {
 	res.redirect('/game')
@@ -48,7 +48,14 @@ router.get('/highscores', function(req, res){
 		active : req.session.activeGame,
 		title: 'Highscores page'
 	};
-	res.render('highscores', { hbsObject });
+
+	User.findAll({
+		limit : 10,
+		order: [['wins', 'DESC']]
+	}).then(function(topten){
+		hbsObject.scores = topten;
+		res.render('highscores', { hbsObject });
+	})
 });
 
 router.get('/logout', function(req, res){
