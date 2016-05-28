@@ -6,8 +6,10 @@ Marvel Clash is a browser based RPG style multiplayer game. Play our [app!](http
 * HTML5 Canvas, Bootstrap, Javascript
 * AJAX
 * Node.js, express.js, handlebars.js
+* bcrypt
 * Sequelize, JAWSDB
-* Ardunio Flora, Neopixels
+* Arduino Flora, Neopixels
+* johnny-five, node-pixels
 * Marvel API
 
 #### Presentation
