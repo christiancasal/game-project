@@ -21,8 +21,6 @@ router.get('/game', function(req, res){
 	console.log(board);
 	if(board){
 		flora = require('../arduino/flora.js')[0];
-		//console.log("this is games_controller game route");
-		// flora.hello();
 	}
 	var hbsObject = {
 		message : req.session.message,
@@ -35,7 +33,7 @@ router.get('/game', function(req, res){
 	if (!req.session.logged_in) {
 		res.render('login.hbs', { hbsObject });
 		if(board){
-			flora.hello();
+			flora.ring_around();
 		}
 	} else if (!req.session.chosen && req.session.logged_in) {
 		if(board){
