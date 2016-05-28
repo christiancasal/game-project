@@ -193,7 +193,9 @@ body {
 	-webkit-border-radius: 5px;
 	border-radius: 35px;
 	color: #FF0000;
+	outline: none;
 }
+
 
 #login-module form input {
 	text-align: center;
@@ -622,43 +624,43 @@ margin-top: 30px;
 }
 /*Lobby View*/
 /*================================================*/
-._msgblock {
-	background-color: rgba(0,0,0,.3);
-	border-radius: 10px;
-	color: white;
-	padding: 3px;
-	margin: 5px 0px;
-	font-size: .8em;
+._msgblock{
+	background-color: #820000;
+	border-bottom: 1px solid #00C3FF;
 }
 
 ._username {
-	float: left;
+	color: red;
+	display: inline-block;
 	width: 150px;
 }
 
 ._message {
-	float: left;
+	color: #00C3FF;
+	display: inline-block;
 	width: 480px;
 	text-align: left;
 }
 
 ._timestamp {
-	float: right;
+	display: inline-block;
 }
 
 ._Gusername {
-	float: left;
+	color: red;
+	display: inline-block;
 	width: 150px;
 }
 
 ._Gmessage {
-	float: left;
-	width: 780px;
+	color: #00C3FF;
+	display: inline-block;
+	width: 480px;
 	text-align: left;
 }
 
 ._Gtimestamp {
-	float: right;
+	display: inline-block;
 }
 
 #link {

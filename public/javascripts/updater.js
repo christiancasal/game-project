@@ -44,7 +44,7 @@ var updater = {
 			.done(function(response) {
 
 		})
-	}
+	},
 	boss_hit: function(){
 		var queryUrl = '/api/blink_good';
 

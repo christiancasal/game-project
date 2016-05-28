@@ -347,6 +347,7 @@ function update() {
         }
   }
   if(keydown.space && !isGameOver && Date.now() - lastFire > (250 - (_player.ROF * 2))) {
+    console.log('catching space');
       player.shoot();
       lastFire = Date.now();
   }
