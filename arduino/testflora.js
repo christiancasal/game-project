@@ -67,6 +67,8 @@ board.on("ready", function() {
 
         var ring_around = setInterval(function(){
           var p = strip.pixel(colorPos[counter % strip_length])
+
+
           console.log(counter % strip_length);
           p.color(colorArr[counter % colorArr.length]);
           counter++;
