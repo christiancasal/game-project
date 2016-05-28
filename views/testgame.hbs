@@ -105,6 +105,8 @@ $('#gamechat').submit(function(e){
     success: function(data)
     {
       console.log('success')
+      $('#usermsg').val('');
+      $("#messageBoard-game").animate({ scrollTop: $('#messageBoard-game').prop("scrollHeight")}, 1000);
     }
   });
 });
