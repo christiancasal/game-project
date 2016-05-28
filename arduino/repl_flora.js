@@ -57,24 +57,9 @@ board.on("ready", function() {
         // do stuff with the strip here.
 
         console.log('Strip is ready!');
-        stripObj.off();
-        var colorArr = ['red', 'blue', 'green'];
-        var colorPos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        var counter = 0;
-        var strip_length = 12
+        // stripObj.off();
+        console.log(stripObj.blink("green", 5));
 
-        console.log(strip_length);
-
-        var ring_around = setInterval(function(){
-          var p = strip.pixel(colorPos[counter % strip_length])
-          console.log(counter % strip_length);
-          p.color(colorArr[counter % colorArr.length]);
-          counter++;
-          console.log(counter);
-          strip.show()
-        }, 1000)
-
-        console.log('ring around the rosie?');
     });
     this.repl.inject({
       // Allow limited on/off control access to the
@@ -82,3 +67,6 @@ board.on("ready", function() {
       strip:stripObj
     });
 });
+
+//board.isConnected
+//board.isReady
