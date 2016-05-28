@@ -22,9 +22,23 @@ router.get('/api/lobbychat', function(req, res){
 });
 
 router.get('/api/gamechat', function(req, res){
+	var emptyarr = [];
 	for (var i = 0; i < Games.activeGames.length; i++) {
 		if (Games.activeGames[i].gameId == req.session.hosted) {
+			if(Games.activeGames[i].chat == null){
+				console.log('just shut up shut up');
+				console.log(Games.activeGames[i].chat);
+				res.end();
+			}
+			if(Games.activeGames[i].chat == emptyarr){
+				console.log('just shut up shut up');
+				console.log(Games.activeGames[i].chat);
+				res.end();
+			}
+			else{
+			console.log('chat me silvers');
 			res.send(Games.activeGames[i].chat)
+			}
 		}
 	}
 });
