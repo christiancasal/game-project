@@ -9,6 +9,37 @@ var board = new five.Board({
 var strip = null;
 
 var stripObj = {
+    ring_around: function(){
+      var ring_around = setInterval(function(){
+        if(!color_switch){
+          var p = strip.pixel(colorPos[counter % strip_length])
+
+          console.log(counter % strip_length);
+          p.color("red");
+          counter++;
+          console.log(counter);
+          strip.show();
+          if(counter % strip_length === 0){
+            color_switch = true;
+            color_switch_counter++;
+          }
+        }
+        else {
+          var p = strip.pixel(colorPos[counter % strip_length])
+
+          console.log(counter % strip_length);
+          p.color("blue");
+          counter++;
+          console.log(counter);
+          strip.show();
+          if(counter % strip_length === 0){
+            clearInterval(ring_around);
+            color_switch = 0;
+            strip.off();
+            strip.show();
+          }
+      }, 50);
+    },
     blink: function(paint, flash_count){
       var light_delay = 10;
       var off_delay = 20;
@@ -105,10 +136,11 @@ board.on("ready", function() {
               clearInterval(ring_around);
               color_switch = 0;
               strip.off();
+              strip.show();
             }
 
           }
-        }, 100);
+        }, 50);
 
 
         console.log('ring around the rosie?');
