@@ -96,7 +96,9 @@
 
 <script>
 $('#gamechat').submit(function(e){
+
   e.preventDefault();
+
 
   $.ajax({
     type: "POST",
@@ -107,6 +109,9 @@ $('#gamechat').submit(function(e){
       console.log('success')
     }
   });
+
+  $('#usermsg').html('');
+
 });
 </script>
 <script type="text/javascript" src="javascripts/moment.js"></script>
