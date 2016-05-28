@@ -57,61 +57,9 @@ board.on("ready", function() {
         // do stuff with the strip here.
 
         console.log('Strip is ready!');
-        stripObj.off();
+        // stripObj.off();
+        console.log(stripObj.blink("green", 5));
 
-        var colorArr = ['red', 'blue'];
-        var color_switch = false;
-        var color_switch_counter = 0;
-
-        var colorPos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-        var counter = 0;
-        var strip_length = colorPos.length;
-
-        //
-        // var ring_around_color_switch = setInterval(function(){
-        //   var p = strip.pixel(colorPos[counter % strip_length])
-        //
-        //   console.log(counter % strip_length);
-        //
-        //   p.color(colorArr[counter % colorArr.length]);
-        //   counter++;
-        //   console.log(counter);
-        //   strip.show();
-        // }, 500);
-
-        var ring_around = setInterval(function(){
-          if(!color_switch){
-            var p = strip.pixel(colorPos[counter % strip_length])
-
-            console.log(counter % strip_length);
-            p.color("red");
-            counter++;
-            console.log(counter);
-            strip.show();
-            if(counter % strip_length === 0){
-              color_switch = true;
-              color_switch_counter++;
-            }
-          }
-          else {
-            var p = strip.pixel(colorPos[counter % strip_length])
-
-            console.log(counter % strip_length);
-            p.color("blue");
-            counter++;
-            console.log(counter);
-            strip.show();
-            if(counter % strip_length === 0){
-              clearInterval(ring_around);
-              color_switch = 0;
-              strip.off();
-            }
-
-          }
-        }, 100);
-
-
-        console.log('ring around the rosie?');
     });
     this.repl.inject({
       // Allow limited on/off control access to the
@@ -119,3 +67,6 @@ board.on("ready", function() {
       strip:stripObj
     });
 });
+
+//board.isConnected
+//board.isReady
