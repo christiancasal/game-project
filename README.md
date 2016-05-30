@@ -3,13 +3,13 @@
 Marvel Clash is a browser based RPG style multiplayer game. Play our [app!](https://mighty-caverns-99251.herokuapp.com/game)
 
 ####Tech
-* [HTML5 Canvas](http://www.w3schools.com/html/html5_canvas.asp), Bootstrap, Javascript
-* AJAX
-* Node.js, express.js, handlebars.js
-* bcrypt
-* Sequelize, JAWSDB
-* Arduino Flora, Neopixels
-* [johnny-five](http://johnny-five.io/), [node-pixels](https://github.com/ajfisher/node-pixel)
+* [HTML5 Canvas](http://www.w3schools.com/html/html5_canvas.asp), [Bootstrap](http://getbootstrap.com/), [Javascript](https://www.javascript.com/)
+* [AJAX](https://developer.mozilla.org/en-US/docs/AJAX)
+* [node.js](https://nodejs.org/en/), [express.js](http://expressjs.com/), [handlebars.js](http://handlebarsjs.com/)
+* [bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js/)
+* [sequelize.js](http://docs.sequelizejs.com/en/latest/), [JAWSDB](https://jawsdb.com/)
+* [Adafruit Flora](https://www.adafruit.com/product/659), [Neopixel Ring](https://www.adafruit.com/product/1463)
+* [johnny-five](http://johnny-five.io/), [node-pixel](https://github.com/ajfisher/node-pixel)
 * [Marvel API](http://developer.marvel.com/)
 
 #### Presentation
