@@ -1,8 +1,10 @@
 # Marvel Clash!
 
+####Description
+
 Marvel Clash is a browser based RPG style multiplayer game. Play our [app!](https://mighty-caverns-99251.herokuapp.com/game)
 
-####Tech
+####Technology
 * [HTML5 Canvas](http://www.w3schools.com/html/html5_canvas.asp), [Bootstrap](http://getbootstrap.com/), [Javascript](https://www.javascript.com/)
 * [AJAX](https://developer.mozilla.org/en-US/docs/AJAX)
 * [node.js](https://nodejs.org/en/), [express.js](http://expressjs.com/), [handlebars.js](http://handlebarsjs.com/)
