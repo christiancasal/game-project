@@ -15,5 +15,7 @@ Marvel Clash is a browser based RPG style multiplayer game. Play our [app!](http
 #### Presentation
 [Google Slides](https://docs.google.com/presentation/d/1uzZluNQucP122YS9-RfwMLLxWnUB8q0fvddzm63OwfI/edit?usp=sharing)
 
-Youtube video to come!
+[Marvel Clash with Adafruit Flora](https://www.youtube.com/watch?edit=vd&v=viQ0hi6grLs)
+
+Youtube presentation to come!
 
