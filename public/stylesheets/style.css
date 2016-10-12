@@ -104,7 +104,7 @@ body {
 
 
 #marvel{
-	text-shadow: 0px 0px 30px #A00707;
+  text-shadow: 0px 0px 10px #A00707;
   font-family: marvel;
   font-size: 80pt;
   color: #FF0000;
@@ -112,7 +112,7 @@ body {
 }
 
 #clash {
-	text-shadow: 0px 0px 60px #00C2FF;
+  text-shadow: 0px 0px 10px #00C2FF;
   font-family: clash;
   font-size: 60pt;
   color: #00A9FF;
